@@ -1,17 +1,26 @@
 package com.example.hiago.vacinado;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ButtonBarLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button bttnEntrar = (Button) findViewById(R.id.bttnEntrar);
+        bttnEntrar.setOnClickListener(this);
+        Button bttnCadastrar = (Button) findViewById(R.id.bttnCadastrar);
+        bttnCadastrar.setOnClickListener(this);
 
         final EditText edit_cpf = (EditText) findViewById(R.id.edtCpf);
         edit_cpf.addTextChangedListener(new TextWatcher() {
@@ -81,5 +90,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.bttnCadastrar:
+                Intent it = new Intent(this, Cadastro.class);
+                startActivity(it);
+                break;
+            case R.id.bttnEntrar:
+                break;
+        }
     }
 }
