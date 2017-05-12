@@ -10,6 +10,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:text="Vacinado"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
         android:text="@string/realizar_login" />
 
@@ -30,6 +37,7 @@
         android:hint="Senha" />
 
     <Button
+        android:id="@+id/bttnEntrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -44,12 +52,11 @@
         android:text="@string/realizar_cadastro" />
 
     <Button
+        android:id="@+id/bttnCadastrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
         android:text="@string/bttn_cadastrar" />
-
-
 </LinearLayout>
 
