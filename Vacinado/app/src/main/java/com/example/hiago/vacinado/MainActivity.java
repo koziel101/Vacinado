@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +82,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //Se estiver apagando posiciona o cursor no local correto.
                     //Isso irá tratar a deleção dos caracteres da mascara
                     edit_cpf.setSelection(Math.max(0, Math.min(hasMask ? start - before : start, str.length())));
+
+                    //Se tem mais de 9 caracteres (sem máscara) oloca os '.' e o '-'
+                    if (str.length() > 9) {
+                        str = str.substring(0, 3) + '.' + str.substring(3, 6) + '.' + str.substring(6, 9) + '-' + str.substring(9);
+
+                        //Se tem mais de 6, coloca o '.' e o '-'
+                    } else if (str.length() > 6) {
+                        str = str.substring(0, 3) + '.' + str.substring(3, 6) + '.' + str.substring(6);
+
+                        //Se tem mais de 3, coloca só o '.'
+                    } else if (str.length() > 3) {
+                        str = str.substring(0, 3) + '.' + str.substring(3);
+                    }
+
+                    //Modifica a flag para evitar chamada infinita
+                    isUpdating = true;
+
+                    //Altera o novo texto para o usuário
+                    edit_cpf.setText(str);
+
+                    //Seta a posicao do curso
+                    edit_cpf.setSelection(edit_cpf.getText().length());
                 }
             }
 
@@ -94,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.bttnCadastrar:
                 Intent it = new Intent(this, Cadastro.class);
                 startActivity(it);
