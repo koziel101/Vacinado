@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Vacinado</string>
     <string name="realizar_login">Já é usuário? Realize seu login!</string>
+    <string name="realizar_cadastro">Não é usuário ainda?</string>
     <string name="bttn_entrar">Entrar</string>
+    <string name="bttn_cadastrar">Cadastrar</string>
 </resources>
