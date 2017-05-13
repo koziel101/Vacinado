@@ -10,5 +10,6 @@
     <string name="legenda_amarelo">Falta alguma dose/reforço para tomar.</string>
     <string name="legenda_vermelho">Não tomou nenhuma das doses/reforços.</string>
     <string name="activity_carteira_classificacao">Sua classificação: </string>
+    <string name="title_activity_carteira">Carteira</string>
 
 </resources>

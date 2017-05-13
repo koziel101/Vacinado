@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -117,12 +118,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        Intent it;
         switch (v.getId()) {
             case R.id.bttnCadastrar:
-                Intent it = new Intent(this, Cadastro.class);
+                it = new Intent(this, Cadastro.class);
                 startActivity(it);
                 break;
             case R.id.bttnEntrar:
+                Toast.makeText(this, "Login realizado com sucesso!", Toast.LENGTH_LONG).show();
+                it = new Intent(this, Carteira.class);
+                startActivity(it);
                 break;
         }
     }

@@ -145,11 +145,6 @@
                 android:layout_margin="10dp"
                 android:text="@string/legenda_vermelho" />
 
-
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>
-
-
-

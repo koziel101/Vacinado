@@ -10,8 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/app_name"
         android:layout_margin="15dp"
+        android:text="@string/app_name"
         android:textSize="30dp" />
 
     <TextView
@@ -32,11 +32,11 @@
 
     <EditText
         android:id="@+id/edit_senha"
-        android:maxLines="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:hint="Senha" />
+        android:hint="Senha"
+        android:maxLines="1" />
 
     <Button
         android:id="@+id/bttnEntrar"

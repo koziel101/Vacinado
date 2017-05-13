@@ -14,17 +14,35 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class Cadastro extends AppCompatActivity implements View.OnClickListener {
 
+    static final int DialogId = 0;
     final Calendar c = Calendar.getInstance();
     int ano = c.get(Calendar.YEAR);
     int mes = c.get(Calendar.MONTH);
     int dia = c.get(Calendar.DAY_OF_MONTH);
-
     TextView diaTextView, mesTextView, anoTextView;
+    private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            ano = year;
+            mes = month;
+            dia = dayOfMonth;
+
+            diaTextView = (TextView) findViewById(R.id.txtDia);
+            diaTextView.setText("Dia: " + String.valueOf(dia));
+
+            mesTextView = (TextView) findViewById(R.id.txtMes);
+            mesTextView.setText("; Mês: " + String.valueOf(mes));
+
+            anoTextView = (TextView) findViewById(R.id.txtAno);
+            anoTextView.setText("; Ano: " + String.valueOf(ano));
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,26 +151,6 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
         botaoFinalizar.setOnClickListener(Cadastro.this);
     }
 
-    private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            ano = year;
-            mes = month;
-            dia = dayOfMonth;
-
-            diaTextView = (TextView) findViewById(R.id.txtDia);
-            diaTextView.setText("Dia: " + String.valueOf(dia));
-
-            mesTextView = (TextView) findViewById(R.id.txtMes);
-            mesTextView.setText("; Mês: " + String.valueOf(mes));
-
-            anoTextView = (TextView) findViewById(R.id.txtAno);
-            anoTextView.setText("; Ano: " + String.valueOf(ano));
-        }
-    };
-
-    static final int DialogId = 0;
-
     public void showDialog() {
         Button btnData = (Button) findViewById(R.id.bttnDataNascimento);
 
@@ -186,12 +184,16 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
+        Intent it;
         switch (v.getId()) {
             case R.id.bttnVoltar:
-                Intent it = new Intent(this, MainActivity.class);
+                it = new Intent(this, MainActivity.class);
                 startActivity(it);
                 break;
             case R.id.bttnFinalizar:
+                Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show();
+                it = new Intent(this, Carteira.class);
+                startActivity(it);
                 break;
         }
     }
