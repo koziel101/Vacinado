@@ -3,7 +3,6 @@ package com.example.hiago.vacinado;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ButtonBarLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int after) {
+
 
                 //Quando o texto é alterado o onTextChange é chamado
                 //Essa flag evita a chamada infinita desse método
@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //Seta a posicao do curso
                     edit_cpf.setSelection(edit_cpf.getText().length());
                 }
+
             }
 
             @Override
