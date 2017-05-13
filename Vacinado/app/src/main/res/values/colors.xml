@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorTodasDoses">#b6d7a8</color>
+    <color name="colorFaltaDose">#ffe599</color>
+    <color name="colorNenhumaDose">#dd7e6b</color>
 </resources>
