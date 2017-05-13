@@ -2,6 +2,7 @@ package com.example.hiago.vacinado;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -12,16 +13,18 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import java.util.Calendar;
 
-public class Cadastro extends AppCompatActivity {
+public class Cadastro extends AppCompatActivity implements View.OnClickListener {
 
     final Calendar c = Calendar.getInstance();
     int ano = c.get(Calendar.YEAR);
     int mes = c.get(Calendar.MONTH);
     int dia = c.get(Calendar.DAY_OF_MONTH);
+
+    TextView diaTextView, mesTextView, anoTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +125,12 @@ public class Cadastro extends AppCompatActivity {
 
             }
         });
+
+
+        Button botaoVoltar = (Button) findViewById(R.id.bttnVoltar);
+        botaoVoltar.setOnClickListener(Cadastro.this);
+        Button botaoFinalizar = (Button) findViewById(R.id.bttnFinalizar);
+        botaoFinalizar.setOnClickListener(Cadastro.this);
     }
 
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -131,7 +140,14 @@ public class Cadastro extends AppCompatActivity {
             mes = month;
             dia = dayOfMonth;
 
-            Toast.makeText(Cadastro.this, dia + "/" + mes + "/" + ano, Toast.LENGTH_SHORT).show();
+            diaTextView = (TextView) findViewById(R.id.txtDia);
+            diaTextView.setText(String.valueOf(dia));
+
+            mesTextView = (TextView) findViewById(R.id.txtMes);
+            mesTextView.setText(String.valueOf(mes));
+
+            anoTextView = (TextView) findViewById(R.id.txtAno);
+            anoTextView.setText(String.valueOf(ano));
         }
     };
 
@@ -166,5 +182,17 @@ public class Cadastro extends AppCompatActivity {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.bttnVoltar:
+                Intent it = new Intent(this, MainActivity.class);
+                startActivity(it);
+                break;
+            case R.id.bttnFinalizar:
+                break;
+        }
     }
 }
