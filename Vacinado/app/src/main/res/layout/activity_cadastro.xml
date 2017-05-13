@@ -96,11 +96,11 @@
                 android:text="Data de Nascimento - "
                 android:textSize="15dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dia: "
-                android:textSize="15dp" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Dia: "-->
+                <!--android:textSize="15dp" />-->
 
             <TextView
                 android:id="@+id/txtDia"
@@ -108,11 +108,11 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Mês: "
-                android:textSize="15dp" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text=" Mês: "-->
+                <!--android:textSize="15dp" />-->
 
             <TextView
                 android:id="@+id/txtMes"
@@ -120,11 +120,11 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Ano: "
-                android:textSize="15dp" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text=" Ano: "-->
+                <!--android:textSize="15dp" />-->
 
             <TextView
                 android:id="@+id/txtAno"
