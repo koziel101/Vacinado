@@ -3,8 +3,10 @@ package br.com.inf.vacinado;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -14,7 +16,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
 
@@ -26,6 +32,12 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
     int mes = c.get(Calendar.MONTH);
     int dia = c.get(Calendar.DAY_OF_MONTH);
     TextView diaTextView, mesTextView, anoTextView;
+
+    protected EditText passwordEditText;
+    protected EditText emailEditText;
+    protected Button signUpButton;
+    private FirebaseAuth mFirebaseAuth;
+
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -144,11 +156,21 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
             }
         });
 
-
         Button botaoVoltar = (Button) findViewById(R.id.bttnVoltar);
         botaoVoltar.setOnClickListener(Cadastro.this);
         Button botaoFinalizar = (Button) findViewById(R.id.bttnFinalizar);
         botaoFinalizar.setOnClickListener(Cadastro.this);
+
+        // Iniciando o FirebaseAuth
+        try {
+            mFirebaseAuth = FirebaseAuth.getInstance();
+        } catch (Exception e) {
+            mFirebaseAuth = null;
+        }
+
+        passwordEditText = (EditText) findViewById(R.id.edit_senha_cadastro);
+        emailEditText = (EditText) findViewById(R.id.edit_email_cadastro);
+
     }
 
     public void showDialog() {
@@ -191,10 +213,41 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
                 startActivity(it);
                 break;
             case R.id.bttnFinalizar:
-                Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_LONG).show();
-                it = new Intent(this, Carteira.class);
-                startActivity(it);
-                break;
+
+                String password = passwordEditText.getText().toString();
+                String email = emailEditText.getText().toString();
+
+                password = password.trim();
+                email = email.trim();
+
+                if (password.isEmpty() || email.isEmpty()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Cadastro.this);
+                    builder.setMessage(R.string.signup_error_message)
+                            .setTitle(R.string.signup_error_title)
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                } else {
+                    mFirebaseAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(Cadastro.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Intent intent = new Intent(Cadastro.this, Carteira.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                    } else {
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(Cadastro.this);
+                                        builder.setMessage(task.getException().getMessage())
+                                                .setTitle(R.string.login_error_title)
+                                                .setPositiveButton(android.R.string.ok, null);
+                                        AlertDialog dialog = builder.create();
+                                        dialog.show();
+                                    }
+                                }
+                            });
+                }
         }
     }
 }
