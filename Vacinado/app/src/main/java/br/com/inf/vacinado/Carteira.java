@@ -1,7 +1,7 @@
-package com.example.hiago.vacinado;
+package br.com.inf.vacinado;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
 public class Carteira extends AppCompatActivity {
 
@@ -9,6 +9,5 @@ public class Carteira extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carteira);
-
     }
 }
