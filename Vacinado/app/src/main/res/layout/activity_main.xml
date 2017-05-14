@@ -22,12 +22,12 @@
         android:text="@string/realizar_login" />
 
     <EditText
-        android:id="@+id/edtCpf"
+        android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:hint="CPF"
-        android:inputType="number"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
         android:maxLength="14" />
 
     <EditText
@@ -35,6 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:inputType="textPassword"
         android:hint="Senha"
         android:maxLines="1" />
 
