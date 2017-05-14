@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -39,7 +38,6 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
 
     protected EditText passwordEditText;
     protected EditText emailEditText;
-    protected Button signUpButton;
     private FirebaseAuth mFirebaseAuth;
 
     MaterialDialog dialog;
@@ -229,12 +227,6 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
 
                 if (password.isEmpty() || email.isEmpty()) {
                     Snackbar.make(findViewById(android.R.id.content), login_error_message, Snackbar.LENGTH_LONG).show();
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(Cadastro.this);
-//                    builder.setMessage(R.string.signup_error_message)
-//                            .setTitle(R.string.signup_error_title)
-//                            .setPositiveButton(android.R.string.ok, null);
-//                    AlertDialog dialog = builder.create();
-//                    dialog.show();
                 } else {
                     dialog = new MaterialDialog.Builder(this).content(R.string.realizando_cadastro).progress(true, 0).show();
                     mFirebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -250,12 +242,6 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
                                     } else {
                                         dialog.dismiss();
                                         Snackbar.make(findViewById(android.R.id.content), R.string.signup_error_message, Snackbar.LENGTH_LONG).show();
-//                                        AlertDialog.Builder builder = new AlertDialog.Builder(Cadastro.this);
-//                                        builder.setMessage(task.getException().getMessage())
-//                                                .setTitle(R.string.login_error_title)
-//                                                .setPositiveButton(android.R.string.ok, null);
-//                                        AlertDialog dialog = builder.create();
-//                                        dialog.show();
                                     }
                                 }
                             });

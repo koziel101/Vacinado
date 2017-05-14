@@ -22,8 +22,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     protected EditText emailEditText;
     protected EditText passwordEditText;
-    protected Button logInButton;
-    protected TextView signUpTextView;
     private FirebaseAuth mFirebaseAuth;
     MaterialDialog dialog;
 
