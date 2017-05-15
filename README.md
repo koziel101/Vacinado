@@ -1,5 +1,3 @@
-# Vacinado
-
 ![](https://raw.githubusercontent.com/MarjorieCelestino/Vacinado/master/Vacinado/app/src/main/res/drawable/slogan_com_texto.png)
 
 Projeto de Software apresentado como trabalho da disciplina "Desenvolvimento de Software para Dispositivos móveis e ubíquos" do semestre 2017/1 do curso de Engenharia de Software da Universidade Federal de Goiás.
