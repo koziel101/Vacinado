@@ -244,7 +244,7 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
 
                                         UsuarioInfo usuario = new UsuarioInfo(nomeEditText.getText().toString(),
                                                 emailEditText.getText().toString().trim(), spinner.getSelectedItem().toString(), cpfString,
-                                                dia, mes, ano, mFirebaseAuth);
+                                                dia, mes, ano);
 
                                         UsuarioDAO.persistirUsuario(usuario);
 

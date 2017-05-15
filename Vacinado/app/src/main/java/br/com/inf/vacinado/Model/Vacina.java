@@ -1,4 +1,4 @@
-package br.com.inf.vacinado;
+package br.com.inf.vacinado.Model;
 
 public class Vacina {
 

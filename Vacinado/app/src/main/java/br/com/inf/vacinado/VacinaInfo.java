@@ -1,4 +1,4 @@
-package br.com.inf.vacinado.Model;
+package br.com.inf.vacinado;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-
-import br.com.inf.vacinado.Carteira;
-import br.com.inf.vacinado.R;
 
 public class VacinaInfo extends AppCompatActivity{
 
