@@ -1,7 +1,5 @@
 package br.com.inf.vacinado.DAO;
 
-import android.util.Log;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -24,30 +22,13 @@ public class UsuarioDAO {
     static private DatabaseReference mDatabase;
     static private String mUserId;
 
-    public static boolean persistirUsuario(UsuarioInfo usuarioInfo) {
+    public static void persistirUsuario(UsuarioInfo usuarioInfo) {
 
-
-        try {
-            // Initialize Firebase Auth and Database Reference
-            mFirebaseAuth = FirebaseAuth.getInstance();
-            mFirebaseUser = mFirebaseAuth.getCurrentUser();
-            mDatabase = FirebaseDatabase.getInstance().getReference();
-
-            mUserId = mFirebaseUser.getUid();
-        } catch (Exception e) {
-            mFirebaseAuth = null;
-            return false;
-        }
-
-//        Log.e("Nome", usuarioInfo.getNome());
-//        Log.e("email", usuarioInfo.getEmail());
-//        Log.e("cpf", usuarioInfo.getCpf());
-//        Log.e("sexo", usuarioInfo.getSexo());
-//        Log.e("dia", String.valueOf(usuarioInfo.getDiaNascimento()));
-//        Log.e("mes", String.valueOf(usuarioInfo.getMesNascimento()));
-//        Log.e("ano", String.valueOf(usuarioInfo.getAnoNascimento()));
-
-
+        // Initialize Firebase Auth and Database Reference
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mUserId = mFirebaseUser.getUid();
 
         mDatabase.child("users").child(mUserId).child("cadastro").child("nome").push().setValue(usuarioInfo.getNome());
         mDatabase.child("users").child(mUserId).child("cadastro").child("email").push().setValue(usuarioInfo.getEmail());
@@ -56,10 +37,5 @@ public class UsuarioDAO {
         mDatabase.child("users").child(mUserId).child("cadastro").child("dia").push().setValue(usuarioInfo.getDiaNascimento());
         mDatabase.child("users").child(mUserId).child("cadastro").child("mes").push().setValue(usuarioInfo.getMesNascimento());
         mDatabase.child("users").child(mUserId).child("cadastro").child("ano").push().setValue(usuarioInfo.getAnoNascimento());
-
-
-        return true;
     }
-
-
 }
