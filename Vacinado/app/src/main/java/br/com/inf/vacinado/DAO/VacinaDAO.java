@@ -26,10 +26,10 @@ public class VacinaDAO {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mUserId = mFirebaseUser.getUid();
 
-        mDatabase.child("users").child(mUserId).child("cadastro").child("vacinas").child("id").push().setValue(vacina.getId());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("vacinas").child("nome").push().setValue(vacina.getNome());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("vacinas").child("informações").push().setValue(vacina.getInformacoes());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("vacinas").child("quantidadeDoses").push().setValue(vacina.getQuantidadeDoses());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("vacinas").child("dosesTomadas").push().setValue(vacina.getDosesTomadas());
+        mDatabase.child("users").child(mUserId).child("vacinas").child("id").push().setValue(vacina.getId());
+        mDatabase.child("users").child(mUserId).child("vacinas").child("nome").push().setValue(vacina.getNome());
+        mDatabase.child("users").child(mUserId).child("vacinas").child("informacoes").push().setValue(vacina.getInformacoes());
+        mDatabase.child("users").child(mUserId).child("vacinas").child("quantidadeDoses").push().setValue(vacina.getQuantidadeDoses());
+        mDatabase.child("users").child(mUserId).child("vacinas").child("dosesTomadas").push().setValue(vacina.getDosesTomadas());
     }
 }
