@@ -25,7 +25,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
 
-import static br.com.inf.vacinado.R.string.login_error_message;
+import br.com.inf.vacinado.DAO.UsuarioDAO;
+import br.com.inf.vacinado.Model.UsuarioInfo;
 
 public class Cadastro extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,41 +37,30 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
     int dia = c.get(Calendar.DAY_OF_MONTH);
     TextView diaTextView, mesTextView, anoTextView;
 
+    protected EditText nomeEditText;
     protected EditText passwordEditText;
     protected EditText emailEditText;
+    protected EditText edit_cpf;
+    protected Boolean checkNascimento = false;
+    protected Spinner spinner;
+
     private FirebaseAuth mFirebaseAuth;
 
-    MaterialDialog dialog;
 
-    private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            ano = year;
-            mes = month;
-            dia = dayOfMonth;
+    private MaterialDialog dialog;
 
-            diaTextView = (TextView) findViewById(R.id.txtDia);
-            diaTextView.setText("Dia: " + String.valueOf(dia));
-
-            mesTextView = (TextView) findViewById(R.id.txtMes);
-            mesTextView.setText("; Mês: " + String.valueOf(mes + 1));
-
-            anoTextView = (TextView) findViewById(R.id.txtAno);
-            anoTextView.setText("; Ano: " + String.valueOf(ano));
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        Spinner spinner = (Spinner) findViewById(R.id.sexo_cadastro);
+        spinner = (Spinner) findViewById(R.id.sexo_cadastro);
         configuraSpinner(spinner);
 
         showDialog();
 
-        final EditText edit_cpf = (EditText) findViewById(R.id.edt_cpf_cadastro);
+        edit_cpf = (EditText) findViewById(R.id.edt_cpf_cadastro);
         edit_cpf.addTextChangedListener(new TextWatcher() {
             boolean isUpdating;
 
@@ -177,6 +167,26 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
 
     }
 
+
+    private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            checkNascimento = true;
+            ano = year;
+            mes = month + 1;
+            dia = dayOfMonth;
+
+            diaTextView = (TextView) findViewById(R.id.txtDia);
+            diaTextView.setText("Dia: " + String.valueOf(dia));
+
+            mesTextView = (TextView) findViewById(R.id.txtMes);
+            mesTextView.setText("/ Mês: " + String.valueOf(mes));
+
+            anoTextView = (TextView) findViewById(R.id.txtAno);
+            anoTextView.setText("/ Ano: " + String.valueOf(ano));
+        }
+    };
+
     public void showDialog() {
         Button btnData = (Button) findViewById(R.id.bttnDataNascimento);
 
@@ -219,21 +229,25 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
 
             case R.id.bttnFinalizar:
 
-                String password = passwordEditText.getText().toString();
-                String email = emailEditText.getText().toString();
+                int validador = validaDados();
 
-                password = password.trim();
-                email = email.trim();
+                if (validador == 0) {
 
-                if (password.isEmpty() || email.isEmpty()) {
-                    Snackbar.make(findViewById(android.R.id.content), login_error_message, Snackbar.LENGTH_LONG).show();
-                } else {
                     dialog = new MaterialDialog.Builder(this).content(R.string.realizando_cadastro).progress(true, 0).show();
-                    mFirebaseAuth.createUserWithEmailAndPassword(email, password)
+                    mFirebaseAuth.createUserWithEmailAndPassword(emailEditText.getText().toString().trim(), passwordEditText.getText().toString().trim())
                             .addOnCompleteListener(Cadastro.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+
+                                        String cpfString = edit_cpf.getText().toString().toString().replaceAll("[.]", "").replaceAll("[-]", "");
+
+                                        UsuarioInfo usuario = new UsuarioInfo(nomeEditText.getText().toString(),
+                                                emailEditText.getText().toString().trim(), spinner.getSelectedItem().toString(), cpfString,
+                                                dia, mes, ano, mFirebaseAuth);
+
+                                        UsuarioDAO.persistirUsuario(usuario);
+
                                         dialog.dismiss();
                                         Intent intent = new Intent(Cadastro.this, Carteira.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -241,11 +255,77 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
                                         startActivity(intent);
                                     } else {
                                         dialog.dismiss();
-                                        Snackbar.make(findViewById(android.R.id.content), R.string.signup_error_message, Snackbar.LENGTH_LONG).show();
+                                        Snackbar.make(findViewById(android.R.id.content), R.string.cadastro_erro_geral, Snackbar.LENGTH_LONG).show();
                                     }
                                 }
                             });
+
+                } else {
+                    switch (validador) {
+                        case 1:
+                            Snackbar.make(findViewById(android.R.id.content), R.string.cadastro_nome_erro, Snackbar.LENGTH_LONG).show();
+                            break;
+                        case 2:
+                            Snackbar.make(findViewById(android.R.id.content), R.string.cadastro_email_erro, Snackbar.LENGTH_LONG).show();
+                            break;
+                        case 3:
+                            Snackbar.make(findViewById(android.R.id.content), R.string.cadastro_senha_erro, Snackbar.LENGTH_LONG).show();
+                            break;
+                        case 4:
+                            Snackbar.make(findViewById(android.R.id.content), R.string.cadastro_cpf_erro, Snackbar.LENGTH_LONG).show();
+                            break;
+                        case 5:
+                            Snackbar.make(findViewById(android.R.id.content), R.string.cadastro_nascimento_erro, Snackbar.LENGTH_LONG).show();
+                            break;
+                        default:
+                            Snackbar.make(findViewById(android.R.id.content), R.string.cadastro_erro_geral, Snackbar.LENGTH_LONG).show();
+                            break;
+                    }
                 }
         }
     }
+
+    private int validaDados() {
+
+        nomeEditText = (EditText) findViewById(R.id.edit_nome_cadastro);
+        String nome = nomeEditText.getText().toString();
+
+        if (nome.isEmpty()) {
+            return 1;
+        }
+
+        String email = emailEditText.getText().toString().trim();
+
+        if (email.isEmpty()) {
+            return 2;
+        }
+
+        String password = passwordEditText.getText().toString().trim();
+
+        if (password.length() < 6) {
+            return 3;
+        }
+
+        if (verificaCpf() == false) {
+            return 4;
+        }
+        if (checkNascimento == false) {
+            return 5;
+        }
+
+        return 0;
+
+    }
+
+    private boolean verificaCpf() {
+
+        String cpf = edit_cpf.getText().toString();
+
+        if (cpf.isEmpty() || cpf.length() < 14) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

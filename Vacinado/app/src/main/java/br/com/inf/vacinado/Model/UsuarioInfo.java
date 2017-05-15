@@ -1,12 +1,16 @@
 package br.com.inf.vacinado.Model;
 
-public class UserInfo {
+import com.google.firebase.auth.FirebaseAuth;
+
+public class UsuarioInfo {
 
     private String nome, email, sexo;
-    private int cpf, diaNascimento, mesNascimento, anoNascimento;
+    private String cpf;
+    private int diaNascimento, mesNascimento, anoNascimento;
+    private FirebaseAuth mFirebaseAuth;
 
-    public UserInfo(String nome, String email, String sexo, int cpf,
-                    int diaNascimento, int mesNascimento, int anoNascimento) {
+    public UsuarioInfo(String nome, String email, String sexo, String cpf,
+                       int diaNascimento, int mesNascimento, int anoNascimento, FirebaseAuth mFirebaseAuth) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
@@ -14,6 +18,7 @@ public class UserInfo {
         this.diaNascimento = diaNascimento;
         this.mesNascimento = mesNascimento;
         this.anoNascimento = anoNascimento;
+        this.mFirebaseAuth = mFirebaseAuth;
     }
 
     public String getNome() {
@@ -40,11 +45,11 @@ public class UserInfo {
         this.sexo = sexo;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

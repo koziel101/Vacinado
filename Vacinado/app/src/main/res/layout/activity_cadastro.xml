@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,15 +10,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="15dp"
-            android:text="@string/app_name"
-            android:textSize="30dp" />
+            android:src="@drawable/slogan_com_texto" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,21 +33,21 @@
             android:maxLines="1" />
 
         <EditText
-            android:id="@+id/edit_senha_cadastro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:hint="Senha: "
-            android:inputType="textPassword"
-            android:maxLines="1" />
-
-        <EditText
             android:id="@+id/edit_email_cadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:hint="E-mail: "
             android:inputType="textEmailAddress"
+            android:maxLines="1" />
+
+        <EditText
+            android:id="@+id/edit_senha_cadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:hint="Senha: "
+            android:inputType="textPassword"
             android:maxLines="1" />
 
         <EditText
