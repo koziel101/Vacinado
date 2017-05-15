@@ -53,7 +53,7 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
             diaTextView.setText("Dia: " + String.valueOf(dia));
 
             mesTextView = (TextView) findViewById(R.id.txtMes);
-            mesTextView.setText("; Mês: " + String.valueOf(mes));
+            mesTextView.setText("; Mês: " + String.valueOf(mes + 1));
 
             anoTextView = (TextView) findViewById(R.id.txtAno);
             anoTextView.setText("; Ano: " + String.valueOf(ano));
