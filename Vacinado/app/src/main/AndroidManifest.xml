@@ -18,7 +18,7 @@
         </activity>
         <activity android:name=".Cadastro" />
         <activity android:name=".Carteira"></activity>
-        <activity android:name=".VacinaInfo"></activity>
+        <activity android:name=".Model.VacinaInfo"></activity>
     </application>
 
 </manifest>

@@ -5,7 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
-import android.widget.Button;
+
+import br.com.inf.vacinado.Model.VacinaInfo;
 
 public class Carteira extends AppCompatActivity {
 

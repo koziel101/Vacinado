@@ -18,6 +18,7 @@
     <string name="email_dica">Email</string>
     <string name="sign_up_button_label">Sign Up</string>
     <string name="signup_error_message">Por favor confira se você preencheu todos os campos!</string>
+    <string name="signup_error_password_small">Por favor confira se você preencheu todos os campos!</string>
     <string name="signup_error_title">Erro!</string>
     <string name="signup_success">Conta conectada com sucesso.</string>
     <string name="login_error_message">Por favor confira se você preencheu os campos de email e senha!</string>
