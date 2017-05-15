@@ -204,26 +204,7 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
                             });
 
                 } else {
-                    switch (validador) {
-                        case 1:
-                            Snackbar.make(findViewById(android.R.id.content), R.string.cadastro_nome_erro, Snackbar.LENGTH_LONG).show();
-                            break;
-                        case 2:
-                            Snackbar.make(findViewById(android.R.id.content), R.string.cadastro_email_erro, Snackbar.LENGTH_LONG).show();
-                            break;
-                        case 3:
-                            Snackbar.make(findViewById(android.R.id.content), R.string.cadastro_senha_erro, Snackbar.LENGTH_LONG).show();
-                            break;
-                        case 4:
-                            Snackbar.make(findViewById(android.R.id.content), R.string.cadastro_cpf_erro, Snackbar.LENGTH_LONG).show();
-                            break;
-                        case 5:
-                            Snackbar.make(findViewById(android.R.id.content), R.string.cadastro_nascimento_erro, Snackbar.LENGTH_LONG).show();
-                            break;
-                        default:
-                            Snackbar.make(findViewById(android.R.id.content), R.string.cadastro_erro_geral, Snackbar.LENGTH_LONG).show();
-                            break;
-                    }
+                    Validador.mostrarNotificacao(findViewById(android.R.id.content), validador);
                 }
         }
     }

@@ -1,5 +1,7 @@
 package br.com.inf.vacinado.Controller;
 
+import android.support.design.widget.Snackbar;
+import android.view.View;
 import android.widget.EditText;
 
 import br.com.inf.vacinado.Cadastro;
@@ -51,5 +53,27 @@ public class Validador {
         }
     }
 
+    public static void mostrarNotificacao(View view, int validador) {
 
+        switch (validador) {
+            case 1:
+                Snackbar.make(view, R.string.cadastro_nome_erro, Snackbar.LENGTH_LONG).show();
+                break;
+            case 2:
+                Snackbar.make(view, R.string.cadastro_email_erro, Snackbar.LENGTH_LONG).show();
+                break;
+            case 3:
+                Snackbar.make(view, R.string.cadastro_senha_erro, Snackbar.LENGTH_LONG).show();
+                break;
+            case 4:
+                Snackbar.make(view, R.string.cadastro_cpf_erro, Snackbar.LENGTH_LONG).show();
+                break;
+            case 5:
+                Snackbar.make(view, R.string.cadastro_nascimento_erro, Snackbar.LENGTH_LONG).show();
+                break;
+            default:
+                Snackbar.make(view, R.string.cadastro_erro_geral, Snackbar.LENGTH_LONG).show();
+                break;
+        }
+    }
 }
