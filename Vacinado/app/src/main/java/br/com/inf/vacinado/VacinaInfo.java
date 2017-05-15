@@ -21,10 +21,24 @@ public class VacinaInfo extends AppCompatActivity{
             }
         });
 
+        final Button button2 = (Button) findViewById(R.id.adicionarDose);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                adicionarDose();
+            }
+        });
+
         ListView listaDeCursos = (ListView) findViewById(R.id.listaDoses);
     }
 
     private void carteira(){
+        Intent intent = new Intent(VacinaInfo.this, Carteira.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+    private void adicionarDose(){
         Intent intent = new Intent(VacinaInfo.this, Carteira.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
