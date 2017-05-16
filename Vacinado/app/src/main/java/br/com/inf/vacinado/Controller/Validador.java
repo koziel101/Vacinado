@@ -9,9 +9,7 @@ import br.com.inf.vacinado.R;
 
 public class Validador {
 
-
     public static int validaDados(EditText nomeEditText, EditText emailEditText, EditText passwordEditText, EditText edit_cpf) {
-
 
         String nome = nomeEditText.getText().toString();
 
@@ -34,12 +32,12 @@ public class Validador {
         if (verificaCpf(edit_cpf) == false) {
             return 4;
         }
+
         if (Cadastro.getCheckNascimento() == false) {
             return 5;
         }
 
         return 0;
-
     }
 
     private static boolean verificaCpf(EditText edit_cpf) {

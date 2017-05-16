@@ -24,7 +24,7 @@ public class VacinaIncompletaInfo extends AppCompatActivity {
         ListView listaDeCursos = (ListView) findViewById(R.id.listaDoses);
     }
 
-    private void adicionaDose(){
+    private void adicionaDose() {
         Intent intent = new Intent(VacinaIncompletaInfo.this, Carteira.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -7,12 +7,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import br.com.inf.vacinado.Model.UsuarioInfo;
 
-/**
- * Created by hiago on 15-May-17.
- */
-
 public class UsuarioDAO {
-
 
     //Variaveis para realizar a autenticacao
     static private FirebaseAuth mFirebaseAuth;

@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import br.com.inf.vacinado.DAO.LoginOfflineDAO;
+
 import static br.com.inf.vacinado.R.string.login_error_message;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -50,14 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         checkBox = (CompoundButton) findViewById(R.id.checkBoxLembrar);
 
         SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
-        if (prefs != null) {
 
-            if (prefs.getBoolean("lembrar", false) == true) {
-                emailEditText.setText(prefs.getString("email", ""));
-                passwordEditText.setText(prefs.getString("senha", ""));
-                checkBox.setChecked(true);
-            }
-        }
+        LoginOfflineDAO.recuperarLogin(prefs, emailEditText, passwordEditText, checkBox);
     }
 
     @Override
@@ -70,11 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.bttnEntrar:
 
-                String email = emailEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
-
-                email = email.trim();
-                password = password.trim();
+                String email = emailEditText.getText().toString().trim();
+                String password = passwordEditText.getText().toString().trim();
 
                 if (email.isEmpty() || password.isEmpty()) {
                     Snackbar.make(findViewById(android.R.id.content), login_error_message, Snackbar.LENGTH_LONG).show();
@@ -85,7 +78,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        persistirLogin();
+                                        SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
+                                        LoginOfflineDAO.persistirLogin(prefs, emailEditText, passwordEditText, checkBox);
                                         dialog.dismiss();
                                         Intent intent = new Intent(MainActivity.this, Carteira.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -101,21 +95,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
         }
-    }
-
-    private void persistirLogin() {
-
-        SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
-
-        SharedPreferences.Editor editor = prefs.edit();
-
-        if (checkBox.isChecked()) {
-            editor.putString("email", emailEditText.getText().toString());
-            editor.putString("senha", passwordEditText.getText().toString());
-            editor.putBoolean("lembrar", true);
-        } else {
-            editor.putBoolean("lembrar", false);
-        }
-        editor.apply();
     }
 }

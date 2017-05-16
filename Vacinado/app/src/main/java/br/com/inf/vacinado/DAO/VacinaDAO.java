@@ -6,9 +6,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import br.com.inf.vacinado.Model.Vacina;
 
-
 public class VacinaDAO {
-
 
     //Variaveis para realizar a autenticacao
     static private FirebaseAuth mFirebaseAuth;
