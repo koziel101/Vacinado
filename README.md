@@ -7,7 +7,7 @@ Prof. Marcelo Ricardo Quinta
 
 Descrição
 ---------
-**Vacinado** é um aplicativo android que simula um cartão de vacinas online, com o intuito de facilitar a vida das pessoas no acompanhamento de vacinas já tomadas e as que faltam tomar. Atualmente, o único histórico de vacinação disponível de cada cidadão é por meio de um papel físico. O objetivo do aplicativo é de armazenar o histórico de vacinação e facilitar o acesso ao mesmo, através do registro das vacinas tomadas pelo usuário cadastrado (tipo da vacina, dose, data, cais de vacinação etc).  Objetiva também, alertar o usuário sobre as datas de vacinação próximas, em caso de vacinas que são tomadas em mais de uma dose ou precisam ser renovadas e emitir avisos sobre campanhas de vacinação oferecidas pelo SUS
+**Vacinado** é um aplicativo android que simula um cartão de vacinas online, com o intuito de facilitar a vida das pessoas no acompanhamento de vacinas já tomadas e as que faltam tomar. Atualmente, o único histórico de vacinação disponível de cada cidadão é por meio de um papel físico. O objetivo do aplicativo é de armazenar o histórico de vacinação e facilitar o acesso ao mesmo, através do registro das vacinas tomadas pelo usuário cadastrado (tipo da vacina, dose, data, cais de vacinação etc).  Objetiva também, alertar o usuário sobre as datas de vacinação próximas, em caso de vacinas que são tomadas em mais de uma dose ou precisam ser renovadas e emitir avisos sobre campanhas de vacinação oferecidas pelo SUS.
 
 Autores
 -------
