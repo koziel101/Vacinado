@@ -124,7 +124,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -147,5 +147,21 @@
                 android:text="@string/legenda_vermelho" />
 
         </LinearLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/button_nova_vacina"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_adiciona_vacina"
+                android:background="@color/colorAccent"/>
+
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
