@@ -18,25 +18,20 @@ public class Carteira extends AppCompatActivity {
         final CardView button = (CardView) findViewById(R.id.card_view1);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                vacinaInfoCompleta();
+                vacinaInfo();
             }
         });
 
         final CardView button2 = (CardView) findViewById(R.id.card_view2);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                vacinaInfoIncompleta();
+                vacinaInfo();
             }
         });
     }
 
-    private void vacinaInfoCompleta(){
-        Intent intent = new Intent(Carteira.this, VacinaCompletaInfo.class);
-        startActivity(intent);
-    }
-
-    private void vacinaInfoIncompleta(){
-        Intent intent = new Intent(Carteira.this, VacinaIncompletaInfo.class);
+    private void vacinaInfo(){
+        Intent intent = new Intent(Carteira.this, VacinaInfo.class);
         startActivity(intent);
     }
 }

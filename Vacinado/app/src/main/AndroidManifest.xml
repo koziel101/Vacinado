@@ -18,8 +18,7 @@
         </activity>
         <activity android:name=".View.Cadastro" />
         <activity android:name=".View.Carteira"></activity>
-        <activity android:name=".View.VacinaCompletaInfo"></activity>
-        <activity android:name=".View.VacinaIncompletaInfo"></activity>
+        <activity android:name=".View.VacinaInfo"></activity>
     </application>
 
 </manifest>

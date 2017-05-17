@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import br.com.inf.vacinado.R;
 
-public class VacinaIncompletaInfo extends AppCompatActivity {
+public class VacinaInfo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class VacinaIncompletaInfo extends AppCompatActivity {
     }
 
     private void adicionaDose() {
-        Intent intent = new Intent(VacinaIncompletaInfo.this, Carteira.class);
+        Intent intent = new Intent(VacinaInfo.this, Carteira.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
