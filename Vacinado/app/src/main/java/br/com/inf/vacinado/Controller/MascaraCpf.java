@@ -2,7 +2,7 @@ package br.com.inf.vacinado.Controller;
 
 import android.widget.EditText;
 
-import br.com.inf.vacinado.Cadastro;
+import br.com.inf.vacinado.View.Cadastro;
 
 public class MascaraCpf {
 
