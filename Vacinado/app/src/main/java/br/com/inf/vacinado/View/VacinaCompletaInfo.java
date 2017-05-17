@@ -1,8 +1,10 @@
-package br.com.inf.vacinado;
+package br.com.inf.vacinado.View;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
+
+import br.com.inf.vacinado.R;
 
 public class VacinaCompletaInfo extends AppCompatActivity {
 

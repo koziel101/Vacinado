@@ -1,4 +1,4 @@
-package br.com.inf.vacinado;
+package br.com.inf.vacinado.View;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.inf.vacinado.DAO.LoginOfflineDAO;
+import br.com.inf.vacinado.R;
 
 import static br.com.inf.vacinado.R.string.login_error_message;
 

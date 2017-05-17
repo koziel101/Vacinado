@@ -9,17 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Cadastro" />
-        <activity android:name=".Carteira"></activity>
-        <activity android:name=".VacinaCompletaInfo"></activity>
-        <activity android:name=".VacinaIncompletaInfo"></activity>
+        <activity android:name=".View.Cadastro" />
+        <activity android:name=".View.Carteira"></activity>
+        <activity android:name=".View.VacinaCompletaInfo"></activity>
+        <activity android:name=".View.VacinaIncompletaInfo"></activity>
     </application>
 
 </manifest>

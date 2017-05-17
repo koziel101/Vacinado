@@ -1,4 +1,4 @@
-package br.com.inf.vacinado;
+package br.com.inf.vacinado.View;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -29,6 +29,7 @@ import br.com.inf.vacinado.Controller.MascaraCpf;
 import br.com.inf.vacinado.Controller.Validador;
 import br.com.inf.vacinado.DAO.UsuarioDAO;
 import br.com.inf.vacinado.Model.UsuarioInfo;
+import br.com.inf.vacinado.R;
 
 public class Cadastro extends AppCompatActivity implements View.OnClickListener {
 
