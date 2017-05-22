@@ -9,7 +9,7 @@
         android:roundIcon="@drawable/slogan"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.MainActivity">
+        <activity android:name=".View.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,6 +19,7 @@
         <activity android:name=".View.Cadastro" />
         <activity android:name=".View.Carteira"></activity>
         <activity android:name=".View.VacinaInfo"></activity>
+        <activity android:name=".View.AdicionarDose"></activity>
     </application>
 
 </manifest>

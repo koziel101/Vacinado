@@ -167,7 +167,7 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
         Intent it;
         switch (v.getId()) {
             case R.id.bttnVoltar:
-                it = new Intent(this, MainActivity.class);
+                it = new Intent(this, Login.class);
                 startActivity(it);
                 break;
 

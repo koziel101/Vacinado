@@ -14,7 +14,7 @@ public class VacinaInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vacina_incompleta);
+        setContentView(R.layout.activity_vacina_info);
 
         final Button button = (Button) findViewById(R.id.adicionarDose);
         button.setOnClickListener(new View.OnClickListener() {

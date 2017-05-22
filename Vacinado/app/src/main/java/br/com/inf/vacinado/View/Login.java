@@ -22,7 +22,7 @@ import br.com.inf.vacinado.R;
 
 import static br.com.inf.vacinado.R.string.login_error_message;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class Login extends AppCompatActivity implements View.OnClickListener {
 
     protected EditText emailEditText;
     protected EditText passwordEditText;
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         Button bttnEntrar = (Button) findViewById(R.id.bttnEntrar);
         bttnEntrar.setOnClickListener(this);
@@ -75,14 +75,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     dialog = new MaterialDialog.Builder(this).content(R.string.realizando_login).progress(true, 0).show();
                     mFirebaseAuth.signInWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
                                         LoginOfflineDAO.persistirLogin(prefs, emailEditText, passwordEditText, checkBox);
                                         dialog.dismiss();
-                                        Intent intent = new Intent(MainActivity.this, Carteira.class);
+                                        Intent intent = new Intent(Login.this, Carteira.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
