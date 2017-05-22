@@ -38,6 +38,7 @@
     <string name="login_button_label">Login</string>
     <string name="sign_up_text">Sign Up!</string>
     <string name="title_activity_login">Sign in</string>
+    <string name="general_error">Não foi possível realizar o LogIn.</string>
 
     <string name="nome_vacina">Nome da Vacina</string>
 </resources>

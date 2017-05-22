@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +28,7 @@ import java.util.Calendar;
 
 import br.com.inf.vacinado.Controller.MascaraCpf;
 import br.com.inf.vacinado.Controller.Validador;
+import br.com.inf.vacinado.DAO.BancoOfflineController;
 import br.com.inf.vacinado.DAO.UsuarioDAO;
 import br.com.inf.vacinado.Model.UsuarioInfo;
 import br.com.inf.vacinado.R;
@@ -191,6 +193,15 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
                                                 dia, mes, ano);
 
                                         UsuarioDAO.persistirUsuario(usuario);
+
+                                        //Criando os arquivos do BD Offline
+                                        BancoOfflineController crud = new BancoOfflineController(getBaseContext());
+                                        String nome = nomeEditText.getText().toString();
+                                        String email = emailEditText.getText().toString();
+                                        String resultado;
+                                        resultado = crud.insereDado(nome, email, cpfString);
+                                        Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
+                                        //BD Offline criado
 
                                         dialog.dismiss();
                                         Intent intent = new Intent(Cadastro.this, Carteira.class);

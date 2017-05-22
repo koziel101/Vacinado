@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import br.com.inf.vacinado.DAO.BancoOfflineController;
 import br.com.inf.vacinado.DAO.LoginOfflineDAO;
 import br.com.inf.vacinado.R;
 
@@ -49,11 +51,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         emailEditText = (EditText) findViewById(R.id.edtEmail);
         passwordEditText = (EditText) findViewById(R.id.edtSenha);
-
         checkBox = (CompoundButton) findViewById(R.id.checkBoxLembrar);
-
         SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
-
         LoginOfflineDAO.recuperarLogin(prefs, emailEditText, passwordEditText, checkBox);
     }
 
@@ -67,8 +66,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.bttnEntrar:
 
-                String email = emailEditText.getText().toString().trim();
-                String password = passwordEditText.getText().toString().trim();
+                final String email = emailEditText.getText().toString().trim();
+                final String password = passwordEditText.getText().toString().trim();
 
                 if (email.isEmpty() || password.isEmpty()) {
                     Snackbar.make(findViewById(android.R.id.content), login_error_message, Snackbar.LENGTH_LONG).show();
@@ -88,8 +87,33 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                         startActivity(intent);
                                     } else {
                                         dialog.dismiss();
-                                        Snackbar.make(findViewById(android.R.id.content),
-                                                R.string.login_error_message_return, Snackbar.LENGTH_LONG).show();
+                                        String erro = task.getException().getMessage();
+                                        if (erro.equals("The password is invalid or the user does not have a password.")) {
+                                            Snackbar.make(findViewById(android.R.id.content),
+                                                    R.string.login_error_message_return, Snackbar.LENGTH_LONG).show();
+                                        } else if (erro.equals("A network error (such as timeout, interrupted connection or unreachable host) has occurred.")) {
+
+                                            BancoOfflineController crud = new BancoOfflineController(getBaseContext());
+
+//                                            email;
+//                                            password;
+
+//                                            EditText titulo = (EditText)findViewById(R.id.editText);
+//                                            EditText autor = (EditText)findViewById((R.id.editText2));
+//                                            EditText editora = (EditText)findViewById(R.id.editText3);
+//                                            String tituloString = titulo.getText().toString();
+//                                            String autorString = autor.getText().toString();
+//                                            String editoraString = editora.getText().toString();
+//                                            String resultado;
+//
+//                                            resultado = crud.insereDado(tituloString,autorString,editoraString);
+//
+//                                            Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
+
+                                        } else {
+                                            Snackbar.make(findViewById(android.R.id.content),
+                                                    R.string.general_error, Snackbar.LENGTH_LONG).show();
+                                        }
                                     }
                                 }
                             });
