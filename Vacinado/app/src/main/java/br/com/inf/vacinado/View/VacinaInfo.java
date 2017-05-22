@@ -27,9 +27,7 @@ public class VacinaInfo extends AppCompatActivity {
     }
 
     private void adicionaDose() {
-        Intent intent = new Intent(VacinaInfo.this, Carteira.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        Intent intent = new Intent(VacinaInfo.this, AdicionarDose.class);
         startActivity(intent);
     }
 }
