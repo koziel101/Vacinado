@@ -20,6 +20,7 @@
         <activity android:name=".View.Carteira"></activity>
         <activity android:name=".View.VacinaInfo"></activity>
         <activity android:name=".View.AdicionarDose"></activity>
+        <activity android:name=".View.AdicionarVacina"></activity>
     </application>
 
 </manifest>
