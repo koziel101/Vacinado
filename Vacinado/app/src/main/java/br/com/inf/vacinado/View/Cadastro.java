@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -123,18 +124,18 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
             dia = dayOfMonth;
 
             diaTextView = (TextView) findViewById(R.id.txtDia);
-            diaTextView.setText("Dia: " + String.valueOf(dia));
+            diaTextView.setText(" " + String.valueOf(dia));
 
             mesTextView = (TextView) findViewById(R.id.txtMes);
-            mesTextView.setText("/ Mês: " + String.valueOf(mes));
+            mesTextView.setText("/" + String.valueOf(mes));
 
             anoTextView = (TextView) findViewById(R.id.txtAno);
-            anoTextView.setText("/ Ano: " + String.valueOf(ano));
+            anoTextView.setText("/" + String.valueOf(ano));
         }
     };
 
     public void showDialog() {
-        Button btnData = (Button) findViewById(R.id.bttnDataNascimento);
+        ImageButton btnData = (ImageButton) findViewById(R.id.bttnDataNascimento);
 
         btnData.setOnClickListener(
                 new View.OnClickListener() {

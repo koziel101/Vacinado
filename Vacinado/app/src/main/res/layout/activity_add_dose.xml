@@ -6,8 +6,7 @@
 
     <include
         android:id="@+id/tool_bar"
-        layout="@layout/tool_bar"
-        ></include>
+        layout="@layout/tool_bar"></include>
 
     <TextView
         android:layout_width="wrap_content"
@@ -20,27 +19,39 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
             android:text="Data de vacinação: "
             android:textSize="15dp" />
 
         <ImageButton
             android:id="@+id/bttnDataNascimento"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_calendario" />
 
         <TextView
-            android:id="@+id/data_nascimento"
+            android:id="@+id/txtDia"
+            android:layout_marginLeft="25dp"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="15dp"
+            android:layout_height="wrap_content"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtMes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtAno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textSize="15dp" />
 
     </LinearLayout>

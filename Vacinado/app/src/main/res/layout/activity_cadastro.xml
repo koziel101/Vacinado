@@ -12,8 +12,7 @@
 
         <include
             android:id="@+id/tool_bar"
-            layout="@layout/tool_bar"
-            ></include>
+            layout="@layout/tool_bar"></include>
 
         <ImageView
             android:layout_width="100dp"
@@ -94,11 +93,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Data de Nascimento - "
+                android:text="Data de Nascimento: "
                 android:textSize="15dp" />
+
+            <ImageButton
+                android:id="@+id/bttnDataNascimento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_calendario" />
 
             <TextView
                 android:id="@+id/txtDia"
+                android:layout_marginLeft="25dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp" />
@@ -115,14 +122,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="15dp" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/bttnDataNascimento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="15dp"
-            android:text="Alterar Data de Nascimento" />
 
         <LinearLayout
             android:layout_width="match_parent"
