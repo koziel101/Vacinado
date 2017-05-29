@@ -20,7 +20,7 @@ public class MenuToolbar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tool_bar);
+        setContentView(R.layout.activity_carteira);
 
         //Une o layout ao toolbar
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
