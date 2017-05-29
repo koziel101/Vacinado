@@ -41,4 +41,6 @@
     <string name="general_error">Não foi possível realizar o LogIn.</string>
 
     <string name="nome_vacina">Nome da Vacina</string>
+    <string name="action_settings">settings</string>
+    <string name="cadastrar_nova_vacina">Cadastrar nova vacina.</string>
 </resources>
