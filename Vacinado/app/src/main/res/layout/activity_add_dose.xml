@@ -10,10 +10,10 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
         android:text="@string/nome_vacina"
         android:textSize="20dp"
         android:textStyle="bold" />
@@ -39,9 +39,9 @@
 
         <TextView
             android:id="@+id/txtDia"
-            android:layout_marginLeft="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
             android:textSize="15dp" />
 
         <TextView
