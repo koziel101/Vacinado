@@ -22,7 +22,6 @@ public class MenuToolbar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carteira);
 
-        //Une o layout ao toolbar
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
     }
