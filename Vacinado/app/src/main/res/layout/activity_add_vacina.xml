@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:hint="Quantidade de doses"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:maxLines="1" />
 
     <EditText

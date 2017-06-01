@@ -180,7 +180,7 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
 
-                                        String cpfString = edit_cpf.getText().toString().toString().replaceAll("[.]", "").replaceAll("[-]", "");
+                                        String cpfString = edit_cpf.getText().toString().replaceAll("[.]", "").replaceAll("[-]", "");
 
                                         UsuarioInfo usuario = new UsuarioInfo(nomeEditText.getText().toString(),
                                                 emailEditText.getText().toString().trim(), spinner.getSelectedItem().toString(), cpfString,

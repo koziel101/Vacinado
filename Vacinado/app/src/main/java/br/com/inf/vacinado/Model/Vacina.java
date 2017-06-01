@@ -8,10 +8,10 @@ public class Vacina {
     private int quantidadeDoses;
     private int dosesTomadas;
 
-    public Vacina(String nome, String informacoes, int quantidadeDoses) {
+    public Vacina(String nome, int quantidadeDoses, String informacoes) {
         this.nome = nome;
-        this.informacoes = informacoes;
         this.quantidadeDoses = quantidadeDoses;
+        this.informacoes = informacoes;
     }
 
     public String getId() {

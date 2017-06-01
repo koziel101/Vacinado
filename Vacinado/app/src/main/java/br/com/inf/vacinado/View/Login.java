@@ -16,9 +16,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 import br.com.inf.vacinado.DAO.LoginOfflineDAO;
+import br.com.inf.vacinado.DAO.UsuarioDAO;
+import br.com.inf.vacinado.Model.UsuarioInfo;
 import br.com.inf.vacinado.R;
 
 import static br.com.inf.vacinado.R.string.login_error_message;
@@ -30,6 +33,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     MaterialDialog dialog;
     CompoundButton checkBox;
     private FirebaseAuth mFirebaseAuth;
+    FirebaseUser user;
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         // Iniciando o FirebaseAuth
         try {
             mFirebaseAuth = FirebaseAuth.getInstance();
+            user = UsuarioInfo.getFireBaseUser();
         } catch (Exception e) {
             mFirebaseAuth = null;
         }

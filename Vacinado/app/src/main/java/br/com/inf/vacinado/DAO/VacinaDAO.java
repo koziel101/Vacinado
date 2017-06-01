@@ -1,5 +1,7 @@
 package br.com.inf.vacinado.DAO;
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -17,7 +19,7 @@ public class VacinaDAO {
     static private DatabaseReference mDatabase;
     static private String mUserId;
 
-    public static void persistirUsuario(Vacina vacina) {
+    public static void persistirVacina(Vacina vacina) {
 
         // Initialize Firebase Auth and Database Reference
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -34,5 +36,15 @@ public class VacinaDAO {
         mDatabase.child("users").child(mUserId).child("vacinas").child("informacoes").push().setValue(vacina.getInformacoes());
         mDatabase.child("users").child(mUserId).child("vacinas").child("quantidadeDoses").push().setValue(vacina.getQuantidadeDoses());
         mDatabase.child("users").child(mUserId).child("vacinas").child("dosesTomadas").push().setValue(vacina.getDosesTomadas());
+    }
+
+    public static DatabaseReference getmDatabase() {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        return mDatabase;
+    }
+
+    public static String getmUserId() {
+        Log.e("Id do usuario: ", mUserId);
+        return mUserId;
     }
 }

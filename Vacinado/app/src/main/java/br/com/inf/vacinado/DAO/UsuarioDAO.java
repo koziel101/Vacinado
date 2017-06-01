@@ -17,6 +17,8 @@ public class UsuarioDAO {
     static private DatabaseReference mDatabase;
     static private String mUserId;
 
+
+
     public static void persistirUsuario(UsuarioInfo usuarioInfo) {
 
         // Initialize Firebase Auth and Database Reference
