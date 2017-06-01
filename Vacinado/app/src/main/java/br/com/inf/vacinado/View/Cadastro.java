@@ -192,6 +192,7 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
                                         Intent intent = new Intent(Cadastro.this, Carteira.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        intent.putExtra("Modo offline", false);
                                         startActivity(intent);
                                     } else {
                                         dialog.dismiss();

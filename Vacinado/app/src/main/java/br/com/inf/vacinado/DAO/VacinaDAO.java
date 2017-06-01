@@ -59,7 +59,8 @@ public class VacinaDAO {
     }
 
     public static String getmUserId() {
-        Log.e("Id do usuario: ", mUserId);
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        mUserId = mFirebaseUser.getUid();
         return mUserId;
     }
 }
