@@ -5,20 +5,15 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
-import br.com.inf.vacinado.DAO.VacinaDAO;
-import br.com.inf.vacinado.Model.UsuarioInfo;
 import br.com.inf.vacinado.R;
 
 public class Carteira extends AppCompatActivity {
@@ -35,6 +30,13 @@ public class Carteira extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carteira);
+
+        Intent it = getIntent();
+        boolean userOffline = it.getBooleanExtra("Modo offline", true);
+
+        if (userOffline) {
+            Toast.makeText(getApplicationContext(), R.string.user_offline, Toast.LENGTH_LONG).show();
+        }
 
         final CardView button = (CardView) findViewById(R.id.card_view1);
         button.setOnClickListener(new View.OnClickListener() {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -20,7 +21,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 import br.com.inf.vacinado.DAO.LoginOfflineDAO;
-import br.com.inf.vacinado.DAO.UsuarioDAO;
 import br.com.inf.vacinado.Model.UsuarioInfo;
 import br.com.inf.vacinado.R;
 
@@ -36,7 +36,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     FirebaseUser user;
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +62,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         checkBox = (CompoundButton) findViewById(R.id.checkBoxLembrar);
         SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
         LoginOfflineDAO.recuperarLogin(prefs, emailEditText, passwordEditText, checkBox);
+    }
+
+    public void onStop() {
+        super.onStop();
+//        mFirebaseAuth.signOut();
     }
 
     @Override
@@ -93,6 +97,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                         Intent intent = new Intent(Login.this, Carteira.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        intent.putExtra("Modo offline", false);
                                         startActivity(intent);
                                     } else {
                                         dialog.dismiss();
@@ -101,8 +106,27 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                             Snackbar.make(findViewById(android.R.id.content),
                                                     R.string.login_error_message_return, Snackbar.LENGTH_LONG).show();
                                         } else if (erro.equals("A network error (such as timeout, interrupted connection or unreachable host) has occurred.")) {
+                                            try {
 
+                                                Log.e("FireBaseUser", String.valueOf(UsuarioInfo.getFireBaseUser()));
+                                                Log.e("FireBaseUserID", String.valueOf(UsuarioInfo.getmUserId()));
 
+                                                SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
+                                                if (LoginOfflineDAO.validarLoginOffline(prefs, emailEditText, passwordEditText)) {
+                                                    LoginOfflineDAO.persistirLogin(prefs, emailEditText, passwordEditText, checkBox);
+                                                    Intent intent = new Intent(Login.this, Carteira.class);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                    intent.putExtra("Modo offline", true);
+                                                    startActivity(intent);
+                                                } else {
+                                                    Snackbar.make(findViewById(android.R.id.content),
+                                                            R.string.login_error_message_return, Snackbar.LENGTH_LONG).show();
+                                                }
+                                            } catch (java.lang.NullPointerException e) {
+                                                Snackbar.make(findViewById(android.R.id.content),
+                                                        R.string.user_not_found, Snackbar.LENGTH_LONG).show();
+                                            }
                                         } else {
                                             Snackbar.make(findViewById(android.R.id.content),
                                                     R.string.general_error, Snackbar.LENGTH_LONG).show();

@@ -38,6 +38,8 @@
     <string name="sign_up_text">Sign Up!</string>
     <string name="title_activity_login">Sign in</string>
     <string name="general_error">Não foi possível realizar o LogIn.</string>
+    <string name="user_not_found">Não existe um usuário armazenado em modo Offline.</string>
+    <string name="user_offline">Atenção: Modo offline ativado!</string>
 
     <string name="nome_vacina">Nome da Vacina</string>
     <string name="action_settings">settings</string>

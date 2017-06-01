@@ -3,15 +3,12 @@ package br.com.inf.vacinado.Model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import br.com.inf.vacinado.DAO.UsuarioDAO;
-
 public class UsuarioInfo {
 
     private String nome, email, sexo;
     private String cpf;
     private int diaNascimento, mesNascimento, anoNascimento;
     private static FirebaseUser currentFirebaseUser;
-//    static private String mUserId;
 
     public UsuarioInfo(String nome, String email, String sexo, String cpf,
                        int diaNascimento, int mesNascimento, int anoNascimento) {
