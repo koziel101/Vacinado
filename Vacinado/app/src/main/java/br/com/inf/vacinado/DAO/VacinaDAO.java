@@ -4,8 +4,11 @@ import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import br.com.inf.vacinado.Model.Vacina;
 
@@ -27,15 +30,29 @@ public class VacinaDAO {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mUserId = mFirebaseUser.getUid();
 
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Vacina var = dataSnapshot.getValue(Vacina.class);
+                System.out.println(var.getId());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+
+        String id = mDatabase.child("users").child(mUserId).child("vacinas").child("id").push().getKey();
+        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("nome").push().setValue(vacina.getNome());
+        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("informacoes").push().setValue(vacina.getInformacoes());
+        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("quantidadeDoses").push().setValue(vacina.getQuantidadeDoses());
+        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("dosesTomadas").push().setValue(vacina.getDosesTomadas());
+
         //Realizando a persistencia offline
         DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("vacinas");
         referencia.keepSynced(true);
-
-        mDatabase.child("users").child(mUserId).child("vacinas").child("id").push().setValue(vacina.getId());
-        mDatabase.child("users").child(mUserId).child("vacinas").child("nome").push().setValue(vacina.getNome());
-        mDatabase.child("users").child(mUserId).child("vacinas").child("informacoes").push().setValue(vacina.getInformacoes());
-        mDatabase.child("users").child(mUserId).child("vacinas").child("quantidadeDoses").push().setValue(vacina.getQuantidadeDoses());
-        mDatabase.child("users").child(mUserId).child("vacinas").child("dosesTomadas").push().setValue(vacina.getDosesTomadas());
     }
 
     public static DatabaseReference getmDatabase() {
