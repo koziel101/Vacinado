@@ -43,6 +43,7 @@
             card_view:cardElevation="@dimen/cardview_default_elevation">
 
             <TextView
+                android:id="@+id/vacina_nome"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"

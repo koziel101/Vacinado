@@ -2,11 +2,14 @@ package br.com.inf.vacinado.Model;
 
 public class Vacina {
 
-    private String id;
     private String nome;
     private String informacoes;
     private int quantidadeDoses;
-    private int dosesTomadas;
+    private int dosesTomadas = 0;
+
+    public Vacina() {
+
+    }
 
     public Vacina(String nome, int quantidadeDoses, String informacoes) {
         this.nome = nome;
@@ -14,13 +17,6 @@ public class Vacina {
         this.informacoes = informacoes;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;

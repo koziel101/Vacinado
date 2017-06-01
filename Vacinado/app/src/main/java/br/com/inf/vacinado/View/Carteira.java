@@ -5,26 +5,35 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Comment;
+
+import br.com.inf.vacinado.Model.Vacina;
 import br.com.inf.vacinado.R;
 
 public class Carteira extends AppCompatActivity {
 
-    //    private DatabaseReferencece mDatabase;
-    private String mUserId;
-
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
-    private DatabaseReference mDatabase;
-
+    static private FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();;
+    static private FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();;
+    private String mUserId = mFirebaseUser.getUid();
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference ref = mDatabase.child("users").child(mUserId).child("vacinas");
+    private TextView texto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,8 @@ public class Carteira extends AppCompatActivity {
             }
         });
 
+        texto = (TextView) findViewById(R.id.vacina_nome);
+
         final FloatingActionButton addVacina = (FloatingActionButton) findViewById(R.id.button_nova_vacina);
         addVacina.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -57,33 +68,29 @@ public class Carteira extends AppCompatActivity {
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1);
         listView.setAdapter(adapter);
 
-//        VacinaDAO.getmDatabase().child("users").child(UsuarioInfo.getmUserId()).child("vacinas").addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                adapter.add((String) dataSnapshot.child("informacoes").getValue());
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//                adapter.remove((String) dataSnapshot.child("nome").getValue());
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
     }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //for (DataSnapshot vacSnapshot: dataSnapshot.getChildren()) {
+                    //Vacina vac = vacSnapshot.getValue(Vacina.class);
+                    //texto.setText(vac.getNome());
+                //}
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
     private void vacinaInfo() {
         Intent intent = new Intent(Carteira.this, VacinaInfo.class);
