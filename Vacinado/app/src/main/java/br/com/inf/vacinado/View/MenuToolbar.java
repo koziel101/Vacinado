@@ -1,8 +1,8 @@
 package br.com.inf.vacinado.View;
 
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.os.Bundle;
 import android.view.Menu;
 
 import br.com.inf.vacinado.R;

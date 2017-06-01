@@ -22,7 +22,6 @@
     <string name="cadastro_usuario_persistido_erro">Erro ao persistido usu[ário no BD!</string>
 
 
-
     <string name="senha_dica">Senha</string>
     <string name="realizando_login">Verificando informações do Login. Por favor aguarde</string>
     <string name="realizando_cadastro">Realizando cadastro. Por favor aguarde</string>

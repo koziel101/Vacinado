@@ -24,7 +24,7 @@ public class AdicionarVacina extends AppCompatActivity {
 
     }
 
-    private void concluir (){
+    private void concluir() {
         Intent intent = new Intent(AdicionarVacina.this, Carteira.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -1,7 +1,5 @@
 package br.com.inf.vacinado.Model;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 public class UsuarioInfo {
 
     private String nome, email, sexo;

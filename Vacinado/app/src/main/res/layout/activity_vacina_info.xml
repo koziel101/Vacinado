@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,24 +12,23 @@
 
         <include
             android:id="@+id/tool_bar"
-            layout="@layout/tool_bar"
-            ></include>
+            layout="@layout/tool_bar"></include>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:textStyle="bold"
+                android:text="@string/nome_vacina"
                 android:textSize="20dp"
-                android:text="@string/nome_vacina" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -46,8 +44,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:gravity="left"
                 android:text="Informações da Vacina" />
         </android.support.v7.widget.CardView>
@@ -55,28 +53,28 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
             android:layout_gravity="left"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:textStyle="bold"
+                android:text="Doses tomadas: "
                 android:textSize="15dp"
-                android:text="Doses tomadas: " />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
 
             <ListView
                 android:id="@+id/listaDoses"
@@ -96,7 +94,7 @@
                 android:id="@+id/adicionarDose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Adicionar Dose"/>
+                android:text="Adicionar Dose" />
         </LinearLayout>
 
     </LinearLayout>

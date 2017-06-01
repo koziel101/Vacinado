@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,7 +28,6 @@ import java.util.Calendar;
 
 import br.com.inf.vacinado.Controller.MascaraCpf;
 import br.com.inf.vacinado.Controller.Validador;
-import br.com.inf.vacinado.DAO.BancoOfflineController;
 import br.com.inf.vacinado.DAO.UsuarioDAO;
 import br.com.inf.vacinado.Model.UsuarioInfo;
 import br.com.inf.vacinado.R;
@@ -37,24 +35,46 @@ import br.com.inf.vacinado.R;
 public class Cadastro extends AppCompatActivity implements View.OnClickListener {
 
     static final int DialogId = 0;
+    protected static EditText edit_cpf;
+    protected static Boolean checkNascimento = false;
+    static boolean isUpdating;
     final Calendar c = Calendar.getInstance();
+    protected EditText nomeEditText;
+    protected EditText passwordEditText;
+    protected EditText emailEditText;
+    protected Spinner spinner;
     int ano = c.get(Calendar.YEAR);
     int mes = c.get(Calendar.MONTH);
     int dia = c.get(Calendar.DAY_OF_MONTH);
     TextView diaTextView, mesTextView, anoTextView;
-
-    protected EditText nomeEditText;
-    protected EditText passwordEditText;
-    protected EditText emailEditText;
-    protected static EditText edit_cpf;
-    protected static Boolean checkNascimento = false;
-    protected Spinner spinner;
-
     private FirebaseAuth mFirebaseAuth;
-    static boolean isUpdating;
-
     private MaterialDialog dialog;
+    private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            checkNascimento = true;
+            ano = year;
+            mes = month + 1;
+            dia = dayOfMonth;
 
+            diaTextView = (TextView) findViewById(R.id.txtDia);
+            diaTextView.setText(" " + String.valueOf(dia));
+
+            mesTextView = (TextView) findViewById(R.id.txtMes);
+            mesTextView.setText("/" + String.valueOf(mes));
+
+            anoTextView = (TextView) findViewById(R.id.txtAno);
+            anoTextView.setText("/" + String.valueOf(ano));
+        }
+    };
+
+    public static void setIsUpdating(boolean isUpdating) {
+        Cadastro.isUpdating = isUpdating;
+    }
+
+    public static Boolean getCheckNascimento() {
+        return checkNascimento;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,33 +126,6 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
         emailEditText = (EditText) findViewById(R.id.edit_email_cadastro);
 
     }
-
-    public static void setIsUpdating(boolean isUpdating) {
-        Cadastro.isUpdating = isUpdating;
-    }
-
-    public static Boolean getCheckNascimento() {
-        return checkNascimento;
-    }
-
-    private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            checkNascimento = true;
-            ano = year;
-            mes = month + 1;
-            dia = dayOfMonth;
-
-            diaTextView = (TextView) findViewById(R.id.txtDia);
-            diaTextView.setText(" " + String.valueOf(dia));
-
-            mesTextView = (TextView) findViewById(R.id.txtMes);
-            mesTextView.setText("/" + String.valueOf(mes));
-
-            anoTextView = (TextView) findViewById(R.id.txtAno);
-            anoTextView.setText("/" + String.valueOf(ano));
-        }
-    };
 
     public void showDialog() {
         ImageButton btnData = (ImageButton) findViewById(R.id.bttnDataNascimento);
@@ -194,15 +187,6 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
                                                 dia, mes, ano);
 
                                         UsuarioDAO.persistirUsuario(usuario);
-
-                                        //Criando os arquivos do BD Offline
-                                        BancoOfflineController crud = new BancoOfflineController(getBaseContext());
-                                        String nome = nomeEditText.getText().toString();
-                                        String email = emailEditText.getText().toString();
-                                        String resultado;
-                                        resultado = crud.insereDado(nome, email, cpfString);
-                                        Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
-                                        //BD Offline criado
 
                                         dialog.dismiss();
                                         Intent intent = new Intent(Cadastro.this, Carteira.class);

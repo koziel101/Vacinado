@@ -10,15 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
-import br.com.inf.vacinado.DAO.BancoOfflineController;
 import br.com.inf.vacinado.DAO.LoginOfflineDAO;
 import br.com.inf.vacinado.R;
 
@@ -28,14 +27,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     protected EditText emailEditText;
     protected EditText passwordEditText;
-    private FirebaseAuth mFirebaseAuth;
     MaterialDialog dialog;
     CompoundButton checkBox;
+    private FirebaseAuth mFirebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         Button bttnEntrar = (Button) findViewById(R.id.bttnEntrar);
         bttnEntrar.setOnClickListener(this);
@@ -93,22 +94,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                                     R.string.login_error_message_return, Snackbar.LENGTH_LONG).show();
                                         } else if (erro.equals("A network error (such as timeout, interrupted connection or unreachable host) has occurred.")) {
 
-                                            BancoOfflineController crud = new BancoOfflineController(getBaseContext());
-
-//                                            email;
-//                                            password;
-
-//                                            EditText titulo = (EditText)findViewById(R.id.editText);
-//                                            EditText autor = (EditText)findViewById((R.id.editText2));
-//                                            EditText editora = (EditText)findViewById(R.id.editText3);
-//                                            String tituloString = titulo.getText().toString();
-//                                            String autorString = autor.getText().toString();
-//                                            String editoraString = editora.getText().toString();
-//                                            String resultado;
-//
-//                                            resultado = crud.insereDado(tituloString,autorString,editoraString);
-//
-//                                            Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
                                         } else {
                                             Snackbar.make(findViewById(android.R.id.content),

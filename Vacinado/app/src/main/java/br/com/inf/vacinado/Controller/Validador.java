@@ -4,8 +4,8 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.EditText;
 
-import br.com.inf.vacinado.View.Cadastro;
 import br.com.inf.vacinado.R;
+import br.com.inf.vacinado.View.Cadastro;
 
 public class Validador {
 

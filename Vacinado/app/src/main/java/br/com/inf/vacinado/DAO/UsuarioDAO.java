@@ -25,6 +25,10 @@ public class UsuarioDAO {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mUserId = mFirebaseUser.getUid();
 
+        //Realizando a persistencia offline
+        DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("cadastro");
+        referencia.keepSynced(true);
+
         mDatabase.child("users").child(mUserId).child("cadastro").child("nome").push().setValue(usuarioInfo.getNome());
         mDatabase.child("users").child(mUserId).child("cadastro").child("email").push().setValue(usuarioInfo.getEmail());
         mDatabase.child("users").child(mUserId).child("cadastro").child("cpf").push().setValue(usuarioInfo.getCpf());

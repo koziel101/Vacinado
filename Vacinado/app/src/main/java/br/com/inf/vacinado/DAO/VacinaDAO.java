@@ -4,6 +4,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import br.com.inf.vacinado.Model.Vacina;
 
 public class VacinaDAO {
@@ -23,6 +24,10 @@ public class VacinaDAO {
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mUserId = mFirebaseUser.getUid();
+
+        //Realizando a persistencia offline
+        DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("vacinas");
+        referencia.keepSynced(true);
 
         mDatabase.child("users").child(mUserId).child("vacinas").child("id").push().setValue(vacina.getId());
         mDatabase.child("users").child(mUserId).child("vacinas").child("nome").push().setValue(vacina.getNome());

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 
 import br.com.inf.vacinado.R;
 
@@ -31,7 +30,7 @@ public class AdicionarDose extends AppCompatActivity {
         });
     }
 
-    private void concluir (){
+    private void concluir() {
         Intent intent = new Intent(AdicionarDose.this, VacinaInfo.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
