@@ -45,10 +45,10 @@ public class VacinaDAO {
 
 
         String id = mDatabase.child("users").child(mUserId).child("vacinas").child("id").push().getKey();
-        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("nome").push().setValue(vacina.getNome());
-        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("informacoes").push().setValue(vacina.getInformacoes());
-        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("quantidadeDoses").push().setValue(vacina.getQuantidadeDoses());
-        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("dosesTomadas").push().setValue(vacina.getDosesTomadas());
+        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("nome").setValue(vacina.getNome());
+        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("informacoes").setValue(vacina.getInformacoes());
+        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("quantidadeDoses").setValue(vacina.getQuantidadeDoses());
+        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("dosesTomadas").setValue(vacina.getDosesTomadas());
 
         //Realizando a persistencia offline
         DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("vacinas");
@@ -61,7 +61,8 @@ public class VacinaDAO {
     }
 
     public static String getmUserId() {
-        Log.e("Id do usuario: ", mUserId);
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        mUserId = mFirebaseUser.getUid();
         return mUserId;
     }
 }

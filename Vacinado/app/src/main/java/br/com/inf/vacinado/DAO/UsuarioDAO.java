@@ -31,12 +31,12 @@ public class UsuarioDAO {
         DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("cadastro");
         referencia.keepSynced(true);
 
-        mDatabase.child("users").child(mUserId).child("cadastro").child("nome").push().setValue(usuarioInfo.getNome());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("email").push().setValue(usuarioInfo.getEmail());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("cpf").push().setValue(usuarioInfo.getCpf());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("sexo").push().setValue(usuarioInfo.getSexo());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("dia").push().setValue(usuarioInfo.getDiaNascimento());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("mes").push().setValue(usuarioInfo.getMesNascimento());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("ano").push().setValue(usuarioInfo.getAnoNascimento());
+        mDatabase.child("users").child(mUserId).child("cadastro").child("nome").setValue(usuarioInfo.getNome());
+        mDatabase.child("users").child(mUserId).child("cadastro").child("email").setValue(usuarioInfo.getEmail());
+        mDatabase.child("users").child(mUserId).child("cadastro").child("cpf").setValue(usuarioInfo.getCpf());
+        mDatabase.child("users").child(mUserId).child("cadastro").child("sexo").setValue(usuarioInfo.getSexo());
+        mDatabase.child("users").child(mUserId).child("cadastro").child("dia").setValue(usuarioInfo.getDiaNascimento());
+        mDatabase.child("users").child(mUserId).child("cadastro").child("mes").setValue(usuarioInfo.getMesNascimento());
+        mDatabase.child("users").child(mUserId).child("cadastro").child("ano").setValue(usuarioInfo.getAnoNascimento());
     }
 }
