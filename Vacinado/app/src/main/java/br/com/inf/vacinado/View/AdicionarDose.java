@@ -1,6 +1,5 @@
 package br.com.inf.vacinado.View;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -31,9 +30,8 @@ public class AdicionarDose extends AppCompatActivity {
     }
 
     private void concluir() {
-        Intent intent = new Intent(AdicionarDose.this, VacinaInfo.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+        //Realizar a persistencia dos dados
+
+        super.onBackPressed();
     }
 }
