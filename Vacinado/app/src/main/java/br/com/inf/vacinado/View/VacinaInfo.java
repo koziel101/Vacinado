@@ -30,10 +30,4 @@ public class VacinaInfo extends AppCompatActivity {
         Intent intent = new Intent(VacinaInfo.this, AdicionarDose.class);
         startActivity(intent);
     }
-
-//    @Override
-//    public void onBackPressed() {
-//        Intent intent = new Intent(VacinaInfo.this, Carteira.class);
-//        startActivity(intent);
-//    }
 }
