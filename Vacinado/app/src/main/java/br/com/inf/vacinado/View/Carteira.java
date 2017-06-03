@@ -77,10 +77,10 @@ public class Carteira extends AppCompatActivity {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //for (DataSnapshot vacSnapshot: dataSnapshot.getChildren()) {
-                    //Vacina vac = vacSnapshot.getValue(Vacina.class);
-                    //texto.setText(vac.getNome());
-                //}
+                for (DataSnapshot vacSnapshot: dataSnapshot.getChildren()) {
+                    Vacina vac = vacSnapshot.getValue(Vacina.class);
+                    texto.setText(vac.getNome());
+                }
 
             }
 

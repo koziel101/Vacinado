@@ -30,23 +30,8 @@ public class VacinaDAO {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mUserId = mFirebaseUser.getUid();
 
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Vacina var = dataSnapshot.getValue(Vacina.class);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
-            }
-        });
-
         String id = mDatabase.child("users").child(mUserId).child("vacinas").child("id").push().getKey();
-        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("nome").setValue(vacina.getNome());
-        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("informacoes").setValue(vacina.getInformacoes());
-        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("quantidadeDoses").setValue(vacina.getQuantidadeDoses());
-        mDatabase.child("users").child(mUserId).child("vacinas").child(id).child("dosesTomadas").setValue(vacina.getDosesTomadas());
+        mDatabase.child("users").child(mUserId).child("vacinas").child(id).setValue(vacina);
 
         //Realizando a persistencia offline
         DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("vacinas");
