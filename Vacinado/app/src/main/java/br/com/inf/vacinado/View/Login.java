@@ -42,8 +42,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-
         Button bttnEntrar = (Button) findViewById(R.id.bttnEntrar);
         bttnEntrar.setOnClickListener(this);
         Button bttnCadastrar = (Button) findViewById(R.id.bttnCadastrar);

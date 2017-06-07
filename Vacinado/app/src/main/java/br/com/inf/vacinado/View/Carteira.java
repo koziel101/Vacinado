@@ -108,7 +108,6 @@ public class Carteira extends AppCompatActivity {
         });
     }
 
-
     private void vacinaInfo() {
         Intent intent = new Intent(Carteira.this, VacinaInfo.class);
         startActivity(intent);
