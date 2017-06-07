@@ -18,10 +18,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
 import br.com.inf.vacinado.DAO.LoginOfflineDAO;
-import br.com.inf.vacinado.Model.UsuarioInfo;
+import br.com.inf.vacinado.Model.Usuario;
 import br.com.inf.vacinado.R;
 
 import static br.com.inf.vacinado.R.string.login_error_message;
@@ -50,7 +49,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         // Iniciando o FirebaseAuth
         try {
             mFirebaseAuth = FirebaseAuth.getInstance();
-            user = UsuarioInfo.getFireBaseUser();
+            user = Usuario.getFireBaseUser();
         } catch (Exception e) {
             mFirebaseAuth = null;
         }
@@ -106,8 +105,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                         } else if (erro.equals("A network error (such as timeout, interrupted connection or unreachable host) has occurred.")) {
                                             try {
 
-                                                Log.e("FireBaseUser", String.valueOf(UsuarioInfo.getFireBaseUser()));
-                                                Log.e("FireBaseUserID", String.valueOf(UsuarioInfo.getmUserId()));
+                                                Log.e("FireBaseUser", String.valueOf(Usuario.getFireBaseUser()));
+                                                Log.e("FireBaseUserID", String.valueOf(Usuario.getmUserId()));
 
                                                 SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
                                                 if (LoginOfflineDAO.validarLoginOffline(prefs, emailEditText, passwordEditText)) {

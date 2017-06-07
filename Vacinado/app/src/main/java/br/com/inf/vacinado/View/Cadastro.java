@@ -29,7 +29,7 @@ import java.util.Calendar;
 import br.com.inf.vacinado.Controller.MascaraCpf;
 import br.com.inf.vacinado.Controller.Validador;
 import br.com.inf.vacinado.DAO.UsuarioDAO;
-import br.com.inf.vacinado.Model.UsuarioInfo;
+import br.com.inf.vacinado.Model.Usuario;
 import br.com.inf.vacinado.R;
 
 public class Cadastro extends AppCompatActivity implements View.OnClickListener {
@@ -182,7 +182,7 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
 
                                         String cpfString = edit_cpf.getText().toString().replaceAll("[.]", "").replaceAll("[-]", "");
 
-                                        UsuarioInfo usuario = new UsuarioInfo(nomeEditText.getText().toString(),
+                                        Usuario usuario = new Usuario(nomeEditText.getText().toString(),
                                                 emailEditText.getText().toString().trim(), spinner.getSelectedItem().toString(), cpfString,
                                                 dia, mes, ano);
 
