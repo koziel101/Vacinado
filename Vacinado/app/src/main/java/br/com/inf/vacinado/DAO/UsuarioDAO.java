@@ -18,7 +18,6 @@ public class UsuarioDAO {
     static private String mUserId;
 
 
-
     public static void persistirUsuario(Usuario usuario) {
 
         // Initialize Firebase Auth and Database Reference
@@ -31,12 +30,8 @@ public class UsuarioDAO {
         DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("cadastro");
         referencia.keepSynced(true);
 
-        mDatabase.child("users").child(mUserId).child("cadastro").child("nome").setValue(usuario.getNome());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("email").setValue(usuario.getEmail());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("cpf").setValue(usuario.getCpf());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("sexo").setValue(usuario.getSexo());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("dia").setValue(usuario.getDiaNascimento());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("mes").setValue(usuario.getMesNascimento());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("ano").setValue(usuario.getAnoNascimento());
+        String id = mDatabase.child("users").child(mUserId).child("cadastro").child("id").push().getKey();
+        mDatabase.child("users").child(mUserId).child("vacinas").child(id).setValue(usuario);
+        mDatabase.keepSynced(true);
     }
 }
