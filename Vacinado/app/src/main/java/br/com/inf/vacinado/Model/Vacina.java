@@ -1,11 +1,22 @@
 package br.com.inf.vacinado.Model;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public class Vacina {
+
+    private class Dose {
+
+        private String nome;
+        private Date data;
+        private String info;
+    }
 
     private String nome;
     private String informacoes;
     private int quantidadeDoses;
     private int dosesTomadas = 0;
+    private ArrayList<Dose> doses = new ArrayList<>();
 
     public Vacina() {
 
@@ -48,5 +59,17 @@ public class Vacina {
 
     public void setDosesTomadas(int dosesTomadas) {
         this.dosesTomadas = dosesTomadas;
+    }
+
+    public ArrayList<Dose> getDoses() {
+        return this.doses;
+    }
+
+    public void adicionarDoses(Dose dose) {
+        this.doses.add(dose);
+    }
+
+    public void removerDoses(int index) {
+        this.doses.remove(index);
     }
 }
