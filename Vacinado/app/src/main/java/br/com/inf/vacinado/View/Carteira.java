@@ -67,9 +67,9 @@ public class Carteira extends AppCompatActivity {
         });
 
         // Configurando a ListView
-        final ListView listView = (ListView) findViewById(R.id.listView);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1);
-        listView.setAdapter(adapter);
+        //final ListView listView = (ListView) findViewById(R.id.listView);
+        //final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1);
+        //listView.setAdapter(adapter);
 
     }
 
