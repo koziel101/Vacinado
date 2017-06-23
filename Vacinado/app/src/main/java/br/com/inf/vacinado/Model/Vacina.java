@@ -5,13 +5,6 @@ import java.util.Date;
 
 public class Vacina {
 
-    private class Dose {
-
-        private String nome;
-        private Date data;
-        private String info;
-    }
-
     private String nome;
     private String informacoes;
     private int quantidadeDoses;
@@ -28,6 +21,18 @@ public class Vacina {
         this.informacoes = informacoes;
     }
 
+
+    public class Dose {
+        private String nome;
+        private Date data;
+        private String info;
+
+        public Dose(String nome, Date data, String info) {
+            this.nome = nome;
+            this.data = data;
+            this.info = info;
+        }
+    }
 
     public String getNome() {
         return nome;
