@@ -4,11 +4,9 @@
     <string name="realizar_cadastro">Não é usuário ainda?</string>
     <string name="bttn_entrar">Entrar</string>
     <string name="bttn_cadastrar">Cadastrar</string>
+    <string name="bttn_lembrar">Lembrar-me</string>
     <string name="title_activity_cadastro">Cadastro</string>
 
-    <string name="legenda_verde">Tomou todas as doses/reforços.</string>
-    <string name="legenda_amarelo">Falta alguma dose/reforço para tomar.</string>
-    <string name="legenda_vermelho">Não tomou nenhuma das doses/reforços.</string>
     <string name="activity_carteira_classificacao">Sua classificação: </string>
     <string name="title_activity_carteira">Carteira</string>
 
