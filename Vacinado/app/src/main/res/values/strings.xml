@@ -45,4 +45,5 @@
     <string name="nome_vacina">Nome da Vacina</string>
     <string name="action_settings">settings</string>
     <string name="cadastrar_nova_vacina">Cadastrar nova vacina.</string>
+    <string name="data_vacinacao">Data de vacinação: </string>
 </resources>
