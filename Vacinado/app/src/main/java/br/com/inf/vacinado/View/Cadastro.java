@@ -49,6 +49,7 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
     TextView diaTextView, mesTextView, anoTextView;
     private FirebaseAuth mFirebaseAuth;
     private MaterialDialog dialog;
+
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -151,6 +152,7 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
 
     public void configuraSpinner(Spinner spinner) {
         String[] sexoStr = new String[]{"Masculino", "Feminino"};
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sexoStr);
 
