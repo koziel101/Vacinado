@@ -1,15 +1,11 @@
 package br.com.inf.vacinado.Model;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 public class Vacina {
 
     private String nome;
     private String informacoes;
     private int quantidadeDoses;
     private int dosesTomadas = 0;
-    private ArrayList<Dose> doses = new ArrayList<>();
 
     public Vacina() {
 
@@ -19,19 +15,6 @@ public class Vacina {
         this.nome = nome;
         this.quantidadeDoses = quantidadeDoses;
         this.informacoes = informacoes;
-    }
-
-
-    public class Dose {
-        private String nome;
-        private Date data;
-        private String info;
-
-        public Dose(String nome, Date data, String info) {
-            this.nome = nome;
-            this.data = data;
-            this.info = info;
-        }
     }
 
     public String getNome() {
@@ -66,15 +49,4 @@ public class Vacina {
         this.dosesTomadas = dosesTomadas;
     }
 
-    public ArrayList<Dose> getDoses() {
-        return this.doses;
-    }
-
-    public void adicionarDoses(Dose dose) {
-        this.doses.add(dose);
-    }
-
-    public void removerDoses(int index) {
-        this.doses.remove(index);
-    }
 }

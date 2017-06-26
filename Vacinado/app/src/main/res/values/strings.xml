@@ -44,4 +44,8 @@
     <string name="action_settings">settings</string>
     <string name="cadastrar_nova_vacina">Cadastrar nova vacina.</string>
     <string name="data_vacinacao">Data de vacinação: </string>
+
+    <string name="nome_vacina_vazio">Nome da vacina não pode estar vazio</string>
+    <string name="qntd_vacina_vazio">Quantidade da vacina não pode estar vazio</string>
+    <string name="informacoes_vacina_vazio">Informações da vacina não pode estar vazio</string>
 </resources>
