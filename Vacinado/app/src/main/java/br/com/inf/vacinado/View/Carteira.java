@@ -1,14 +1,12 @@
 package br.com.inf.vacinado.View;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,15 +31,16 @@ public class Carteira extends AppCompatActivity {
     private TextView texto;
     private Toast toast;
     private long lastBackPressTime = 0;
-    private Toolbar toolbar;
+    private Context mContext;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carteira);
 
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);
+        mContext = getApplicationContext();
 
         Intent it = getIntent();
         boolean userOffline = it.getBooleanExtra("Modo offline", false);
@@ -116,5 +115,9 @@ public class Carteira extends AppCompatActivity {
     private void addVacina() {
         Intent intent = new Intent(Carteira.this, AdicionarVacina.class);
         startActivity(intent);
+    }
+
+    public Context contextoAplicacao(){
+        return mContext;
     }
 }
