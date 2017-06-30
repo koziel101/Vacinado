@@ -42,8 +42,8 @@ public class Carteira extends AppCompatActivity {
     private Toast toast;
     private long lastBackPressTime = 0;
     private Context mContext;
-    String TITLES[] = {"Home", "Events", "Mail", "Shop", "Travel"};
-    int ICONS[] = {R.drawable.ic_home, R.drawable.ic_events, R.drawable.ic_mail, R.drawable.ic_shop, R.drawable.ic_travel};
+    String TITLES[] = {"Editar perfil", "Nova Vacina", "Logout"};
+    int ICONS[] = {R.drawable.ic_user, R.drawable.ic_new_vaccine, R.drawable.ic_log_out};
     String NAME = "Nome";
     String EMAIL = "Email";
     int PROFILE = R.drawable.aka;
@@ -128,7 +128,6 @@ public class Carteira extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public void onBackPressed() {

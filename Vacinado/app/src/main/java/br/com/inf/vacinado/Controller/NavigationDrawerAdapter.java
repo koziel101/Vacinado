@@ -1,11 +1,14 @@
 package br.com.inf.vacinado.Controller;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import br.com.inf.vacinado.R;
 
@@ -19,6 +22,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     private String name;
     private int profile;
     private String email;
+    private static Context context = null;
 
     public NavigationDrawerAdapter(String Titles[], int Icons[], String Name, String Email, int Profile) {
         mNavTitles = Titles;
@@ -33,11 +37,11 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
         if (viewType == TYPE_ITEM) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row, parent, false);
-            ViewHolder vhItem = new ViewHolder(v, viewType);
+            ViewHolder vhItem = new ViewHolder(v, viewType, context);
             return vhItem;
         } else if (viewType == TYPE_HEADER) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.header, parent, false);
-            ViewHolder vhHeader = new ViewHolder(v, viewType);
+            ViewHolder vhHeader = new ViewHolder(v, viewType, context);
             return vhHeader;
         }
         return null;
@@ -73,7 +77,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
         return position == 0;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         int Holderid;
 
         TextView textView;
@@ -81,9 +85,15 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
         ImageView profile;
         TextView Name;
         TextView email;
+        Context contxt;
 
-        public ViewHolder(View itemView, int ViewType) {
+        public ViewHolder(View itemView, int ViewType, Context c) {
             super(itemView);
+            contxt = c;
+            context = c;
+
+            itemView.setClickable(true);
+            itemView.setOnClickListener(this);
 
             if (ViewType == TYPE_ITEM) {
                 textView = (TextView) itemView.findViewById(R.id.rowText);
@@ -95,6 +105,11 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
                 profile = (ImageView) itemView.findViewById(R.id.circleView);
                 Holderid = 0;
             }
+        }
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(contxt, "The Item Clicked is: " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
         }
     }
 }
