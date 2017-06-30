@@ -12,20 +12,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <FrameLayout
             android:id="@+id/frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </FrameLayout>
-
+            android:layout_height="match_parent"></FrameLayout>
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <LinearLayout
             android:id="@+id/lista_vacinas"
@@ -63,16 +58,6 @@
                     android:text="Vacina01" />
             </android.support.v7.widget.CardView>
         </LinearLayout>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/button_nova_vacina"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="16dp"
-            android:background="@color/colorAccent"
-            android:src="@drawable/ic_adiciona_vacina" />
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
