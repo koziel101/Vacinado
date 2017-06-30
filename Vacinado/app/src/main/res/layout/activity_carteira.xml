@@ -1,27 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/DrawerLayout"
+    android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:elevation="7dp"
     android:fitsSystemWindows="true"
     tools:context="br.com.inf.vacinado.View.Carteira">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/RecyclerView"
-        android:layout_width="320dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="left"
+        android:orientation="vertical">
 
-        android:background="#ffffff"
-        android:scrollbars="vertical">
 
-    </android.support.v7.widget.RecyclerView>
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <LinearLayout
             android:id="@+id/lista_vacinas"
@@ -30,10 +34,8 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/tool_bar"
-                layout="@layout/tool_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:id="@+id/toolbar"
+                layout="@layout/tool_bar" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,4 +74,12 @@
             android:background="@color/colorAccent"
             android:src="@drawable/ic_adiciona_vacina" />
     </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/drawer" />
 </android.support.v4.widget.DrawerLayout>

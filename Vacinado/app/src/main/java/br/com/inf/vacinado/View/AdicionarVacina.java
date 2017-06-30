@@ -35,7 +35,7 @@ public class AdicionarVacina extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_vacina);
 
-        contextoCarteira = carteira.contextoAplicacao();
+//        contextoCarteira = carteira.contextoAplicacao();
 
         //referências layout xml para lista de cards de vacina
         listaCard = (LinearLayout) findViewById(R.id.lista_vacinas);
