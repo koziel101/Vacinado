@@ -7,9 +7,12 @@ import android.widget.EditText;
 import br.com.inf.vacinado.R;
 import br.com.inf.vacinado.View.Cadastro;
 
+/**
+ * Classe responável por realizar a validação dos EditText do aplicativo
+ * */
 public class Validador {
 
-    public static int validaDados(EditText nomeEditText, EditText emailEditText, EditText passwordEditText, EditText edit_cpf) {
+    public static int validaCadastro(EditText nomeEditText, EditText emailEditText, EditText passwordEditText, EditText edit_cpf) {
 
         String nome = nomeEditText.getText().toString();
 
@@ -51,7 +54,7 @@ public class Validador {
         }
     }
 
-    public static void mostrarNotificacao(View view, int validador) {
+    public static void mostrarNotfCadastro(View view, int validador) {
 
         switch (validador) {
             case 1:

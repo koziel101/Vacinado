@@ -80,7 +80,6 @@ public class MascaraCpf {
 
         //Modifica a flag para evitar chamada infinita
         Cadastro.setIsUpdating(true);
-
         return str;
     }
 }

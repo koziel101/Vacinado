@@ -171,7 +171,7 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
 
             case R.id.bttnFinalizar:
 
-                int validador = Validador.validaDados(nomeEditText, emailEditText, passwordEditText, edit_cpf);
+                int validador = Validador.validaCadastro(nomeEditText, emailEditText, passwordEditText, edit_cpf);
 
                 if (validador == 0) {
 
@@ -204,7 +204,7 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
                             });
 
                 } else {
-                    Validador.mostrarNotificacao(findViewById(android.R.id.content), validador);
+                    Validador.mostrarNotfCadastro(findViewById(android.R.id.content), validador);
                 }
         }
     }
