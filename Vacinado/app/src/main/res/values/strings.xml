@@ -48,4 +48,7 @@
     <string name="nome_vacina_vazio">Nome da vacina não pode estar vazio</string>
     <string name="qntd_vacina_vazio">Quantidade da vacina não pode estar vazio</string>
     <string name="informacoes_vacina_vazio">Informações da vacina não pode estar vazio</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
