@@ -41,22 +41,8 @@
                 android:layout_marginTop="25dp"
                 android:text="@string/activity_carteira_classificacao" />
 
-            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/card_view1"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                card_view:cardCornerRadius="@dimen/cardview_default_radius"
-                card_view:cardElevation="@dimen/cardview_default_elevation">
+            <include layout="@layout/conteudo_carteira" />
 
-                <TextView
-                    android:id="@+id/vacina_nome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="center_vertical"
-                    android:text="Vacina01" />
-            </android.support.v7.widget.CardView>
         </LinearLayout>
     </RelativeLayout>
 
