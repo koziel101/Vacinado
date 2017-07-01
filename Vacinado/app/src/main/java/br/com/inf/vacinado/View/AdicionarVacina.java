@@ -69,6 +69,7 @@ public class AdicionarVacina extends AppCompatActivity {
         }
     }
 
+    private void criaNovoCard(Vacina vacina) {
         //referências layout xml para lista de cards de vacina
         listaCard = (LinearLayout) findViewById(R.id.lista_vacinas);
 
@@ -81,6 +82,7 @@ public class AdicionarVacina extends AppCompatActivity {
                 CardView.LayoutParams.WRAP_CONTENT,
                 CardView.LayoutParams.WRAP_CONTENT
         );
+        params.setMargins(10, 10, 10, 10);
         card.setLayoutParams(params);
 
         card.setRadius(2);
