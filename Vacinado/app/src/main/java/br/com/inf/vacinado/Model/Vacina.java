@@ -1,11 +1,14 @@
 package br.com.inf.vacinado.Model;
 
+import java.util.ArrayList;
+
 public class Vacina {
 
     private String nome;
     private String informacoes;
     private int quantidadeDoses;
     private int dosesTomadas = 0;
+    ArrayList<Dose> doses = new ArrayList<>();
 
     public Vacina() {
 
@@ -49,4 +52,11 @@ public class Vacina {
         this.dosesTomadas = dosesTomadas;
     }
 
+    public ArrayList<Dose> getDoses() {
+        return doses;
+    }
+
+    public void adicionarDose(Dose dose) {
+        this.doses.add(dose);
+    }
 }

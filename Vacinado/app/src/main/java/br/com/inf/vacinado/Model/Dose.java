@@ -5,36 +5,27 @@ import java.util.Date;
 
 public class Dose {
 
-    Vacina vacina;
     private String nome;
     private Date data;
-    String pontoVacinacao;
-    String lote;
 
-    private ArrayList<Dose> doses = new ArrayList<>();
-
-    public Dose(Vacina vacina, Date data, String pontoVacinacao) {
-        this.vacina = vacina;
+    public Dose(String nome, Date data) {
+        this.nome = nome;
         this.data = data;
-        this.pontoVacinacao = pontoVacinacao;
     }
 
-    public Dose(Vacina vacina, Date data, String pontoVacinacao, String lote) {
-        this.vacina = vacina;
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
         this.data = data;
-        this.pontoVacinacao = pontoVacinacao;
-        this.lote = lote;
-    }
-
-    public ArrayList<Dose> getDoses() {
-        return this.doses;
-    }
-
-    public void adicionarDoses(Dose dose) {
-        this.doses.add(dose);
-    }
-
-    public void removerDoses(int index) {
-        this.doses.remove(index);
     }
 }
