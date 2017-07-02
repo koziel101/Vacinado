@@ -3,12 +3,13 @@ package br.com.inf.vacinado.View;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +24,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import br.com.inf.vacinado.Model.Vacina;
 import br.com.inf.vacinado.R;
 
 public class Carteira extends AppCompatActivity {
@@ -40,6 +40,7 @@ public class Carteira extends AppCompatActivity {
     private Toolbar toolbar;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
+    static private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,52 +56,58 @@ public class Carteira extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), R.string.user_offline, Toast.LENGTH_LONG).show();
         }
 
-        final CardView button = (CardView) findViewById(R.id.card_view1);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                vacinaInfo();
+//        final CardView button = (CardView) findViewById(R.id.card_view1);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                vacinaInfo();
+//            }
+//        });
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Log.e("Aviso: ", "User Logged in");
+                    System.out.println("User logged in");
+                } else {
+                    Log.e("Aviso: ", "User not Logged in");
+                    System.out.println("User not logged in");
+                }
             }
-        });
+        };
 
         texto = (TextView) findViewById(R.id.vacina_nome);
-
-        // Initializing Toolbar and setting it as the actionbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        //Initializing NavigationView
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
-        //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
-            // This method will trigger on item Click of navigation menu
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-                //Checking if the item is in checked state or not, if not make it in checked state
                 if (menuItem.isChecked()) menuItem.setChecked(false);
                 else menuItem.setChecked(true);
-
-                //Closing drawer on item click
                 drawerLayout.closeDrawers();
 
-                //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     case R.id.new_vacina:
-                        Toast.makeText(getApplicationContext(), "Nova vacina Selected", Toast.LENGTH_SHORT).show();
                         addVacina();
                         return true;
                     case R.id.perfil:
-                        Toast.makeText(getApplicationContext(), "perfil Selected", Toast.LENGTH_SHORT).show();
+                        startEditarCadastro();
                         return true;
                     case R.id.log_out:
-                        Toast.makeText(getApplicationContext(), "Log_out Selected", Toast.LENGTH_SHORT).show();
+                        if (mAuthListener != null) {
+                            mFirebaseAuth.signOut();
+                            finalizarSessaoUser();
+                        }
                         return true;
                     default:
                         Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
                         return true;
-
                 }
             }
         });
@@ -119,10 +126,7 @@ public class Carteira extends AppCompatActivity {
             }
         };
 
-        //Setting the actionbarToggle to drawer layout
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-
-        //calling sync state is necessay or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
     }
 
@@ -158,14 +162,14 @@ public class Carteira extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        mFirebaseAuth.addAuthStateListener(mAuthListener);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
-                    Vacina vac = vacSnapshot.getValue(Vacina.class);
-                    texto.setText(vac.getNome());
-                }
+//                for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
+//                    Vacina vac = vacSnapshot.getValue(Vacina.class);
+//                    texto.setText(vac.getNome());
+//                }
             }
 
             @Override
@@ -181,6 +185,16 @@ public class Carteira extends AppCompatActivity {
 
     private void addVacina() {
         Intent intent = new Intent(Carteira.this, AdicionarVacina.class);
+        startActivity(intent);
+    }
+
+    private void finalizarSessaoUser() {
+        Intent intent = new Intent(Carteira.this, Login.class);
+        startActivity(intent);
+    }
+
+    private void startEditarCadastro() {
+        Intent intent = new Intent(Carteira.this, EditarCadastro.class);
         startActivity(intent);
     }
 
