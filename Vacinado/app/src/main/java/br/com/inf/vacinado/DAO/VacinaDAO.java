@@ -27,7 +27,6 @@ public class VacinaDAO {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         String id = mDatabase.child("users").child(mUserId).child("vacinas").child("id").push().getKey();
-        vacina.setId(id);
         mDatabase.child("users").child(mUserId).child("vacinas").child(id).setValue(vacina);
         mDatabase.keepSynced(true);
     }

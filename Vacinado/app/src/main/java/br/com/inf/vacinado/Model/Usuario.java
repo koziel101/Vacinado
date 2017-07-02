@@ -5,7 +5,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Usuario {
 
-    private String id;
     private String nome, email, sexo;
     private String cpf;
     private int diaNascimento, mesNascimento, anoNascimento;
@@ -20,14 +19,6 @@ public class Usuario {
         this.diaNascimento = diaNascimento;
         this.mesNascimento = mesNascimento;
         this.anoNascimento = anoNascimento;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getNome() {

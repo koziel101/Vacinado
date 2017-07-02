@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Vacina {
 
-    private String id;
     private String nome;
     private String informacoes;
     private int quantidadeDoses;
@@ -19,14 +18,6 @@ public class Vacina {
         this.nome = nome;
         this.quantidadeDoses = quantidadeDoses;
         this.informacoes = informacoes;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -67,6 +58,5 @@ public class Vacina {
 
     public void adicionarDose(Dose dose) {
         this.doses.add(dose);
-        dosesTomadas++;
     }
 }
