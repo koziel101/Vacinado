@@ -63,7 +63,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     public void onStop() {
         super.onStop();
-//        mFirebaseAuth.signOut();
+    }
+
+    /**
+     * Ao pressionar o botão "Back", existe o perigo do usuário voltar para a tela inicial do
+     * sistema. onBackPressed alterado para evitar que isto ocorra.
+     */
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @Override
@@ -104,10 +115,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                                     R.string.login_error_message_return, Snackbar.LENGTH_LONG).show();
                                         } else if (erro.equals("A network error (such as timeout, interrupted connection or unreachable host) has occurred.")) {
                                             try {
-
                                                 Log.e("FireBaseUser", String.valueOf(Usuario.getFireBaseUser()));
                                                 Log.e("FireBaseUserID", String.valueOf(Usuario.getmUserId()));
-
                                                 SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
                                                 if (LoginOfflineDAO.validarLoginOffline(prefs, emailEditText, passwordEditText)) {
                                                     LoginOfflineDAO.persistirLogin(prefs, emailEditText, passwordEditText, checkBox);
