@@ -34,6 +34,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth mFirebaseAuth;
     FirebaseUser user;
     private FirebaseAuth mAuth;
+    static private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         checkBox = (CompoundButton) findViewById(R.id.checkBoxLembrar);
         SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
         LoginOfflineDAO.recuperarLogin(prefs, emailEditText, passwordEditText, checkBox);
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+
+        if (user != null) {
+            if (checkBox.isChecked()) {
+                dialog = new MaterialDialog.Builder(this).content(R.string.realizando_login).progress(true, 0).show();
+                realizarLogIn(emailEditText.getText().toString().trim(), passwordEditText.getText().toString(), 0);
+            }
+        }
     }
 
     public void onStop() {
@@ -93,56 +104,61 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     Snackbar.make(findViewById(android.R.id.content), login_error_message, Snackbar.LENGTH_LONG).show();
                 } else {
                     dialog = new MaterialDialog.Builder(this).content(R.string.realizando_login).progress(true, 0).show();
-                    mFirebaseAuth.signInWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
-                                        LoginOfflineDAO.persistirLogin(prefs, emailEditText, passwordEditText, checkBox);
-                                        dialog.dismiss();
-                                        Intent intent = new Intent(Login.this, Carteira.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        intent.putExtra("Modo offline", false);
-                                        startActivity(intent);
-                                    } else {
-                                        dialog.dismiss();
-                                        String erro = task.getException().getMessage();
-                                        if (erro.equals("The password is invalid or the user does not have a password.")) {
-                                            Snackbar.make(findViewById(android.R.id.content),
-                                                    R.string.login_error_message_return, Snackbar.LENGTH_LONG).show();
-                                        } else if (erro.equals("A network error (such as timeout, interrupted connection or unreachable host) has occurred.")) {
-                                            try {
-
-                                                Log.e("FireBaseUser", String.valueOf(Usuario.getFireBaseUser()));
-                                                Log.e("FireBaseUserID", String.valueOf(Usuario.getmUserId()));
-
-                                                SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
-                                                if (LoginOfflineDAO.validarLoginOffline(prefs, emailEditText, passwordEditText)) {
-                                                    LoginOfflineDAO.persistirLogin(prefs, emailEditText, passwordEditText, checkBox);
-                                                    Intent intent = new Intent(Login.this, Carteira.class);
-                                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                                    intent.putExtra("Modo offline", true);
-                                                    startActivity(intent);
-                                                } else {
-                                                    Snackbar.make(findViewById(android.R.id.content),
-                                                            R.string.login_error_message_return, Snackbar.LENGTH_LONG).show();
-                                                }
-                                            } catch (java.lang.NullPointerException e) {
-                                                Snackbar.make(findViewById(android.R.id.content),
-                                                        R.string.user_not_found, Snackbar.LENGTH_LONG).show();
-                                            }
-                                        } else {
-                                            Snackbar.make(findViewById(android.R.id.content),
-                                                    R.string.general_error, Snackbar.LENGTH_LONG).show();
-                                        }
-                                    }
-                                }
-                            });
+                    realizarLogIn(email, password, 1);
                 }
                 break;
         }
+    }
+
+    public void realizarLogIn(final String email, String password, final int value) {
+
+        mFirebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (value == 1) {
+                            dialog.dismiss();
+                        }
+                        if (task.isSuccessful()) {
+                            SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
+                            LoginOfflineDAO.persistirLogin(prefs, emailEditText, passwordEditText, checkBox);
+
+                            Intent intent = new Intent(Login.this, Carteira.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.putExtra("Modo offline", false);
+                            startActivity(intent);
+                        } else {
+                            String erro = task.getException().getMessage();
+                            if (erro.equals("The password is invalid or the user does not have a password.")) {
+                                Snackbar.make(findViewById(android.R.id.content),
+                                        R.string.login_error_message_return, Snackbar.LENGTH_LONG).show();
+                            } else if (erro.equals("A network error (such as timeout, interrupted connection or unreachable host) has occurred.")) {
+                                try {
+                                    Log.e("FireBaseUser", String.valueOf(Usuario.getFireBaseUser()));
+                                    Log.e("FireBaseUserID", String.valueOf(Usuario.getmUserId()));
+                                    SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
+                                    if (LoginOfflineDAO.validarLoginOffline(prefs, emailEditText, passwordEditText)) {
+                                        LoginOfflineDAO.persistirLogin(prefs, emailEditText, passwordEditText, checkBox);
+                                        Intent intent = new Intent(Login.this, Carteira.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        intent.putExtra("Modo offline", true);
+                                        startActivity(intent);
+                                    } else {
+                                        Snackbar.make(findViewById(android.R.id.content),
+                                                R.string.login_error_message_return, Snackbar.LENGTH_LONG).show();
+                                    }
+                                } catch (java.lang.NullPointerException e) {
+                                    Snackbar.make(findViewById(android.R.id.content),
+                                            R.string.user_not_found, Snackbar.LENGTH_LONG).show();
+                                }
+                            } else {
+                                Snackbar.make(findViewById(android.R.id.content),
+                                        R.string.general_error, Snackbar.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                });
     }
 }
