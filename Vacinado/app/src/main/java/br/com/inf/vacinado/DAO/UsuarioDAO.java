@@ -31,6 +31,7 @@ public class UsuarioDAO {
         referencia.keepSynced(true);
 
         String id = mDatabase.child("users").child(mUserId).child("cadastro").child("id").push().getKey();
+        usuario.setId(id);
         mDatabase.child("users").child(mUserId).child("vacinas").child(id).setValue(usuario);
         mDatabase.keepSynced(true);
     }
