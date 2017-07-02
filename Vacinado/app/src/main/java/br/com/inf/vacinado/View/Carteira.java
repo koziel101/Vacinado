@@ -8,6 +8,8 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -46,6 +48,11 @@ public class Carteira extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carteira);
 
+        //instacia recycleView e define o prosicionamento dos intens
+        RecyclerView recycle = (RecyclerView)findViewById(R.id.recycle_view);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        recycle.setLayoutManager(llm);
+
         Intent it = getIntent();
         boolean userOffline = it.getBooleanExtra("Modo offline", false);
 
@@ -59,6 +66,8 @@ public class Carteira extends AppCompatActivity {
 //                vacinaInfo();
 //            }
 //        });
+
+
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
