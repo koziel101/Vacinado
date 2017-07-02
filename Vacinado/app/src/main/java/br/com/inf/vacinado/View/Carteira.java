@@ -36,7 +36,6 @@ public class Carteira extends AppCompatActivity {
     private TextView texto;
     private Toast toast;
     private long lastBackPressTime = 0;
-    private Context mContext;
     private Toolbar toolbar;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
@@ -46,8 +45,6 @@ public class Carteira extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carteira);
-
-        mContext = getApplicationContext();
 
         Intent it = getIntent();
         boolean userOffline = it.getBooleanExtra("Modo offline", false);
@@ -196,9 +193,5 @@ public class Carteira extends AppCompatActivity {
     private void startEditarCadastro() {
         Intent intent = new Intent(Carteira.this, EditarCadastro.class);
         startActivity(intent);
-    }
-
-    public Context contextoAplicacao() {
-        return mContext;
     }
 }
