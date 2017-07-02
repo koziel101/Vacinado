@@ -16,8 +16,7 @@ public class UsuarioDAO {
     //Variaveis para persistir dados
     static private DatabaseReference mDatabase;
     static private String mUserId;
-
-
+    
     public static void persistirUsuario(Usuario usuario) {
 
         // Initialize Firebase Auth and Database Reference

@@ -13,14 +13,14 @@ public class EditarCadastro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_cadastro);
 
-        final Button concluir = (Button) findViewById(R.id.bttCancelar);
+        final Button concluir = (Button) findViewById(R.id.bttnSalvar);
         concluir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
             }
         });
 
-        final Button cancelar = (Button) findViewById(R.id.bttnSalvar);
+        final Button cancelar = (Button) findViewById(R.id.bttnCancelar);
         cancelar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 

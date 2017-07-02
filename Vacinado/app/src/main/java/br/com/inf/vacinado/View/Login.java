@@ -33,7 +33,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     CompoundButton checkBox;
     private FirebaseAuth mFirebaseAuth;
     FirebaseUser user;
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -63,7 +62,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     public void onStop() {
         super.onStop();
-//        mFirebaseAuth.signOut();
+    }
+
+    /**
+     * Ao pressionar o botão "Back", existe o perigo do usuário voltar para a tela inicial do
+     * sistema. onBackPressed alterado para evitar que isto ocorra.
+     */
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @Override
