@@ -41,7 +41,10 @@
                 android:layout_marginTop="25dp"
                 android:text="@string/activity_carteira_classificacao" />
 
-            <include layout="@layout/conteudo_carteira" />
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/recycle_view" />
 
         </LinearLayout>
     </RelativeLayout>
