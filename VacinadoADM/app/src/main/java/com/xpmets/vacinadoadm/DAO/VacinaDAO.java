@@ -14,13 +14,11 @@ public class VacinaDAO {
 
     static private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     static private String mUserId = mFirebaseUser.getUid();
-    private DatabaseReference ref = mDatabase.child("users").child(mUserId).child("vacinas");
-    private Vacina vacinaG;
 
     public static void persistirVacina(Vacina vacina) {
-        String id = mDatabase.child("users").child(mUserId).child("vacinas").child("id").push().getKey();
+        String id = mDatabase.child("vacinas").push().getKey();
         vacina.setId(id);
-        mDatabase.child("users").child(mUserId).child("vacinas").child(id).setValue(vacina);
+        mDatabase.child("vacinas").child(id).setValue(vacina);
         mDatabase.keepSynced(true);
     }
 
