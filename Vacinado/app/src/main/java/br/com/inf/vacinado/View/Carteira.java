@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.inf.vacinado.DAO.UsuarioDAO;
+import br.com.inf.vacinado.Model.Usuario;
 import br.com.inf.vacinado.Model.Vacina;
 import br.com.inf.vacinado.R;
 
@@ -90,11 +91,6 @@ public class Carteira extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    Log.e("Aviso: ", "User Logged in");
-                } else {
-                    Log.e("Aviso: ", "User not Logged in");
-                }
             }
         };
 
@@ -206,6 +202,9 @@ public class Carteira extends AppCompatActivity {
     }
 
     private void startEditarCadastro() {
+        UsuarioDAO user = new UsuarioDAO();
+        Usuario usuario = user.getUserById(mAuthListener);
+        getIntent().putExtra("usuario", usuario);
         Intent intent = new Intent(Carteira.this, EditarCadastro.class);
         startActivity(intent);
     }

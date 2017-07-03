@@ -65,8 +65,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         if (user != null) {
             if (checkBox.isChecked()) {
-                dialog = new MaterialDialog.Builder(this).content(R.string.realizando_login).progress(true, 0).show();
-                realizarLogIn(emailEditText.getText().toString().trim(), passwordEditText.getText().toString(), 0);
+                realizarLogIn(emailEditText.getText().toString().trim(), passwordEditText.getText().toString());
             }
         }
     }
@@ -103,23 +102,20 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if (email.isEmpty() || password.isEmpty()) {
                     Snackbar.make(findViewById(android.R.id.content), login_error_message, Snackbar.LENGTH_LONG).show();
                 } else {
-                    dialog = new MaterialDialog.Builder(this).content(R.string.realizando_login).progress(true, 0).show();
-                    realizarLogIn(email, password, 1);
+                    realizarLogIn(email, password);
                 }
                 break;
         }
     }
 
-    public void realizarLogIn(final String email, String password, final int value) {
-
+    public void realizarLogIn(final String email, String password) {
+        dialog = new MaterialDialog.Builder(this).content(R.string.realizando_login).progress(true, 0).show();
         mFirebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (value == 1) {
-                            dialog.dismiss();
-                        }
                         if (task.isSuccessful()) {
+                            dialog.dismiss();
                             SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
                             LoginOfflineDAO.persistirLogin(prefs, emailEditText, passwordEditText, checkBox);
 
@@ -129,6 +125,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             intent.putExtra("Modo offline", false);
                             startActivity(intent);
                         } else {
+                            dialog.dismiss();
                             String erro = task.getException().getMessage();
                             if (erro.equals("The password is invalid or the user does not have a password.")) {
                                 Snackbar.make(findViewById(android.R.id.content),

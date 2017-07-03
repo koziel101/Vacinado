@@ -1,5 +1,7 @@
 package br.com.inf.vacinado.DAO;
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -41,7 +43,10 @@ public class UsuarioDAO {
                     Usuario usuario = vacSnapshot.getValue(Usuario.class);
                     if (usuario.getId() == mUserId) {
                         usuarioG = usuario;
+                        Log.e("Entrou", "aki");
                         break;
+                    } else{
+                        Log.e("oie", "oie");
                     }
                 }
             }
