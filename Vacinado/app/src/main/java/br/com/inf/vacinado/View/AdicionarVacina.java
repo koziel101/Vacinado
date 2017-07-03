@@ -23,9 +23,6 @@ public class AdicionarVacina extends AppCompatActivity {
     protected EditText nomeVacinaEdt;
     protected EditText vacinaQntdEdt;
     protected EditText informacoesVacinaEdt;
-    Carteira carteira;
-    private Context contextoCarteira;
-    LinearLayout listaCard;
     Vacina vacina;
 
 
@@ -60,35 +57,10 @@ public class AdicionarVacina extends AppCompatActivity {
                     Integer.parseInt(vacinaQntdEdt.getText().toString()), informacoesVacinaEdt.getText().toString());
             VacinaDAO.persistirVacina(vacina);
 
-            criaNovoCard(vacina);
-
             Intent intent = new Intent(AdicionarVacina.this, Carteira.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
-    }
-
-    private void criaNovoCard(Vacina vacina) {
-        //referências layout xml para lista de cards de vacina
-        listaCard = (LinearLayout) findViewById(R.id.lista_vacinas);
-
-        contextoCarteira = carteira.contextoAplicacao();
-
-        CardView card = new CardView(contextoCarteira);
-
-        //Parâmetros do CardView
-        CardView.LayoutParams params = new CardView.LayoutParams(
-                CardView.LayoutParams.WRAP_CONTENT,
-                CardView.LayoutParams.WRAP_CONTENT
-        );
-        params.setMargins(10, 10, 10, 10);
-        card.setLayoutParams(params);
-
-        card.setRadius(2);
-        card.setMaxCardElevation(2);
-        card.setMinimumHeight(50);
-
-        listaCard.addView(card);
     }
 }
