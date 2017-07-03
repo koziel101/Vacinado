@@ -27,14 +27,14 @@ public class VacinaAdapter extends RecyclerView.Adapter<VacinaAdapter.VacinaView
     public static class VacinaViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView nome_vacina;
-        //TextView dose_vacina;
+        TextView dose_vacina;
 
 
         VacinaViewHolder(View itemView) {
             super(itemView);
             cv = (CardView) itemView.findViewById(R.id.card_view);
             nome_vacina = (TextView) itemView.findViewById(R.id.vacina_nome);
-            //dose_vacina = (TextView)itemView.findViewById(R.id.vacina_dose);
+            dose_vacina = (TextView)itemView.findViewById(R.id.vacina_dose);
         }
     }
 
@@ -51,6 +51,7 @@ public class VacinaAdapter extends RecyclerView.Adapter<VacinaAdapter.VacinaView
     @Override
     public void onBindViewHolder(VacinaViewHolder holder, int position) {
         holder.nome_vacina.setText(vacinas.get(position).getNome());
+        holder.dose_vacina.setText(vacinas.get(position).getDosesTomadas() + "/" + vacinas.get(position).getQuantidadeDoses());
     }
 
     @Override
