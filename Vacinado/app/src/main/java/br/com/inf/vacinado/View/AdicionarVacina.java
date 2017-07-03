@@ -1,18 +1,12 @@
 package br.com.inf.vacinado.View;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import br.com.inf.vacinado.DAO.VacinaDAO;
 import br.com.inf.vacinado.Model.Vacina;
@@ -31,13 +25,25 @@ public class AdicionarVacina extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_vacina);
 
-
         final Button concluir = (Button) findViewById(R.id.bttConcluir);
         concluir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 concluir();
             }
         });
+
+        final Button cancelar = (Button) findViewById(R.id.bttCancelar);
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                voltar();
+            }
+        });
+    }
+
+    private void voltar() {
+        Intent it;
+        it = new Intent(this, Carteira.class);
+        startActivity(it);
     }
 
     private void concluir() {
@@ -48,7 +54,7 @@ public class AdicionarVacina extends AppCompatActivity {
 
         if (nomeVacinaEdt.getText().toString().trim().isEmpty()) {
             Snackbar.make(findViewById(android.R.id.content), R.string.nome_vacina_vazio, Snackbar.LENGTH_LONG).show();
-        } else if (vacinaQntdEdt.getText().toString().trim().isEmpty()) {
+        } else if (vacinaQntdEdt.getText().toString().trim().isEmpty() || vacinaQntdEdt.getText().toString().trim().equals("0")) {
             Snackbar.make(findViewById(android.R.id.content), R.string.qntd_vacina_vazio, Snackbar.LENGTH_LONG).show();
         } else if (informacoesVacinaEdt.getText().toString().trim().isEmpty()) {
             Snackbar.make(findViewById(android.R.id.content), R.string.informacoes_vacina_vazio, Snackbar.LENGTH_LONG).show();

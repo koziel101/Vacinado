@@ -16,6 +16,12 @@
             android:title="@string/nova_vacina" />
 
         <item
+            android:id="@+id/notificacao"
+            android:checked="false"
+            android:icon="@drawable/ic_log_out"
+            android:title="@string/notificacoes" />
+
+        <item
             android:id="@+id/log_out"
             android:checked="false"
             android:icon="@drawable/ic_log_out"

@@ -3,6 +3,7 @@ package br.com.inf.vacinado.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -46,11 +47,21 @@ public class Carteira extends AppCompatActivity {
     List<Vacina> vacinas;
     private DrawerLayout drawerLayout;
     static private FirebaseAuth.AuthStateListener mAuthListener;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carteira);
+
+        fab = (FloatingActionButton) findViewById(R.id.btn_add_vacina);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addVacina();
+            }
+        });
 
         //instacia recycleView e define o prosicionamento dos intens
         RecyclerView recycle = (RecyclerView) findViewById(R.id.recycle_view);
@@ -107,6 +118,9 @@ public class Carteira extends AppCompatActivity {
                     case R.id.perfil:
                         startEditarCadastro();
                         return true;
+                    case R.id.notificacao:
+                        Toast.makeText(getApplicationContext(), "Não implementado ainda", Toast.LENGTH_SHORT).show();
+                        return true;
                     case R.id.log_out:
                         if (mAuthListener != null) {
                             mFirebaseAuth.signOut();
@@ -114,7 +128,6 @@ public class Carteira extends AppCompatActivity {
                         }
                         return true;
                     default:
-                        Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
                         return true;
                 }
             }
@@ -142,15 +155,6 @@ public class Carteira extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
