@@ -42,11 +42,22 @@
                 android:text="@string/activity_carteira_classificacao" />
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/recycle_view" />
+                android:layout_height="match_parent" />
 
         </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_add_vacina"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:onClick=""
+            android:src="@drawable/ic_adiciona_vacina" />
+        
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
