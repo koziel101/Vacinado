@@ -25,7 +25,6 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical|left"
                 android:paddingLeft="16dp"
-                android:text="Vacina01"
                 android:textSize="16sp" />
 
             <TextView
@@ -35,7 +34,6 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical|right"
                 android:paddingRight="16dp"
-                android:text="2/1"
                 android:textSize="14sp" />
 
         </LinearLayout>
