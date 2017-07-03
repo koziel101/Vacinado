@@ -16,7 +16,6 @@ public class VacinaDAO {
     static private FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
     static private FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
-    //Variaveis para persistir dados
     static private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     static private String mUserId = mFirebaseUser.getUid();
     private DatabaseReference ref = mDatabase.child("users").child(mUserId).child("vacinas");
@@ -36,7 +35,7 @@ public class VacinaDAO {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
                     Vacina vacina = vacSnapshot.getValue(Vacina.class);
-                    if (vacina.getId() == id){
+                    if (vacina.getId() == id) {
                         vacinaG = vacina;
                         break;
                     }
@@ -47,6 +46,6 @@ public class VacinaDAO {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-    return vacinaG;
+        return vacinaG;
     }
 }
