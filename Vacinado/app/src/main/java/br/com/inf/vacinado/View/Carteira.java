@@ -58,6 +58,10 @@ public class Carteira extends AppCompatActivity {
         recycle.setLayoutManager(llm);
 
         this.vacinas = new ArrayList<>();
+        Vacina vacina01 = new Vacina("vacina", 2, "lixo");
+        Vacina vacina02 = new Vacina("vacina2", 2, "mt bom");
+        vacinas.add(vacina01);
+        vacinas.add(vacina02);
 
         VacinaAdapter adapter = new VacinaAdapter(vacinas);
         recycle.setAdapter(adapter);
