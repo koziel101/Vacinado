@@ -26,6 +26,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.inf.vacinado.Model.Vacina;
 import br.com.inf.vacinado.R;
 
 public class Carteira extends AppCompatActivity {
@@ -40,6 +44,7 @@ public class Carteira extends AppCompatActivity {
     private long lastBackPressTime = 0;
     private Toolbar toolbar;
     private NavigationView navigationView;
+    List<Vacina> vacinas;
     private DrawerLayout drawerLayout;
     static private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -49,9 +54,14 @@ public class Carteira extends AppCompatActivity {
         setContentView(R.layout.activity_carteira);
 
         //instacia recycleView e define o prosicionamento dos intens
-        RecyclerView recycle = (RecyclerView)findViewById(R.id.recycle_view);
+        RecyclerView recycle = (RecyclerView) findViewById(R.id.recycle_view);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         recycle.setLayoutManager(llm);
+
+        this.vacinas = new ArrayList<>();
+
+        RecycleAdapter adapter = new RecycleAdapter(vacinas);
+        recycle.setAdapter(adapter);
 
         Intent it = getIntent();
         boolean userOffline = it.getBooleanExtra("Modo offline", false);
@@ -59,15 +69,6 @@ public class Carteira extends AppCompatActivity {
         if (userOffline) {
             Toast.makeText(getApplicationContext(), R.string.user_offline, Toast.LENGTH_LONG).show();
         }
-
-//        final CardView button = (CardView) findViewById(R.id.card_view1);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                vacinaInfo();
-//            }
-//        });
-
-
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -77,10 +78,8 @@ public class Carteira extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     Log.e("Aviso: ", "User Logged in");
-                    System.out.println("User logged in");
                 } else {
                     Log.e("Aviso: ", "User not Logged in");
-                    System.out.println("User not logged in");
                 }
             }
         };
