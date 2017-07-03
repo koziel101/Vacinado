@@ -3,7 +3,6 @@ package br.com.inf.vacinado.View;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +10,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import br.com.inf.vacinado.Model.Vacina;
 import br.com.inf.vacinado.R;
 
-public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.VacinaViewHolder> {
+public class VacinaAdapter extends RecyclerView.Adapter<VacinaAdapter.VacinaViewHolder> {
 
     List<Vacina> vacinas;
 
-    public RecycleAdapter(List<Vacina> vacinas) {
+    public VacinaAdapter(List<Vacina> vacinas) {
         this.vacinas = new ArrayList<>();
         this.vacinas = vacinas;
 

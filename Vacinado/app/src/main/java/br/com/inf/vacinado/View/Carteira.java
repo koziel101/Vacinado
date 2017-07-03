@@ -1,6 +1,5 @@
 package br.com.inf.vacinado.View;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -60,7 +59,7 @@ public class Carteira extends AppCompatActivity {
 
         this.vacinas = new ArrayList<>();
 
-        RecycleAdapter adapter = new RecycleAdapter(vacinas);
+        VacinaAdapter adapter = new VacinaAdapter(vacinas);
         recycle.setAdapter(adapter);
 
         Intent it = getIntent();
