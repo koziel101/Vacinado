@@ -34,7 +34,7 @@ public class VacinaAdapter extends RecyclerView.Adapter<VacinaAdapter.VacinaView
             super(itemView);
             cv = (CardView) itemView.findViewById(R.id.card_view);
             nome_vacina = (TextView) itemView.findViewById(R.id.vacina_nome);
-            dose_vacina = (TextView)itemView.findViewById(R.id.vacina_dose);
+            dose_vacina = (TextView) itemView.findViewById(R.id.vacina_dose);
         }
     }
 
