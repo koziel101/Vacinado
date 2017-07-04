@@ -8,17 +8,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center|left"
+            android:paddingLeft="20dp"
+            android:text="@string/title_activity_cadastro"
+            android:textColor="@color/colorIcons"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:text="@string/title_activity_cadastro" />
+            android:layout_margin="15dp"
+            android:text="Atualize os dados do seu cadastro:" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -31,7 +38,8 @@
                 android:layout_margin="15dp"
                 android:hint="Nome: "
                 android:inputType="textPersonName"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textSize="14dp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -45,7 +53,8 @@
                 android:layout_margin="15dp"
                 android:hint="E-mail: "
                 android:inputType="textEmailAddress"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textSize="14dp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -59,7 +68,8 @@
                 android:layout_margin="15dp"
                 android:hint="Senha: "
                 android:inputType="textPassword"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textSize="14dp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -73,7 +83,8 @@
                 android:layout_margin="15dp"
                 android:hint="CPF: "
                 android:inputType="number"
-                android:maxLength="14" />
+                android:maxLength="14"
+                android:textSize="14dp" />
         </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
@@ -86,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sexo: "
-                android:textSize="15dp" />
+                android:textSize="14dp" />
 
             <Spinner
                 android:id="@+id/sexo_cadastro"
@@ -107,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Data de Nascimento: "
-                android:textSize="15dp" />
+                android:textSize="14dp" />
 
             <ImageButton
                 android:id="@+id/bttnDataNascimento"
