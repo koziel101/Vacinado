@@ -55,14 +55,14 @@ public class Carteira extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carteira);
 
-        fab = (FloatingActionButton) findViewById(R.id.btn_add_vacina);
+        //fab = (FloatingActionButton) findViewById(R.id.btn_add_vacina);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addVacina();
             }
-        });
+        });*/
 
         //instacia recycleView e define o prosicionamento dos intens
         RecyclerView recycle = (RecyclerView) findViewById(R.id.recycle_view);
