@@ -28,18 +28,51 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <include
                 android:id="@+id/toolbar"
                 layout="@layout/tool_bar" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/activity_carteira_classificacao"
+                    android:textColor="@color/colorSecundaryText"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/classificao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorSecundaryText"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/colorPrimaryDark"></View>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="25dp"
-                android:text="@string/activity_carteira_classificacao" />
+                android:layout_gravity="center"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/carteira_titulo"
+                android:textColor="@color/colorSecundaryText"
+                android:textSize="16sp" />
+
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycle_view"
@@ -47,6 +80,7 @@
                 android:layout_height="match_parent" />
 
         </LinearLayout>
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btn_add_vacina"

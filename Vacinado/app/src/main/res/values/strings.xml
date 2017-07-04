@@ -56,4 +56,5 @@
     <string name="nova_vacina">Nova Vacina</string>
     <string name="log_out">Logout</string>
     <string name="notificacoes">Notificações</string>
+    <string name="carteira_titulo">Carteira</string>
 </resources>
