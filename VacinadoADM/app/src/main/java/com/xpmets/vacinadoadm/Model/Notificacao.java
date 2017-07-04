@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Notificacao {
 
+    private String id;
     private String nome;
     private String texto;
     private Date dataInicial;
@@ -18,6 +19,14 @@ public class Notificacao {
         this.texto = texto;
         this.dataInicial = dataInicial;
         this.dataFinal = dataFinal;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNome() {
