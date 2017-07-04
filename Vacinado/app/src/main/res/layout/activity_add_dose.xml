@@ -9,7 +9,6 @@
         layout="@layout/tool_bar"></include>
 
     <TextView
-        android:id="@+id/nome_vacina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -29,8 +28,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:text="@string/texto_nova_dose" />
+        android:text="@string/texto_nova_dose"
+        android:layout_margin="15dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -86,10 +85,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:textSize="14sp"
             android:hint="Lote(opcional) "
             android:inputType="textPersonName"
-            android:maxLines="1"
-            android:textSize="14sp" />
+            android:maxLines="1" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -101,10 +100,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:textSize="14sp"
             android:hint="Ponto vacinação "
             android:inputType="textPersonName"
-            android:maxLines="1"
-            android:textSize="14sp" />
+            android:maxLines="1" />
     </android.support.design.widget.TextInputLayout>
 
     <LinearLayout
@@ -140,7 +139,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:layout_weight="1"
-            android:text="@string/bttn_cancelar" />
+            android:text="Cancelar" />
 
         <Button
             android:id="@+id/bttConcluir"
@@ -149,7 +148,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:layout_weight="1"
-            android:text="@string/bttn_concluir" />
+            android:text="Concluir" />
 
     </LinearLayout>
 
