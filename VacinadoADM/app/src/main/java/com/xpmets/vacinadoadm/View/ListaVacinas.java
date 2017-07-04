@@ -36,6 +36,7 @@ public class ListaVacinas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_vacinas);
+        this.vacinasG = new ArrayList<>();
 
         fab = (FloatingActionButton) findViewById(R.id.btn_add_vacina);
 
@@ -50,12 +51,6 @@ public class ListaVacinas extends AppCompatActivity {
         RecyclerView recycle = (RecyclerView) findViewById(R.id.recycle_view);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         recycle.setLayoutManager(llm);
-
-        this.vacinasG = new ArrayList<>();
-        Vacina vacina01 = new Vacina("vacina", 2, "lixo", "Adulto");
-        Vacina vacina02 = new Vacina("vacina2", 2, "mt bom", "Idoso");
-        vacinasG.add(vacina01);
-        vacinasG.add(vacina02);
 
         VacinaAdapter adapter = new VacinaAdapter(vacinasG);
         recycle.setAdapter(adapter);
@@ -76,7 +71,6 @@ public class ListaVacinas extends AppCompatActivity {
         Intent intent = new Intent(ListaVacinas.this, AdicionarVacina.class);
         startActivity(intent);
     }
-
 
     @Override
     protected void onStart() {

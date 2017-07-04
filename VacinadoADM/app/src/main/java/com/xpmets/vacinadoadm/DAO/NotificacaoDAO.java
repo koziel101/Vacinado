@@ -15,7 +15,7 @@ public class NotificacaoDAO {
     static private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     static private String mUserId = mFirebaseUser.getUid();
 
-    public static void persistirVacina(Notificacao notificacao) {
+    public static void persistirNotificacao(Notificacao notificacao) {
         String id = mDatabase.child("notificacoes").push().getKey();
         notificacao.setId(id);
         mDatabase.child("notificacoes").child(id).setValue(notificacao);
