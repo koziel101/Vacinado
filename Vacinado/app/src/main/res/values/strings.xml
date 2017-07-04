@@ -42,7 +42,7 @@
 
     <string name="nome_vacina">Nome da Vacina</string>
     <string name="action_settings">settings</string>
-    <string name="cadastrar_nova_vacina">Cadastrar nova vacina.</string>
+    <string name="cadastrar_nova_vacina">Cadastre uma nova vacina:</string>
     <string name="data_vacinacao">Data de vacinação: </string>
 
     <string name="nome_vacina_vazio">Nome da vacina não pode estar vazio</string>
@@ -57,4 +57,10 @@
     <string name="log_out">Logout</string>
     <string name="notificacoes">Notificações</string>
     <string name="carteira_titulo">Carteira</string>
+    <string name="atualizar_cadastro">Atualize os dados do seu cadastro:</string>
+    <string name="dose_tomada">Dose:</string>
+    <string name="texto_nova_dose">Adicione a dose tomada:</string>
+    <string name="bttn_cancelar">Cancelar</string>
+    <string name="bttn_concluir">Concluir</string>
+    <string name="bttn_voltar">Voltar</string>
 </resources>
