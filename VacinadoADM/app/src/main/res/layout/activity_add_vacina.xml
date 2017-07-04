@@ -59,11 +59,25 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/vacina_ponto_vacinacao"
+                android:id="@+id/vacina_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:hint="Informações da vacina"
+                android:inputType="textPersonName"
+                android:maxLines="10" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/vacina_classificacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="Classificação"
                 android:inputType="textPersonName"
                 android:maxLines="10" />
         </android.support.design.widget.TextInputLayout>
