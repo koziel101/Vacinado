@@ -45,7 +45,7 @@ public class Carteira extends AppCompatActivity {
     private long lastBackPressTime = 0;
     private Toolbar toolbar;
     private NavigationView navigationView;
-    List<Vacina> vacinas;
+    List<Vacina> vacinas = new ArrayList<>();
     private DrawerLayout drawerLayout;
     static private FirebaseAuth.AuthStateListener mAuthListener;
     private FloatingActionButton fab;
@@ -66,19 +66,15 @@ public class Carteira extends AppCompatActivity {
             }
         });*/
 
-        //instacia recycleView e define o prosicionamento dos intens
+        //recycle lista de Vacinas
+        Vacina vacina = new Vacina("Minha Vacina", 2, "odiei");
+        vacinas.add(vacina);
         recycleVacina = (RecyclerView) findViewById(R.id.recycle_view);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         recycleVacina.setLayoutManager(llm);
-
-        this.vacinas = new ArrayList<>();
-        Vacina vacina01 = new Vacina("vacina", 2, "lixo");
-        Vacina vacina02 = new Vacina("vacina2", 2, "mt bom");
-        vacinas.add(vacina01);
-        vacinas.add(vacina02);
-
         adapter = new VacinaAdapter(vacinas);
         recycleVacina.setAdapter(adapter);
+        //termina recycle
 
         Intent it = getIntent();
         boolean userOffline = it.getBooleanExtra("Modo offline", false);
@@ -176,16 +172,17 @@ public class Carteira extends AppCompatActivity {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
-//                    Vacina vac = vacSnapshot.getValue(Vacina.class);
-//                    texto.setText(vac.getNome());
-//                }
-            }
+              // for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
+             //       Vacina vac = vacSnapshot.getValue(Vacina.class);
+             //       vacinas.add(vac);
+                }
+           // }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+       // setRecycleVacina(vacinas);
     }
 
     private void vacinaInfo() {
@@ -209,5 +206,14 @@ public class Carteira extends AppCompatActivity {
         getIntent().putExtra("usuario", usuario);
         Intent intent = new Intent(Carteira.this, EditarCadastro.class);
         startActivity(intent);
+    }
+
+    private void setRecycleVacina(List listaVacinas){
+        //instacia recycleView e define o prosicionamento dos intens
+        recycleVacina = (RecyclerView) findViewById(R.id.recycle_view);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        recycleVacina.setLayoutManager(llm);
+        adapter = new VacinaAdapter(listaVacinas);
+        recycleVacina.setAdapter(adapter);
     }
 }
