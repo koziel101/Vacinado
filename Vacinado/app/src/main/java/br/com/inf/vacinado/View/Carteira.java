@@ -49,6 +49,8 @@ public class Carteira extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     static private FirebaseAuth.AuthStateListener mAuthListener;
     private FloatingActionButton fab;
+    VacinaAdapter adapter;
+    RecyclerView recycleVacina;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +67,9 @@ public class Carteira extends AppCompatActivity {
         });*/
 
         //instacia recycleView e define o prosicionamento dos intens
-        RecyclerView recycle = (RecyclerView) findViewById(R.id.recycle_view);
+        recycleVacina = (RecyclerView) findViewById(R.id.recycle_view);
         LinearLayoutManager llm = new LinearLayoutManager(this);
-        recycle.setLayoutManager(llm);
+        recycleVacina.setLayoutManager(llm);
 
         this.vacinas = new ArrayList<>();
         Vacina vacina01 = new Vacina("vacina", 2, "lixo");
@@ -75,8 +77,8 @@ public class Carteira extends AppCompatActivity {
         vacinas.add(vacina01);
         vacinas.add(vacina02);
 
-        VacinaAdapter adapter = new VacinaAdapter(vacinas);
-        recycle.setAdapter(adapter);
+        adapter = new VacinaAdapter(vacinas);
+        recycleVacina.setAdapter(adapter);
 
         Intent it = getIntent();
         boolean userOffline = it.getBooleanExtra("Modo offline", false);
