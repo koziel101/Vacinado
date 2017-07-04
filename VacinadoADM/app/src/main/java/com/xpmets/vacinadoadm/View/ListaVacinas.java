@@ -25,8 +25,6 @@ import java.util.List;
 public class ListaVacinas extends AppCompatActivity {
 
     static private FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
-    static private FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-    private String mUserId = mFirebaseUser.getUid();
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference ref = mDatabase.child("vacinas");
     private TextView texto;
