@@ -22,8 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
             android:layout_marginBottom="15dp"
+            android:layout_marginTop="25dp"
             android:text="@string/realizar_login" />
 
         <android.support.design.widget.TextInputLayout
@@ -35,9 +35,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:textSize="14sp"
                 android:hint="Email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textSize="14sp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -52,18 +52,18 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:hint="Senha"
-                android:textSize="14sp"
                 android:inputType="textPassword"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textSize="14sp" />
         </android.support.design.widget.TextInputLayout>
 
         <CheckBox
             android:id="@+id/checkBoxLembrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
             android:layout_gravity="center_horizontal"
-            android:text="@string/bttn_lembrar" />
+            android:text="@string/bttn_lembrar"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/bttnEntrar"

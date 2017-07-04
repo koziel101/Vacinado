@@ -15,65 +15,66 @@
             layout="@layout/tool_bar"></include>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/nome_vacina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_margin="20dp"
                 android:text="@string/nome_vacina"
-                android:textSize="20dp"
+                android:textColor="@color/colorSecundaryText"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
-        </LinearLayout>
 
-        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view1"
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            card_view:cardCornerRadius="@dimen/cardview_default_radius"
-            card_view:cardElevation="@dimen/cardview_default_elevation">
-
-            <TextView
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_info_vacina"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:text="Informações da Vacina" />
-        </android.support.v7.widget.CardView>
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                card_view:cardCornerRadius="@dimen/cardview_default_radius"
+                card_view:cardElevation="@dimen/cardview_default_elevation">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:text="Informações da Vacina"
+                    android:textSize="14sp" />
+            </android.support.v7.widget.CardView>
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:text="Doses tomadas: "
-                android:textSize="15dp"
+                android:layout_margin="15dp"
+                android:text="@string/doses_tomadas"
+                android:textSize="16sp"
                 android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/colorPrimaryDark"></View>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:orientation="vertical">
 
             <ListView
@@ -105,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_weight="1"
-                android:text="Adicionar Dose" />
+                android:text="@string/bttn_adicionar_dose" />
 
         </LinearLayout>
 

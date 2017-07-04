@@ -63,4 +63,6 @@
     <string name="bttn_cancelar">Cancelar</string>
     <string name="bttn_concluir">Concluir</string>
     <string name="bttn_voltar">Voltar</string>
+    <string name="doses_tomadas">Doses tomadas:</string>
+    <string name="bttn_adicionar_dose">Adicionar Dose</string>
 </resources>
