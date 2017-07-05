@@ -124,6 +124,7 @@ public class AdicionarDose extends AppCompatActivity {
         //Realizar a persistencia dos dados
         Dose dose = new Dose(dia, mes, ano, informa.getText().toString(), spinner.getSelectedItemPosition());
         VacinaDAO vac = new VacinaDAO();
+        vac.persistirDose(vacin, dose);
         super.onBackPressed();
     }
 }
