@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,7 @@ public class EditarCadastro extends AppCompatActivity {
     private String nome, emailUser, cpf, senhaAntiga, senhaNova;
     EditText oldPassEdit, newPassEdit;
     private MaterialDialog dialog;
-    boolean flagEmail = true, flagSenha = true;
+    boolean flagEmail, flagSenha;
     EditText emailEdit, nomeEdt, cpfEdit;
     String result = "Usuário atualizado com sucesso.";
 
@@ -78,23 +79,26 @@ public class EditarCadastro extends AppCompatActivity {
         final Button concluir = (Button) findViewById(R.id.bttnSalvar_editar_cadastro);
         concluir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                flagEmail = false;
+                flagSenha = false;
                 boolean flag = concluir();
+                result = "";
                 if (flag) {
                     Snackbar.make(findViewById(android.R.id.content), result, Snackbar.LENGTH_LONG).show();
                 } else {
                     result = "";
-                    if (!flagEmail) {
-                        result = result + "Email: não atualizado\n";
-                    } else {
-                        result = result + "Email: atualizado\n";
-                    }
-                    if (!flagSenha) {
-                        result = result + "Senha: não atualizado\n";
-                    } else {
-                        result = result + "Senha: atualizado\n";
-                    }
 
-                    Snackbar.make(findViewById(android.R.id.content), result, Snackbar.LENGTH_LONG).show();
+                    if (flagEmail) {
+                        result = result + "Email: atualizado\n";
+                    } else {
+                        result = result + "Email: não atualizado\n";
+                    }
+                    if (flagSenha) {
+                        result = result + "Senha: atualizado\n";
+                    } else {
+                        result = result + "Senha: não atualizado\n";
+                    }
+//                    Snackbar.make(findViewById(android.R.id.content), result, Snackbar.LENGTH_LONG).show();
                 }
             }
         });
@@ -115,22 +119,17 @@ public class EditarCadastro extends AppCompatActivity {
 //
 //        dialog.dismiss();
 
-        if (!senhaNova.isEmpty() && !senhaAntiga.isEmpty()) {
-            updatePassword();
+        updatePassword();
+        updateEmail();
 
+        if (flagEmail && flagSenha) {
+            return true;
+        } else {
+            return false;
         }
-
-        if (!emailUser.trim().isEmpty()) {
-            updateEmail();
-        }
-
-
-
-        return false;
     }
 
     public boolean updatePassword() {
-        flagSenha = true;
         try {
             user = FirebaseAuth.getInstance().getCurrentUser();
             final String email = user.getEmail();
@@ -139,17 +138,14 @@ public class EditarCadastro extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        dialog.dismiss();
                         user.updatePassword(senhaNova).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if (!task.isSuccessful()) {
-                                    flagSenha = false;
+                                if (task.isSuccessful()) {
+                                    flagSenha = true;
                                 }
                             }
                         });
-                    } else {
-                        flagSenha = false;
                     }
                 }
             });
@@ -163,29 +159,27 @@ public class EditarCadastro extends AppCompatActivity {
     }
 
     public boolean updateEmail() {
-        flagEmail = true;
         try {
             user = FirebaseAuth.getInstance().getCurrentUser();
             final String email = user.getEmail();
-            AuthCredential credential = EmailAuthProvider.getCredential(email, senhaAntiga);
-            user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        user.updateEmail(emailEdit.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (!task.isSuccessful()) {
-                                    flagEmail = false;
+            if (!email.equals(emailEdit.getText().toString())) {
+                AuthCredential credential = EmailAuthProvider.getCredential(email, senhaAntiga);
+                user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            user.updateEmail(emailEdit.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        flagEmail = true;
+                                    }
                                 }
-                            }
-                        });
-                    } else {
-                        flagEmail = false;
+                            });
+                        }
                     }
-                }
-            });
-
+                });
+            }
             return flagEmail;
 
         } catch (Exception e) {
