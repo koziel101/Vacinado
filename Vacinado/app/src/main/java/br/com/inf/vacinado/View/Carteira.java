@@ -76,12 +76,8 @@ public class Carteira extends AppCompatActivity {
         //recycle lista de Vacinas
         Vacina vacina = new Vacina("Minha Vacina", 2, "odiei");
         vacinas.add(vacina);
-        recycleVacina = (RecyclerView) findViewById(R.id.recycle_view_carteira);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        recycleVacina.setLayoutManager(llm);
-        adapter = new VacinaAdapter(vacinas);
-        recycleVacina.setAdapter(adapter);
-        //termina recycle
+
+        setRecycleVacina(vacinas);
 
         Intent it = getIntent();
         boolean userOffline = it.getBooleanExtra("Modo offline", false);
@@ -257,7 +253,7 @@ public class Carteira extends AppCompatActivity {
 
     private void setRecycleVacina(List listaVacinas) {
         //instacia recycleView e define o prosicionamento dos intens
-        recycleVacina = (RecyclerView) findViewById(R.id.recycle_view);
+        recycleVacina = (RecyclerView) findViewById(R.id.recycle_view_carteira);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         recycleVacina.setLayoutManager(llm);
         adapter = new VacinaAdapter(listaVacinas);
