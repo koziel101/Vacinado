@@ -1,32 +1,58 @@
 package br.com.inf.vacinado.Model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.StringTokenizer;
 
 public class Dose {
 
-    private Date data;
-    private String informacoes;
+    private int dia, mes, ano;
+    private String info;
+    private int dose;
 
-    public Dose(Date data, String informacoes) {
-        this.data = data;
-        this.informacoes = informacoes;
+    public Dose(int dia, int mes, int ano, String info, int dose) {
+        this.dia = dia;
+        this.mes = mes;
+        this.ano = ano;
+        this.info = info;
+        this.dose = dose;
     }
 
-    public String getInformacoes() {
-        return informacoes;
+    public int getDia() {
+        return dia;
     }
 
-    public void setInformacoes(String informacoes) {
-        this.informacoes = informacoes;
+    public void setDia(int dia) {
+        this.dia = dia;
     }
 
-    public Date getData() {
-        return data;
+    public int getMes() {
+        return mes;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public int getDose() {
+        return dose;
+    }
+
+    public void setDose(int dose) {
+        this.dose = dose;
     }
 }

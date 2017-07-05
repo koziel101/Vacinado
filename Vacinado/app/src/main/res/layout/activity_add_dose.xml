@@ -97,6 +97,21 @@
             android:layout_marginRight="40dp" />
     </LinearLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/dose_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:hint="Informações da vacina"
+            android:inputType="textMultiLine"
+            android:maxLines="5"
+            android:textSize="14sp" />
+    </android.support.design.widget.TextInputLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

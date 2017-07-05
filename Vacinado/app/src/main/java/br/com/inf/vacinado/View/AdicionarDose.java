@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -16,6 +17,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.Calendar;
 
+import br.com.inf.vacinado.Model.Dose;
+import br.com.inf.vacinado.Model.Vacina;
 import br.com.inf.vacinado.R;
 
 public class AdicionarDose extends AppCompatActivity {
@@ -29,6 +32,8 @@ public class AdicionarDose extends AppCompatActivity {
     int dia = c.get(Calendar.DAY_OF_MONTH);
     TextView diaTextView, mesTextView, anoTextView;
     protected Spinner spinner;
+    private Vacina vacina;
+    private EditText informa;
 
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -71,6 +76,8 @@ public class AdicionarDose extends AppCompatActivity {
         spinner = (Spinner) findViewById(R.id.vacina_dose_add_dose);
         configuraSpinner(spinner);
 
+        informa = (EditText) findViewById(R.id.dose_info);
+
         showDialog();
     }
 
@@ -107,7 +114,10 @@ public class AdicionarDose extends AppCompatActivity {
 
     private void concluir() {
         //Realizar a persistencia dos dados
-
+        Dose dose = new Dose(dia, mes, ano, informa.getText().toString(), spinner.getSelectedItemPosition());
+        vacina.adicionarDose(dose);
+        int dosestomadas = vacina.getDosesTomadas() + 1;
+        vacina.setDosesTomadas(dosestomadas);
         super.onBackPressed();
     }
 }
