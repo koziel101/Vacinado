@@ -1,4 +1,4 @@
-package br.com.inf.vacinado.View;
+package br.com.inf.vacinado.Controller;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;

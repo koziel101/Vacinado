@@ -69,7 +69,7 @@ public class AdicionarDose extends AppCompatActivity {
         final Button cancelar = (Button) findViewById(R.id.bttCancelar_add_dose);
         cancelar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                concluir();
+                cancelar();
             }
         });
 
@@ -110,6 +110,10 @@ public class AdicionarDose extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    private void cancelar() {
+        super.onBackPressed();
     }
 
     private void concluir() {

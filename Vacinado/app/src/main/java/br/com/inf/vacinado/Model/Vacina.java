@@ -1,8 +1,9 @@
 package br.com.inf.vacinado.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Vacina {
+public class Vacina implements Serializable {
 
     private String id;
     private String nome;

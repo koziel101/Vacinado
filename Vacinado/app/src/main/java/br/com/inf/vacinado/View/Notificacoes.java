@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import br.com.inf.vacinado.Controller.NotificacaoAdapter;
 import br.com.inf.vacinado.Model.Notificacao;
 import br.com.inf.vacinado.R;
 

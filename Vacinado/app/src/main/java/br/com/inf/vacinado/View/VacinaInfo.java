@@ -39,7 +39,8 @@ public class VacinaInfo extends AppCompatActivity {
     }
 
     private void voltarViewCarteira() {
-        Intent intent = new Intent(VacinaInfo.this, Carteira.class);
-        startActivity(intent);
+        super.onBackPressed();
+//        Intent intent = new Intent(VacinaInfo.this, Carteira.class);
+//        startActivity(intent);
     }
 }

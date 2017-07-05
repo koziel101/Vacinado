@@ -1,9 +1,10 @@
-package br.com.inf.vacinado.View;
+package br.com.inf.vacinado.Controller;
 
 
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import java.util.List;
 
 import br.com.inf.vacinado.Model.Vacina;
 import br.com.inf.vacinado.R;
+import br.com.inf.vacinado.View.VacinaInfo;
 
 public class VacinaAdapter extends RecyclerView.Adapter<VacinaAdapter.VacinaViewHolder> {
 
@@ -40,7 +42,12 @@ public class VacinaAdapter extends RecyclerView.Adapter<VacinaAdapter.VacinaView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    itemView.getContext().startActivity(new Intent(itemView.getContext(), VacinaInfo.class));
+                    Intent it;
+                    it = new Intent(itemView.getContext(), VacinaInfo.class);
+//                    Vacina vacina = new Vacina();
+                    Log.e("id Vacina: ", "");
+//                    it.putExtra("vacina", vacina);
+                    itemView.getContext().startActivity(it);
                 }
             });
         }

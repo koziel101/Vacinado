@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import br.com.inf.vacinado.Controller.VacinaAdapter;
 import br.com.inf.vacinado.DAO.UsuarioDAO;
 import br.com.inf.vacinado.Model.Usuario;
 import br.com.inf.vacinado.Model.Vacina;
