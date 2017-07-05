@@ -5,13 +5,17 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_view"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_notification"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="15dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="16dp"
         card_view:cardCornerRadius="@dimen/cardview_default_radius"
-        card_view:cardElevation="@dimen/cardview_default_elevation">
+        card_view:cardElevation="@dimen/cardview_default_elevation"
+        card_view:cardMaxElevation="@dimen/cardview_default_elevation">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,22 +26,21 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_weight="1.03"
                 android:gravity="center_vertical|left"
-                android:padding="10dp"
+                android:padding="15dp"
                 android:src="@drawable/notificacao_pendente" />
+
 
             <TextView
                 android:id="@+id/notificacaoNome"
-                style="@style/TextAppearance.AppCompat.Medium"
+                style="@style/TextAppearance.AppCompat.Notification"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center_vertical|left"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp" />
+                android:padding="15dp" />
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
