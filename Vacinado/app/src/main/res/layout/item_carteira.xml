@@ -39,14 +39,13 @@
 
                 <TextView
                     android:id="@+id/vacina_nome"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical|left"
                     android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp" />
+                    android:paddingTop="10dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -54,13 +53,12 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        style="@style/TextAppearance.AppCompat.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical|left"
                         android:paddingLeft="10dp"
-                        android:text="@string/doses_card"
-                        android:textColor="@color/colorSecundaryText"
-                        android:textSize="14sp" />
+                        android:text="@string/doses_card" />
 
                     <TextView
                         android:id="@+id/vacina_dose"
