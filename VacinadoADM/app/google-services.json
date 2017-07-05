@@ -36,6 +36,37 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178019529850:android:6828eb0e2d18c768",
+        "android_client_info": {
+          "package_name": "br.com.inf.vacinadoadm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "178019529850-sudc5uj8r1bg4equvr0vtn8l7hdonfco.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxhY31m-pPF3jz1a58Tf8GpyVzUzGZLbE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"
