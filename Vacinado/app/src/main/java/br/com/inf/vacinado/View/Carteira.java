@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import br.com.inf.vacinado.DAO.UsuarioDAO;
@@ -238,5 +239,32 @@ public class Carteira extends AppCompatActivity {
         recycleVacina.setLayoutManager(llm);
         adapter = new VacinaAdapter(listaVacinas);
         recycleVacina.setAdapter(adapter);
+    }
+
+    //Método para cálculo da classificaçao do usuário pelo nascimento
+    private String calculaClassificacao(Usuario usu) {
+        Calendar agora = Calendar.getInstance();
+        int idade = 0;
+        String classificacao;
+        int ano = usu.getAnoNascimento();
+        int mes = usu.getMesNascimento();
+        int anoAtual = agora.getInstance().get(Calendar.YEAR);
+        int mesAtual = agora.getInstance().get(Calendar.MONTH);
+
+        if (mesAtual < mes) {
+            idade = anoAtual - ano - 1;
+        } else {
+            idade = anoAtual - ano;
+        }
+
+        if (idade < 20) {
+            classificacao = "Criança/Adolescente";
+        } else if (20 <= idade || idade <= 59) {
+            classificacao = "Adulto";
+        } else {
+            classificacao = "Idoso";
+        }
+
+        return classificacao;
     }
 }
