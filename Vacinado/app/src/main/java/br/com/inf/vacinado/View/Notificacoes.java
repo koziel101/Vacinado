@@ -36,7 +36,7 @@ public class Notificacoes extends AppCompatActivity {
     }
 
     //configura RecycleView
-    private void setRecycleNotificacao(List listaNotificacoes){
+    private void setRecycleNotificacao(List listaNotificacoes) {
         recycleNotificacao = (RecyclerView) findViewById(R.id.recycle_view_notification);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         recycleNotificacao.setLayoutManager(llm);

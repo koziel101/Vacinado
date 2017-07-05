@@ -33,14 +33,45 @@
                 android:src="@drawable/notificacao_pendente" />
 
 
-            <TextView
-                android:id="@+id/notificacaoNome"
-                style="@style/TextAppearance.AppCompat.Notification"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:gravity="center_vertical|left"
-                android:padding="15dp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/notificacaoNome"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|left"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp" />
+
+                <TextView
+                    android:id="@+id/notificacaoTexto"
+                    style="@style/TextAppearance.AppCompat.Notification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|left"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/notificacaoData"
+                    style="@style/TextAppearance.AppCompat.Notification.Info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="10dp" />
+            </RelativeLayout>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
