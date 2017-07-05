@@ -7,17 +7,15 @@ public class Vacina {
     private String informacoes;
     private int quantidadeDoses;
     private int dosesTomadas = 0;
-    private String classificacao;
 
     public Vacina() {
 
     }
 
-    public Vacina(String nome, int quantidadeDoses, String informacoes, String classificacao) {
+    public Vacina(String nome, int quantidadeDoses, String informacoes) {
         this.nome = nome;
         this.quantidadeDoses = quantidadeDoses;
         this.informacoes = informacoes;
-        this.classificacao = classificacao;
     }
 
     public String getId() {

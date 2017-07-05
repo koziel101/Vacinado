@@ -28,6 +28,8 @@ public class ListaVacinas extends AppCompatActivity {
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference ref = mDatabase.child("vacinas");
     private TextView texto;
+    VacinaAdapter adapter;
+    RecyclerView recycleVacina;
     List<Vacina> vacinasG;
     static private FirebaseAuth.AuthStateListener mAuthListener;
     private FloatingActionButton fab;
@@ -47,13 +49,15 @@ public class ListaVacinas extends AppCompatActivity {
             }
         });
 
-        //instacia recycleView e define o prosicionamento dos intens
-        RecyclerView recycle = (RecyclerView) findViewById(R.id.recycle_view);
+        //recycle lista de Vacinas
+        Vacina vacina = new Vacina("Minha Vacina", 2, "odiei");
+        vacinasG.add(vacina);
+        recycleVacina = (RecyclerView) findViewById(R.id.recycle_view);
         LinearLayoutManager llm = new LinearLayoutManager(this);
-        recycle.setLayoutManager(llm);
-
-        VacinaAdapter adapter = new VacinaAdapter(vacinasG);
-        recycle.setAdapter(adapter);
+        recycleVacina.setLayoutManager(llm);
+        adapter = new VacinaAdapter(vacinasG);
+        recycleVacina.setAdapter(adapter);
+        //termina recycle
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 

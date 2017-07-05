@@ -18,7 +18,6 @@
         </activity>
         <activity android:name=".View.AdicionarNotificacao" />
         <activity android:name=".View.ListaVacinas"></activity>
-        <activity android:name=".View.Vacinas"></activity>
         <activity android:name=".View.AdicionarVacina"></activity>
     </application>
 

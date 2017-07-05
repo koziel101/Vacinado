@@ -43,7 +43,7 @@ public class AdicionarVacina extends AppCompatActivity {
 
     private void voltar() {
         Intent it;
-        it = new Intent(this, Vacinas.class);
+        it = new Intent(this, ListaVacinas.class);
         startActivity(it);
     }
 
@@ -51,7 +51,7 @@ public class AdicionarVacina extends AppCompatActivity {
 
         nomeVacinaEdt = (EditText) findViewById(R.id.vacina_nome);
         vacinaQntdEdt = (EditText) findViewById(R.id.vacina_lote);
-        informacoesVacinaEdt = (EditText) findViewById(R.id.vacina_ponto_vacinacao);
+        informacoesVacinaEdt = (EditText) findViewById(R.id.vacina_info);
 
 
         if (nomeVacinaEdt.getText().toString().trim().isEmpty()) {
@@ -60,14 +60,12 @@ public class AdicionarVacina extends AppCompatActivity {
             Snackbar.make(findViewById(android.R.id.content), "Quantidade de doses vazia", Snackbar.LENGTH_LONG).show();
         } else if (informacoesVacinaEdt.getText().toString().trim().isEmpty()) {
             Snackbar.make(findViewById(android.R.id.content), "Informações vazias", Snackbar.LENGTH_LONG).show();
-        } else if (classificacao.getText().toString().trim().isEmpty()) {
-            Snackbar.make(findViewById(android.R.id.content), "Classificação vazia", Snackbar.LENGTH_LONG).show();
         } else {
             vacina = new Vacina(nomeVacinaEdt.getText().toString(),
-                    Integer.parseInt(vacinaQntdEdt.getText().toString()), informacoesVacinaEdt.getText().toString(), classificacao.getText().toString());
+                    Integer.parseInt(vacinaQntdEdt.getText().toString()), informacoesVacinaEdt.getText().toString());
             VacinaDAO.persistirVacina(vacina);
 
-            Intent intent = new Intent(AdicionarVacina.this, Vacinas.class);
+            Intent intent = new Intent(AdicionarVacina.this, ListaVacinas.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
