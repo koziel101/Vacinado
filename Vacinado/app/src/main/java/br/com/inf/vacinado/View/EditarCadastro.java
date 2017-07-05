@@ -22,9 +22,18 @@ public class EditarCadastro extends AppCompatActivity {
         Intent intent = getIntent();
 
         user = (Usuario) intent.getSerializableExtra("usuario");
-//        String nome = user.getNome();
-//        EditText nomeEdt = (EditText) findViewById(R.id.edit_nome_cadastro);
-//        nomeEdt.setText(nome);
+
+        String nome = user.getNome();
+        EditText nomeEdt = (EditText) findViewById(R.id.edit_nome_cadastro);
+        nomeEdt.setText(nome);
+
+        String email = user.getEmail();
+        EditText emailEdit = (EditText) findViewById(R.id.edit_email_cadastro);
+        emailEdit.setText(email);
+
+        String cpf = user.getCpf();
+        EditText cpfEdit = (EditText) findViewById(R.id.edit_cpf_cadastro);
+        cpfEdit.setText(cpf);
 
         final Button concluir = (Button) findViewById(R.id.bttnSalvar);
         concluir.setOnClickListener(new View.OnClickListener() {

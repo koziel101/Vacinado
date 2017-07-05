@@ -10,7 +10,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import br.com.inf.vacinado.Model.Usuario;
 
-public class UsuarioDAO {
+public class UsuarioDAO extends Thread {
 
     //Variaveis para realizar a autenticacao
     static private FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
@@ -18,8 +18,12 @@ public class UsuarioDAO {
 
     static private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     static private String mUserId = mFirebaseUser.getUid();
-    private DatabaseReference ref = mDatabase.child("users");
-    private Usuario usuarioG;
+    private DatabaseReference ref = mDatabase.child("users").child(mUserId).child("cadastro");
+    private static Usuario usuarioG;
+
+    public static Usuario getUsuarioG() {
+        return usuarioG;
+    }
 
     public static void persistirUsuario(Usuario usuario) {
         //Realizando a persistencia offline
@@ -39,11 +43,8 @@ public class UsuarioDAO {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
                     Usuario usuario = vacSnapshot.getValue(Usuario.class);
-                    if (usuario.getId() == mUserId) {
-                        usuarioG = usuario;
-                        break;
-                    } else {
-                    }
+                    usuarioG = usuario;
+                    break;
                 }
             }
 
@@ -51,6 +52,7 @@ public class UsuarioDAO {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
         return usuarioG;
     }
 }

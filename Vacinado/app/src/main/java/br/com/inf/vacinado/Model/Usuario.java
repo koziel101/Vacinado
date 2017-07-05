@@ -13,6 +13,10 @@ public class Usuario implements Serializable {
     private int diaNascimento, mesNascimento, anoNascimento;
     private static FirebaseUser currentFirebaseUser;
 
+    public Usuario() {
+
+    }
+
     public Usuario(String nome, String email, String sexo, String cpf,
                    int diaNascimento, int mesNascimento, int anoNascimento) {
         this.nome = nome;

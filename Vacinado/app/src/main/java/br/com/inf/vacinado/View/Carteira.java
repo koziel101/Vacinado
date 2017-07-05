@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,7 +40,8 @@ public class Carteira extends AppCompatActivity {
     static private FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
     private String mUserId = mFirebaseUser.getUid();
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference ref = mDatabase.child("users").child(mUserId).child("vacinas");
+    private DatabaseReference refVacina = mDatabase.child("users").child(mUserId).child("vacinas");
+    private DatabaseReference refUsuario = mDatabase.child("users").child(mUserId).child("cadastro");
     private TextView texto;
     private Toast toast;
     private long lastBackPressTime = 0;
@@ -51,6 +53,7 @@ public class Carteira extends AppCompatActivity {
     private FloatingActionButton fab;
     VacinaAdapter adapter;
     RecyclerView recycleVacina;
+    Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,22 +171,45 @@ public class Carteira extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        //Coletando a referencia do usuario
+        UsuarioDAO user = new UsuarioDAO();
+        user.getUserById(mAuthListener);
+
+//        EditarCadastro
         mFirebaseAuth.addAuthStateListener(mAuthListener);
-        ref.addValueEventListener(new ValueEventListener() {
+        refVacina.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-              // for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
-             //       Vacina vac = vacSnapshot.getValue(Vacina.class);
-             //       vacinas.add(vac);
-                }
-           // }
+                // for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
+                //       Vacina vac = vacSnapshot.getValue(Vacina.class);
+                //       vacinas.add(vac);
+            }
+            // }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-       // setRecycleVacina(vacinas);
+
+        mFirebaseAuth.addAuthStateListener(mAuthListener);
+        refUsuario.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
+                    Usuario user = vacSnapshot.getValue(Usuario.class);
+                    usuario = user;
+                    break;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
     }
+
 
     private void vacinaInfo() {
         Intent intent = new Intent(Carteira.this, VacinaInfo.class);
@@ -201,14 +227,13 @@ public class Carteira extends AppCompatActivity {
     }
 
     private void startEditarCadastro() {
-        UsuarioDAO user = new UsuarioDAO();
-        Usuario usuario = user.getUserById(mAuthListener);
-        getIntent().putExtra("usuario", usuario);
+        usuario = UsuarioDAO.getUsuarioG();
         Intent intent = new Intent(Carteira.this, EditarCadastro.class);
+        intent.putExtra("usuario", usuario);
         startActivity(intent);
     }
 
-    private void setRecycleVacina(List listaVacinas){
+    private void setRecycleVacina(List listaVacinas) {
         //instacia recycleView e define o prosicionamento dos intens
         recycleVacina = (RecyclerView) findViewById(R.id.recycle_view);
         LinearLayoutManager llm = new LinearLayoutManager(this);
