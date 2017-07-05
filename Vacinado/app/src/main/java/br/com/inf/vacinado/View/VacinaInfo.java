@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +21,13 @@ public class VacinaInfo extends AppCompatActivity {
     private List<Dose> listaDoses = new ArrayList<>();
     RecyclerView recycleDoses;
     DoseAdapter adapter;
+    TextView doseVazia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacina_info);
+
 
         final Button novaDose = (Button) findViewById(R.id.adicionarDose_vacina_info);
         novaDose.setOnClickListener(new View.OnClickListener() {
@@ -43,10 +45,10 @@ public class VacinaInfo extends AppCompatActivity {
 
         //recycle
 
-        Dose dose = new Dose(02, 05, 2017, "mt bom", 1);
-        listaDoses.add(dose);
+        //Dose dose = new Dose(02, 05, 2017, "mt bom", 1);
+        //listaDoses.add(dose);
 
-        setRecycleDoses(listaDoses);
+        //setRecycleDoses(listaDoses);
     }
 
     private void adicionaDose() {
@@ -62,10 +64,14 @@ public class VacinaInfo extends AppCompatActivity {
 
     //configura RecycleView
     private void setRecycleDoses(List listaDoses) {
-        recycleDoses = (RecyclerView) findViewById(R.id.recycle_view_doses);
+        if (listaDoses.isEmpty()) {
+            doseVazia.setText(R.string.dose_vazia);
+        } else
+            recycleDoses = (RecyclerView) findViewById(R.id.recycle_view_doses);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         recycleDoses.setLayoutManager(llm);
         adapter = new DoseAdapter(listaDoses);
         recycleDoses.setAdapter(adapter);
     }
 }
+

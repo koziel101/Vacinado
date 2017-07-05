@@ -72,4 +72,5 @@
     <string name="bttn_adicionar_dose">Adicionar Dose</string>
     <string name="doses_card">Doses:</string>
     <string name="carteira_vazia">Não existe nenhuma vacina cadastrada.</string>
+    <string name="dose_vazia">Não existe nenhuma dose cadastrada.</string>
 </resources>
