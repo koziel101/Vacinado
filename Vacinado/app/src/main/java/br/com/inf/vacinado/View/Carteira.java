@@ -67,6 +67,8 @@ public class Carteira extends AppCompatActivity {
         setContentView(R.layout.activity_carteira);
 
         carteiraEmpty = (TextView) findViewById(R.id.carteira_vazia);
+        //instacia recycleView e define o prosicionamento dos intens
+        recycleVacina = (RecyclerView) findViewById(R.id.recycle_view_carteira);
 
         fab = (FloatingActionButton) findViewById(R.id.btn_add_vacina_carteira);
 
@@ -76,10 +78,6 @@ public class Carteira extends AppCompatActivity {
                 addVacina();
             }
         });
-
-        //recycle lista de Vacinas
-//        Vacina vacina = new Vacina("Minha Vacina", 2, "odiei");
-//        vacinas.add(vacina);
 
         setRecycleVacina(vacinas);
 
@@ -120,7 +118,7 @@ public class Carteira extends AppCompatActivity {
                         startEditarCadastro();
                         return true;
                     case R.id.notificacao:
-                        Toast.makeText(getApplicationContext(), "Não implementado ainda", Toast.LENGTH_SHORT).show();
+                        startNotificacao();
                         return true;
                     case R.id.log_out:
                         if (mAuthListener != null) {
@@ -156,6 +154,14 @@ public class Carteira extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+
+
+    @Override
+    protected void onResume(){
+        vacinas.clear();
+        super.onResume();
     }
 
     @Override
@@ -230,6 +236,11 @@ public class Carteira extends AppCompatActivity {
         });
     }
 
+    private void startNotificacao() {
+        Intent intent = new Intent(Carteira.this, Notificacoes.class);
+        startActivity(intent);
+    }
+
     private void vacinaInfo() {
         Intent intent = new Intent(Carteira.this, VacinaInfo.class);
         startActivity(intent);
@@ -262,8 +273,6 @@ public class Carteira extends AppCompatActivity {
             carteiraEmpty.setText(R.string.carteira_vazia);
         } else {
             carteiraEmpty.setText(null);
-            //instacia recycleView e define o prosicionamento dos intens
-            recycleVacina = (RecyclerView) findViewById(R.id.recycle_view_carteira);
             LinearLayoutManager llm = new LinearLayoutManager(this);
             recycleVacina.setLayoutManager(llm);
             adapter = new VacinaAdapter(listaVacinas);

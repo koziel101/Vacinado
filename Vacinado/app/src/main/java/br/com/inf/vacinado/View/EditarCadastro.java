@@ -59,7 +59,6 @@ public class EditarCadastro extends AppCompatActivity {
         final Button concluir = (Button) findViewById(R.id.bttnSalvar_editar_cadastro);
         concluir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
             }
         });
 
@@ -72,9 +71,7 @@ public class EditarCadastro extends AppCompatActivity {
     }
 
     private void voltar() {
-        Intent it;
-        it = new Intent(this, Carteira.class);
-        startActivity(it);
+        super.onBackPressed();
     }
 
     public static void setIsUpdating(boolean isUpdating) {

@@ -1,6 +1,5 @@
 package br.com.inf.vacinado.View;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -41,9 +40,7 @@ public class AdicionarVacina extends AppCompatActivity {
     }
 
     private void voltar() {
-        Intent it;
-        it = new Intent(this, Carteira.class);
-        startActivity(it);
+        super.onBackPressed();
     }
 
     private void concluir() {
@@ -63,10 +60,7 @@ public class AdicionarVacina extends AppCompatActivity {
                     Integer.parseInt(vacinaQntdEdt.getText().toString()), informacoesVacinaEdt.getText().toString());
             VacinaDAO.persistirVacina(vacina);
 
-            Intent intent = new Intent(AdicionarVacina.this, Carteira.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
+            super.onBackPressed();
         }
     }
 }
