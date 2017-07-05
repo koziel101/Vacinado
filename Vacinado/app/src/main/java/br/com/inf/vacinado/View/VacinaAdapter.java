@@ -1,6 +1,7 @@
 package br.com.inf.vacinado.View;
 
 
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,11 +30,19 @@ public class VacinaAdapter extends RecyclerView.Adapter<VacinaAdapter.VacinaView
         TextView nome_vacina;
         TextView dose_vacina;
 
-        VacinaViewHolder(View itemView) {
+        VacinaViewHolder(final View itemView) {
             super(itemView);
             cv = (CardView) itemView.findViewById(R.id.card_view);
             nome_vacina = (TextView) itemView.findViewById(R.id.vacina_nome);
             dose_vacina = (TextView) itemView.findViewById(R.id.vacina_dose);
+
+            //card abre a informação da vacina
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(), VacinaInfo.class));
+                }
+            });
         }
     }
 

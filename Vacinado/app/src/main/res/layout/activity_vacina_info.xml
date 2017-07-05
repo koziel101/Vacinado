@@ -56,7 +56,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="15dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
                 android:text="@string/doses_tomadas"
                 android:textSize="16sp"
                 android:textStyle="bold" />
