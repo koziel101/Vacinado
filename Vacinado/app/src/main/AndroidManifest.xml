@@ -22,5 +22,6 @@
         <activity android:name=".View.AdicionarDose"></activity>
         <activity android:name=".View.AdicionarVacina"></activity>
         <activity android:name=".View.EditarCadastro"></activity>
+        <activity android:name=".View.Notificacoes"></activity>
     </application>
 </manifest>
