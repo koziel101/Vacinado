@@ -3,13 +3,24 @@ package br.com.inf.vacinado.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.inf.vacinado.Controller.DoseAdapter;
+import br.com.inf.vacinado.Model.Dose;
 import br.com.inf.vacinado.R;
 
 public class VacinaInfo extends AppCompatActivity {
+
+    private List<Dose> listaDoses = new ArrayList<>();
+    RecyclerView recycleDoses;
+    DoseAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +41,12 @@ public class VacinaInfo extends AppCompatActivity {
             }
         });
 
-        ListView listaDeCursos = (ListView) findViewById(R.id.listaDoses_vacina_info);
+        //recycle
+
+        Dose dose = new Dose(02, 05, 2017, "mt bom", 1);
+        listaDoses.add(dose);
+
+        setRecycleDoses(listaDoses);
     }
 
     private void adicionaDose() {
@@ -42,5 +58,14 @@ public class VacinaInfo extends AppCompatActivity {
         super.onBackPressed();
 //        Intent intent = new Intent(VacinaInfo.this, Carteira.class);
 //        startActivity(intent);
+    }
+
+    //configura RecycleView
+    private void setRecycleDoses(List listaDoses) {
+        recycleDoses = (RecyclerView) findViewById(R.id.recycle_view_doses);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        recycleDoses.setLayoutManager(llm);
+        adapter = new DoseAdapter(listaDoses);
+        recycleDoses.setAdapter(adapter);
     }
 }
