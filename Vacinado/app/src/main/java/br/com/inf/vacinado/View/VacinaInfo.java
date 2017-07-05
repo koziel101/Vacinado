@@ -14,6 +14,7 @@ import java.util.List;
 
 import br.com.inf.vacinado.Controller.DoseAdapter;
 import br.com.inf.vacinado.Model.Dose;
+import br.com.inf.vacinado.Model.Vacina;
 import br.com.inf.vacinado.R;
 
 public class VacinaInfo extends AppCompatActivity {
@@ -30,6 +31,13 @@ public class VacinaInfo extends AppCompatActivity {
 
         //doseVazia = (TextView) findViewById(R.id.carteira_vazia);
         //doseVazia.setText(R.string.dose_vazia);
+
+        Vacina vac = (Vacina) getIntent().getExtras().getSerializable("vacina");
+
+        TextView nomeVacina = (TextView) findViewById(R.id.nome_vacina_vacina_info);
+        nomeVacina.setText(vac.getNome());
+        TextView infoVacina = (TextView) findViewById(R.id.info_vacina);
+        infoVacina.setText(vac.getInformacoes());
 
         final Button novaDose = (Button) findViewById(R.id.adicionarDose_vacina_info);
         novaDose.setOnClickListener(new View.OnClickListener() {
