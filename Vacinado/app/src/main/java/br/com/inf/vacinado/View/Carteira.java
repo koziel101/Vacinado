@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,11 +59,14 @@ public class Carteira extends AppCompatActivity {
     RecyclerView recycleVacina;
     Usuario usuario;
     TextView classificaoTxt, nomeHeadertxt, emailHeadertxt;
+    TextView carteiraEmpty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carteira);
+
+        carteiraEmpty = (TextView) findViewById(R.id.carteira_vazia);
 
         fab = (FloatingActionButton) findViewById(R.id.btn_add_vacina_carteira);
 
@@ -74,8 +78,8 @@ public class Carteira extends AppCompatActivity {
         });
 
         //recycle lista de Vacinas
-        Vacina vacina = new Vacina("Minha Vacina", 2, "odiei");
-        vacinas.add(vacina);
+//        Vacina vacina = new Vacina("Minha Vacina", 2, "odiei");
+//        vacinas.add(vacina);
 
         setRecycleVacina(vacinas);
 
@@ -182,8 +186,10 @@ public class Carteira extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
+                    Log.e("Vacina adicionada: ", vacSnapshot.toString());
                     Vacina vac = vacSnapshot.getValue(Vacina.class);
                     vacinas.add(vac);
+                    setRecycleVacina(vacinas);
                 }
             }
 
@@ -252,12 +258,17 @@ public class Carteira extends AppCompatActivity {
     }
 
     private void setRecycleVacina(List listaVacinas) {
-        //instacia recycleView e define o prosicionamento dos intens
-        recycleVacina = (RecyclerView) findViewById(R.id.recycle_view_carteira);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        recycleVacina.setLayoutManager(llm);
-        adapter = new VacinaAdapter(listaVacinas);
-        recycleVacina.setAdapter(adapter);
+        if (vacinas.isEmpty()) {
+            carteiraEmpty.setText(R.string.carteira_vazia);
+        } else {
+            carteiraEmpty.setText(null);
+            //instacia recycleView e define o prosicionamento dos intens
+            recycleVacina = (RecyclerView) findViewById(R.id.recycle_view_carteira);
+            LinearLayoutManager llm = new LinearLayoutManager(this);
+            recycleVacina.setLayoutManager(llm);
+            adapter = new VacinaAdapter(listaVacinas);
+            recycleVacina.setAdapter(adapter);
+        }
     }
 
     //Método para cálculo da classificaçao do usuário pelo nascimento

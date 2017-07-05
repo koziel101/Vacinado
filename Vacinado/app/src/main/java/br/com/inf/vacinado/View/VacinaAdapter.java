@@ -29,7 +29,6 @@ public class VacinaAdapter extends RecyclerView.Adapter<VacinaAdapter.VacinaView
         TextView nome_vacina;
         TextView dose_vacina;
 
-
         VacinaViewHolder(View itemView) {
             super(itemView);
             cv = (CardView) itemView.findViewById(R.id.card_view);
