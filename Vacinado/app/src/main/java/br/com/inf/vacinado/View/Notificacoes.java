@@ -1,19 +1,14 @@
 package br.com.inf.vacinado.View;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.DatePicker;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import br.com.inf.vacinado.Controller.NotificacaoAdapter;
 import br.com.inf.vacinado.Model.Notificacao;
 import br.com.inf.vacinado.R;
 
@@ -32,15 +27,21 @@ public class Notificacoes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notificacao);
 
-        //recycle lista de Vacinas
+        //recycle lista de Notificações
         Notificacao notificacao = new Notificacao("Notificação1", "Texto da notificacao", dia, mes, ano);
         notificacoes.add(notificacao);
-        recycleNotificacao = (RecyclerView) findViewById(R.id.recycle_view_carteira);
+
+        setRecycleNotificacao(notificacoes);
+        //termina recycle
+    }
+
+    //configura RecycleView
+    private void setRecycleNotificacao(List listaNotificacoes){
+        recycleNotificacao = (RecyclerView) findViewById(R.id.recycle_view_notification);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         recycleNotificacao.setLayoutManager(llm);
-        adapter = new NotificacaoAdapter(notificacoes);
+        adapter = new NotificacaoAdapter(listaNotificacoes);
         recycleNotificacao.setAdapter(adapter);
-        //termina recycle
     }
 
 }
