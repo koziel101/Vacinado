@@ -20,7 +20,6 @@ import br.com.inf.vacinado.View.VacinaInfo;
 public class VacinaAdapter extends RecyclerView.Adapter<VacinaAdapter.VacinaViewHolder> {
 
     List<Vacina> vacinas;
-    static private int posicaoG;
     static private List<Vacina> vacinasG = new ArrayList<>();
 
     public VacinaAdapter(List<Vacina> vacinas) {
@@ -46,7 +45,7 @@ public class VacinaAdapter extends RecyclerView.Adapter<VacinaAdapter.VacinaView
                 public void onClick(View view) {
                     Intent it;
                     it = new Intent(itemView.getContext(), VacinaInfo.class);
-                    it.putExtra("vacina", vacinasG.get(posicaoG));
+                    it.putExtra("vacina", vacinasG.get(getAdapterPosition()));
 //                    Vacina vacina = new Vacina();
                     Log.e("id Vacina: ", "");
 //                    it.putExtra("vacina", vacina);
@@ -68,7 +67,6 @@ public class VacinaAdapter extends RecyclerView.Adapter<VacinaAdapter.VacinaView
     //adiciona valores aos itens da view
     @Override
     public void onBindViewHolder(VacinaViewHolder holder, int position) {
-        posicaoG = position;
         holder.nome_vacina.setText(vacinas.get(position).getNome());
         holder.dose_vacina.setText(vacinas.get(position).getDosesTomadas() + "/" + vacinas.get(position).getQuantidadeDoses());
     }
