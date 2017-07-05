@@ -17,6 +17,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.Calendar;
 
+import br.com.inf.vacinado.DAO.VacinaDAO;
 import br.com.inf.vacinado.Model.Dose;
 import br.com.inf.vacinado.Model.Vacina;
 import br.com.inf.vacinado.R;
@@ -32,7 +33,6 @@ public class AdicionarDose extends AppCompatActivity {
     int dia = c.get(Calendar.DAY_OF_MONTH);
     TextView diaTextView, mesTextView, anoTextView;
     protected Spinner spinner;
-    private Vacina vacina;
     private EditText informa;
 
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -59,10 +59,14 @@ public class AdicionarDose extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_dose);
 
+        final Vacina vac = (Vacina) getIntent().getExtras().getSerializable("vacina");
+        TextView nomeVacina = (TextView) findViewById(R.id.nome_vacina_dose);
+        nomeVacina.setText(vac.getNome());
+
         final Button concluir = (Button) findViewById(R.id.bttConcluir_add_dose);
         concluir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                concluir();
+                concluir(vac);
             }
         });
 
@@ -116,12 +120,10 @@ public class AdicionarDose extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    private void concluir() {
+    private void concluir(Vacina vacin) {
         //Realizar a persistencia dos dados
         Dose dose = new Dose(dia, mes, ano, informa.getText().toString(), spinner.getSelectedItemPosition());
-        vacina.adicionarDose(dose);
-        int dosestomadas = vacina.getDosesTomadas() + 1;
-        vacina.setDosesTomadas(dosestomadas);
+        VacinaDAO vac = new VacinaDAO();
         super.onBackPressed();
     }
 }

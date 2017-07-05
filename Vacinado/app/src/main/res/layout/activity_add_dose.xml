@@ -9,11 +9,11 @@
         layout="@layout/tool_bar"></include>
 
     <TextView
+        android:id="@+id/nome_vacina_dose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="15dp"
-        android:text="@string/nome_vacina"
         android:textColor="@color/colorSecundaryText"
         android:textSize="20sp"
         android:textStyle="bold" />

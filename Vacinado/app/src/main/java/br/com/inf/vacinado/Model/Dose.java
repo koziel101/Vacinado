@@ -1,12 +1,14 @@
 package br.com.inf.vacinado.Model;
 
-import java.util.Date;
-
 public class Dose {
 
     private int dia, mes, ano;
     private String info;
     private int dose;
+
+    public Dose() {
+
+    }
 
     public Dose(int dia, int mes, int ano, String info, int dose) {
         this.dia = dia;

@@ -22,7 +22,7 @@ public class VacinaInfo extends AppCompatActivity {
     private List<Dose> listaDoses = new ArrayList<>();
     RecyclerView recycleDoses;
     DoseAdapter adapter;
-    TextView doseVazia;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +32,18 @@ public class VacinaInfo extends AppCompatActivity {
         //doseVazia = (TextView) findViewById(R.id.carteira_vazia);
         //doseVazia.setText(R.string.dose_vazia);
 
-        Vacina vac = (Vacina) getIntent().getExtras().getSerializable("vacina");
+        final Vacina vac = (Vacina) getIntent().getExtras().getSerializable("vacina");
 
         TextView nomeVacina = (TextView) findViewById(R.id.nome_vacina_vacina_info);
         nomeVacina.setText(vac.getNome());
         TextView infoVacina = (TextView) findViewById(R.id.info_vacina);
         infoVacina.setText(vac.getInformacoes());
+        setRecycleDoses(vac.getDoses());
 
         final Button novaDose = (Button) findViewById(R.id.adicionarDose_vacina_info);
         novaDose.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                adicionaDose();
+                adicionaDose(vac);
             }
         });
 
@@ -61,8 +62,9 @@ public class VacinaInfo extends AppCompatActivity {
         //setRecycleDoses(listaDoses);
     }
 
-    private void adicionaDose() {
+    private void adicionaDose(Vacina vac) {
         Intent intent = new Intent(VacinaInfo.this, AdicionarDose.class);
+        intent.putExtra("vacina", vac);
         startActivity(intent);
     }
 
@@ -75,13 +77,15 @@ public class VacinaInfo extends AppCompatActivity {
     //configura RecycleView
     private void setRecycleDoses(List listaDoses) {
         if (listaDoses.isEmpty()) {
-            doseVazia.setText(R.string.dose_vazia);
-        } else
+            TextView doseVazia = (TextView) findViewById(R.id.doseVazia);
+            doseVazia.setText("Nenhuma dose cadastrada");
+        } else {
             recycleDoses = (RecyclerView) findViewById(R.id.recycle_view_doses);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        recycleDoses.setLayoutManager(llm);
-        adapter = new DoseAdapter(listaDoses);
-        recycleDoses.setAdapter(adapter);
+            LinearLayoutManager llm = new LinearLayoutManager(this);
+            recycleDoses.setLayoutManager(llm);
+            adapter = new DoseAdapter(listaDoses);
+            recycleDoses.setAdapter(adapter);
+        }
     }
 }
 
