@@ -13,11 +13,14 @@
     <string name="cadastro_nome_erro">O campo "Nome" não pode ser vazio</string>
     <string name="cadastro_email_erro">O campo "Email" não pode ser vazio</string>
     <string name="cadastro_senha_erro">O campo "Senha" precisa ter no mínimo 6 caracteres</string>
+    <string name="atualizar_cadastro_senha_erro">Senha antiga informada não confere.</string>
     <string name="cadastro_cpf_erro">O campo "CPF" está inválido</string>
     <string name="cadastro_nascimento_erro">Por favor insira uma data de nascimento</string>
     <string name="cadastro_erro_geral">Existem campos inválidos</string>
     <string name="cadastro_usuario_persistido">Usuário foi persistido no BD com sucesso!</string>
-    <string name="cadastro_usuario_persistido_erro">Erro ao persistido usu[ário no BD!</string>
+    <string name="cadastro_usuario_persistido_erro">Erro ao persistido usuário no BD!</string>
+    <string name="erro_alterar_senha">Erro ao alterar a senha</string>
+    <string name="senha_alterada_sucesso">Senha alterada com sucesso</string>
 
 
     <string name="senha_dica">Senha</string>
@@ -40,6 +43,7 @@
     <string name="user_offline">Atenção: Modo offline ativado!</string>
     <string name="fechar_app">Pressione o Botão Voltar novamente para fechar o Aplicativo.</string>
     <string name="not_syncronized">Dados ainda não foram sincronizados. Tente novamente em breve.</string>
+    <string name="atualizando_cadastro">Atualizando cadastro. Por favor aguarde</string>
 
     <string name="nome_vacina">Nome da Vacina</string>
     <string name="action_settings">settings</string>
