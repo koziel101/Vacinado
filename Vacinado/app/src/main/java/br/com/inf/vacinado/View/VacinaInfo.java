@@ -28,6 +28,8 @@ public class VacinaInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacina_info);
 
+        //doseVazia = (TextView) findViewById(R.id.carteira_vazia);
+        //doseVazia.setText(R.string.dose_vazia);
 
         final Button novaDose = (Button) findViewById(R.id.adicionarDose_vacina_info);
         novaDose.setOnClickListener(new View.OnClickListener() {
