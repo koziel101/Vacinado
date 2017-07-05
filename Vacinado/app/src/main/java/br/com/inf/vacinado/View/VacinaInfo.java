@@ -16,10 +16,17 @@ public class VacinaInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacina_info);
 
-        final Button button = (Button) findViewById(R.id.adicionarDose_vacina_info);
-        button.setOnClickListener(new View.OnClickListener() {
+        final Button novaDose = (Button) findViewById(R.id.adicionarDose_vacina_info);
+        novaDose.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 adicionaDose();
+            }
+        });
+
+        final Button voltar = (Button) findViewById(R.id.bttnVoltar_vacina_info);
+        voltar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                voltarViewCarteira();
             }
         });
 
@@ -28,6 +35,11 @@ public class VacinaInfo extends AppCompatActivity {
 
     private void adicionaDose() {
         Intent intent = new Intent(VacinaInfo.this, AdicionarDose.class);
+        startActivity(intent);
+    }
+
+    private void voltarViewCarteira() {
+        Intent intent = new Intent(VacinaInfo.this, Carteira.class);
         startActivity(intent);
     }
 }
