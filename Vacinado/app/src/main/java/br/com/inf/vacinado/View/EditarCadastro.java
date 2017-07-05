@@ -26,12 +26,14 @@ import br.com.inf.vacinado.R;
 public class EditarCadastro extends AppCompatActivity {
 
     Usuario usuario;
-    EditText cpfEdit;
     static boolean isUpdating;
     private FirebaseUser user;
-    private String nome, email, cpf, senhaAntiga, senhaNova;
+    private String nome, emailUser, cpf, senhaAntiga, senhaNova;
     EditText oldPassEdit, newPassEdit;
     private MaterialDialog dialog;
+    boolean flagEmail = true, flagSenha = true;
+    EditText emailEdit, nomeEdt, cpfEdit;
+    String result = "Usuário atualizado com sucesso.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +45,12 @@ public class EditarCadastro extends AppCompatActivity {
         usuario = (Usuario) intent.getSerializableExtra("usuario");
 
         nome = usuario.getNome();
-        EditText nomeEdt = (EditText) findViewById(R.id.edit_nome_editar_cadastro);
+        nomeEdt = (EditText) findViewById(R.id.edit_nome_editar_cadastro);
         nomeEdt.setText(nome);
 
-        email = usuario.getEmail();
-        EditText emailEdit = (EditText) findViewById(R.id.edit_email_editar_cadastro);
-        emailEdit.setText(email);
+        emailUser = usuario.getEmail();
+        emailEdit = (EditText) findViewById(R.id.edit_email_editar_cadastro);
+        emailEdit.setText(emailUser);
 
         oldPassEdit = (EditText) findViewById(R.id.edit_senha_editar_cadastro_antiga);
         newPassEdit = (EditText) findViewById(R.id.edit_senha_editar_cadastro_nova);
@@ -76,7 +78,24 @@ public class EditarCadastro extends AppCompatActivity {
         final Button concluir = (Button) findViewById(R.id.bttnSalvar_editar_cadastro);
         concluir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                concluir();
+                boolean flag = concluir();
+                if (flag) {
+                    Snackbar.make(findViewById(android.R.id.content), result, Snackbar.LENGTH_LONG).show();
+                } else {
+                    result = "";
+                    if (!flagEmail) {
+                        result = result + "Email: não atualizado\n";
+                    } else {
+                        result = result + "Email: atualizado\n";
+                    }
+                    if (!flagSenha) {
+                        result = result + "Senha: não atualizado\n";
+                    } else {
+                        result = result + "Senha: atualizado\n";
+                    }
+
+                    Snackbar.make(findViewById(android.R.id.content), result, Snackbar.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -88,14 +107,34 @@ public class EditarCadastro extends AppCompatActivity {
         });
     }
 
-    private void concluir() {
+    private boolean concluir() {
+        senhaAntiga = oldPassEdit.getText().toString();
+        senhaNova = newPassEdit.getText().toString();
+        emailUser = emailEdit.getText().toString();
+//        dialog = new MaterialDialog.Builder(this).content(R.string.atualizando_cadastro).progress(true, 0).show();
+//
+//        dialog.dismiss();
+
+        if (!senhaNova.isEmpty() && !senhaAntiga.isEmpty()) {
+            updatePassword();
+
+        }
+
+        if (!emailUser.trim().isEmpty()) {
+            updateEmail();
+        }
+
+
+
+        return false;
+    }
+
+    public boolean updatePassword() {
+        flagSenha = true;
         try {
-            senhaAntiga = oldPassEdit.getText().toString();
-            senhaNova = newPassEdit.getText().toString();
             user = FirebaseAuth.getInstance().getCurrentUser();
             final String email = user.getEmail();
             AuthCredential credential = EmailAuthProvider.getCredential(email, senhaAntiga);
-            dialog = new MaterialDialog.Builder(this).content(R.string.atualizando_cadastro).progress(true, 0).show();
             user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -104,25 +143,56 @@ public class EditarCadastro extends AppCompatActivity {
                         user.updatePassword(senhaNova).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Snackbar.make(findViewById(android.R.id.content), R.string.senha_alterada_sucesso, Snackbar.LENGTH_LONG).show();
-                                } else {
-                                    Snackbar.make(findViewById(android.R.id.content), R.string.erro_alterar_senha, Snackbar.LENGTH_LONG).show();
+                                if (!task.isSuccessful()) {
+                                    flagSenha = false;
                                 }
                             }
                         });
                     } else {
-                        dialog.dismiss();
-                        Snackbar.make(findViewById(android.R.id.content), R.string.atualizar_cadastro_senha_erro, Snackbar.LENGTH_LONG).show();
+                        flagSenha = false;
                     }
                 }
             });
 
+            return flagSenha;
+
         } catch (Exception e) {
-            Snackbar.make(findViewById(android.R.id.content), R.string.atualizar_cadastro_senha_erro, Snackbar.LENGTH_LONG).show();
+            flagSenha = false;
+            return flagSenha;
         }
     }
 
+    public boolean updateEmail() {
+        flagEmail = true;
+        try {
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            final String email = user.getEmail();
+            AuthCredential credential = EmailAuthProvider.getCredential(email, senhaAntiga);
+            user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        user.updateEmail(emailEdit.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (!task.isSuccessful()) {
+                                    flagEmail = false;
+                                }
+                            }
+                        });
+                    } else {
+                        flagEmail = false;
+                    }
+                }
+            });
+
+            return flagEmail;
+
+        } catch (Exception e) {
+            flagEmail = false;
+            return flagEmail;
+        }
+    }
 
     private void voltar() {
         super.onBackPressed();

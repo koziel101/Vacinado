@@ -19,9 +19,9 @@
     <string name="cadastro_erro_geral">Existem campos inválidos</string>
     <string name="cadastro_usuario_persistido">Usuário foi persistido no BD com sucesso!</string>
     <string name="cadastro_usuario_persistido_erro">Erro ao persistido usuário no BD!</string>
-    <string name="erro_alterar_senha">Erro ao alterar a senha</string>
-    <string name="senha_alterada_sucesso">Senha alterada com sucesso</string>
-
+    <string name="erro_alterar_senha">Erro ao alterar a senha.</string>
+    <string name="senha_alterada_sucesso">Senha alterada com sucesso.</string>
+    <string name="email_alterado_sucesso">Email alterada com sucesso.</string>
 
     <string name="senha_dica">Senha</string>
     <string name="realizando_login">Verificando informações do Login. Por favor aguarde</string>
