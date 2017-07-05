@@ -41,9 +41,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button bttnEntrar = (Button) findViewById(R.id.bttnEntrar);
+        Button bttnEntrar = (Button) findViewById(R.id.bttnEntrar_login);
         bttnEntrar.setOnClickListener(this);
-        Button bttnCadastrar = (Button) findViewById(R.id.bttnCadastrar);
+        Button bttnCadastrar = (Button) findViewById(R.id.bttnCadastrar_login);
         bttnCadastrar.setOnClickListener(this);
 
         // Iniciando o FirebaseAuth
@@ -54,9 +54,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             mFirebaseAuth = null;
         }
 
-        emailEditText = (EditText) findViewById(R.id.edtEmail);
-        passwordEditText = (EditText) findViewById(R.id.edtSenha);
-        checkBox = (CompoundButton) findViewById(R.id.checkBoxLembrar);
+        emailEditText = (EditText) findViewById(R.id.edtEmail_login);
+        passwordEditText = (EditText) findViewById(R.id.edtSenha_login);
+        checkBox = (CompoundButton) findViewById(R.id.checkBoxLembrar_login);
         SharedPreferences prefs = getSharedPreferences("login", MODE_PRIVATE);
         LoginOfflineDAO.recuperarLogin(prefs, emailEditText, passwordEditText, checkBox);
 
@@ -90,11 +90,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         Intent it;
         switch (v.getId()) {
-            case R.id.bttnCadastrar:
+            case R.id.bttnCadastrar_login:
                 it = new Intent(this, Cadastro.class);
                 startActivity(it);
                 break;
-            case R.id.bttnEntrar:
+            case R.id.bttnEntrar_login:
 
                 final String email = emailEditText.getText().toString().trim();
                 final String password = passwordEditText.getText().toString().trim();

@@ -23,7 +23,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/lista_vacinas"
+            android:id="@+id/lista_vacinas_carteira"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -48,7 +48,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/classificao"
+                    android:id="@+id/classificao_carteira"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -70,7 +70,7 @@
                 android:layout_marginBottom="8dp">
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycle_view"
+                    android:id="@+id/recycle_view_carteira"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </ScrollView>
@@ -79,7 +79,7 @@
 
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btn_add_vacina"
+            android:id="@+id/btn_add_vacina_carteira"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_alignParentBottom="true"

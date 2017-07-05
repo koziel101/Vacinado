@@ -16,14 +16,14 @@ public class VacinaInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacina_info);
 
-        final Button button = (Button) findViewById(R.id.adicionarDose);
+        final Button button = (Button) findViewById(R.id.adicionarDose_vacina_info);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 adicionaDose();
             }
         });
 
-        ListView listaDeCursos = (ListView) findViewById(R.id.listaDoses);
+        ListView listaDeCursos = (ListView) findViewById(R.id.listaDoses_vacina_info);
     }
 
     private void adicionaDose() {

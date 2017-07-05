@@ -72,7 +72,7 @@ public class Carteira extends AppCompatActivity {
         //recycle lista de Vacinas
         Vacina vacina = new Vacina("Minha Vacina", 2, "odiei");
         vacinas.add(vacina);
-        recycleVacina = (RecyclerView) findViewById(R.id.recycle_view);
+        recycleVacina = (RecyclerView) findViewById(R.id.recycle_view_carteira);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         recycleVacina.setLayoutManager(llm);
         adapter = new VacinaAdapter(vacinas);
@@ -182,7 +182,6 @@ public class Carteira extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                  for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
-                     Log.e("Entrou", "+1");
                      Vacina vac = vacSnapshot.getValue(Vacina.class);
                      vacinas.add(vac);
                  }

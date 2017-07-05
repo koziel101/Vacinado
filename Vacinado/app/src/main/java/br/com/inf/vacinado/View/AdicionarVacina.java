@@ -25,14 +25,14 @@ public class AdicionarVacina extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_vacina);
 
-        final Button concluir = (Button) findViewById(R.id.bttConcluir);
+        final Button concluir = (Button) findViewById(R.id.bttConcluir_add_vacina);
         concluir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 concluir();
             }
         });
 
-        final Button cancelar = (Button) findViewById(R.id.bttCancelar);
+        final Button cancelar = (Button) findViewById(R.id.bttCancelar_add_vacina);
         cancelar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 voltar();
@@ -48,9 +48,9 @@ public class AdicionarVacina extends AppCompatActivity {
 
     private void concluir() {
 
-        nomeVacinaEdt = (EditText) findViewById(R.id.vacina_nome);
-        vacinaQntdEdt = (EditText) findViewById(R.id.vacina_lote);
-        informacoesVacinaEdt = (EditText) findViewById(R.id.vacina_ponto_vacinacao);
+        nomeVacinaEdt = (EditText) findViewById(R.id.vacina_nome_add_vacina);
+        vacinaQntdEdt = (EditText) findViewById(R.id.vacina_qnt_doses_add_vacina);
+        informacoesVacinaEdt = (EditText) findViewById(R.id.vacina_informacoes_add_vacina);
 
         if (nomeVacinaEdt.getText().toString().trim().isEmpty()) {
             Snackbar.make(findViewById(android.R.id.content), R.string.nome_vacina_vazio, Snackbar.LENGTH_LONG).show();

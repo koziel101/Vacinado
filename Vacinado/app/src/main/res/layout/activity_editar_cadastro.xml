@@ -26,7 +26,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/edit_nome_cadastro"
+                android:id="@+id/edit_nome_editar_cadastro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/edit_email_cadastro"
+                android:id="@+id/edit_email_editar_cadastro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
@@ -58,7 +58,7 @@
             app:passwordToggleTint="@color/colorAccent">
 
             <EditText
-                android:id="@+id/edit_senha_cadastro_antiga"
+                android:id="@+id/edit_senha_editar_cadastro_antiga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
@@ -75,7 +75,7 @@
             app:passwordToggleTint="@color/colorAccent">
 
             <EditText
-                android:id="@+id/edit_senha_cadastro_nova"
+                android:id="@+id/edit_senha_editar_cadastro_nova"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/edit_cpf_cadastro"
+                android:id="@+id/edit_cpf_editar_cadastro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
@@ -113,7 +113,7 @@
                 android:textSize="14sp" />
 
             <Spinner
-                android:id="@+id/sexo_cadastro"
+                android:id="@+id/sexo_editar_cadastro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
@@ -134,7 +134,7 @@
                 android:textSize="14sp" />
 
             <ImageButton
-                android:id="@+id/bttnDataNascimento"
+                android:id="@+id/bttnDataNascimento_editar_cadastro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -144,21 +144,21 @@
 
 
             <TextView
-                android:id="@+id/txtDia"
+                android:id="@+id/txtDia_editar_cadastro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/txtMes"
+                android:id="@+id/txtMes_editar_cadastro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/txtAno"
+                android:id="@+id/txtAno_editar_cadastro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -171,7 +171,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/bttnCancelar"
+                android:id="@+id/bttnCancelar_editar_cadastro"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -180,7 +180,7 @@
                 android:text="Cancelar" />
 
             <Button
-                android:id="@+id/bttnSalvar"
+                android:id="@+id/bttnSalvar_editar_cadastro"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

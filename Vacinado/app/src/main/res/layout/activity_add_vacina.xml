@@ -26,7 +26,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/vacina_nome"
+            android:id="@+id/vacina_nome_add_vacina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/vacina_doses"
+            android:id="@+id/vacina_qnt_doses_add_vacina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/vacina_informacoes"
+            android:id="@+id/vacina_informacoes_add_vacina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -73,7 +73,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/bttCancelar"
+            android:id="@+id/bttCancelar_add_vacina"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
             android:text="@string/bttn_cancelar" />
 
         <Button
-            android:id="@+id/bttConcluir"
+            android:id="@+id/bttConcluir_add_vacina"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

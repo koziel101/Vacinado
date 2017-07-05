@@ -58,13 +58,13 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
             mes = month + 1;
             dia = dayOfMonth;
 
-            diaTextView = (TextView) findViewById(R.id.txtDia);
+            diaTextView = (TextView) findViewById(R.id.txtDia_cadastro);
             diaTextView.setText(" " + String.valueOf(dia));
 
-            mesTextView = (TextView) findViewById(R.id.txtMes);
+            mesTextView = (TextView) findViewById(R.id.txtMes_cadastro);
             mesTextView.setText("/" + String.valueOf(mes));
 
-            anoTextView = (TextView) findViewById(R.id.txtAno);
+            anoTextView = (TextView) findViewById(R.id.txtAno_cadastro);
             anoTextView.setText("/" + String.valueOf(ano));
         }
     };
@@ -111,9 +111,9 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
             }
         });
 
-        Button botaoVoltar = (Button) findViewById(R.id.bttnVoltar);
+        Button botaoVoltar = (Button) findViewById(R.id.bttnVoltar_cadastro);
         botaoVoltar.setOnClickListener(Cadastro.this);
-        Button botaoFinalizar = (Button) findViewById(R.id.bttnFinalizar);
+        Button botaoFinalizar = (Button) findViewById(R.id.bttnFinalizar_cadastro);
         botaoFinalizar.setOnClickListener(Cadastro.this);
 
         // Iniciando o FirebaseAuth
@@ -129,7 +129,7 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
     }
 
     public void showDialog() {
-        ImageButton btnData = (ImageButton) findViewById(R.id.bttnDataNascimento);
+        ImageButton btnData = (ImageButton) findViewById(R.id.bttnDataNascimento_cadastro);
 
         btnData.setOnClickListener(
                 new View.OnClickListener() {
@@ -153,7 +153,6 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
     public void configuraSpinner(Spinner spinner) {
         String[] sexoStr = new String[]{"Masculino", "Feminino"};
 
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sexoStr);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -164,12 +163,12 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         Intent it;
         switch (v.getId()) {
-            case R.id.bttnVoltar:
+            case R.id.bttnVoltar_cadastro:
                 it = new Intent(this, Login.class);
                 startActivity(it);
                 break;
 
-            case R.id.bttnFinalizar:
+            case R.id.bttnFinalizar_cadastro:
 
                 int validador = Validador.validaCadastro(nomeEditText, emailEditText, passwordEditText, edit_cpf);
 
@@ -181,9 +180,7 @@ public class Cadastro extends AppCompatActivity implements View.OnClickListener 
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-
                                         String cpfString = edit_cpf.getText().toString().replaceAll("[.]", "").replaceAll("[-]", "");
-
                                         Usuario usuario = new Usuario(nomeEditText.getText().toString(),
                                                 emailEditText.getText().toString().trim(), spinner.getSelectedItem().toString(), cpfString,
                                                 dia, mes, ano);

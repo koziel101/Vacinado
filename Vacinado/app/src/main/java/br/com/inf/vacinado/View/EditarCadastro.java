@@ -29,15 +29,15 @@ public class EditarCadastro extends AppCompatActivity {
         user = (Usuario) intent.getSerializableExtra("usuario");
 
         String nome = user.getNome();
-        EditText nomeEdt = (EditText) findViewById(R.id.edit_nome_cadastro);
+        EditText nomeEdt = (EditText) findViewById(R.id.edit_nome_editar_cadastro);
         nomeEdt.setText(nome);
 
         String email = user.getEmail();
-        EditText emailEdit = (EditText) findViewById(R.id.edit_email_cadastro);
+        EditText emailEdit = (EditText) findViewById(R.id.edit_email_editar_cadastro);
         emailEdit.setText(email);
 
         String cpf = user.getCpf();
-        cpfEdit = (EditText) findViewById(R.id.edit_cpf_cadastro);
+        cpfEdit = (EditText) findViewById(R.id.edit_cpf_editar_cadastro);
 
         cpfEdit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -56,14 +56,14 @@ public class EditarCadastro extends AppCompatActivity {
 
         cpfEdit.setText(cpf);
 
-        final Button concluir = (Button) findViewById(R.id.bttnSalvar);
+        final Button concluir = (Button) findViewById(R.id.bttnSalvar_editar_cadastro);
         concluir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
             }
         });
 
-        final Button cancelar = (Button) findViewById(R.id.bttnCancelar);
+        final Button cancelar = (Button) findViewById(R.id.bttnCancelar_editar_cadastro);
         cancelar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 voltar();

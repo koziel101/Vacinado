@@ -38,13 +38,13 @@ public class AdicionarDose extends AppCompatActivity {
             mes = month + 1;
             dia = dayOfMonth;
 
-            diaTextView = (TextView) findViewById(R.id.txtDia);
+            diaTextView = (TextView) findViewById(R.id.txtDia_add_dose);
             diaTextView.setText(" " + String.valueOf(dia));
 
-            mesTextView = (TextView) findViewById(R.id.txtMes);
+            mesTextView = (TextView) findViewById(R.id.txtMes_add_dose);
             mesTextView.setText("/" + String.valueOf(mes));
 
-            anoTextView = (TextView) findViewById(R.id.txtAno);
+            anoTextView = (TextView) findViewById(R.id.txtAno_add_dose);
             anoTextView.setText("/" + String.valueOf(ano));
         }
     };
@@ -54,21 +54,21 @@ public class AdicionarDose extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_dose);
 
-        final Button concluir = (Button) findViewById(R.id.bttConcluir);
+        final Button concluir = (Button) findViewById(R.id.bttConcluir_add_dose);
         concluir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 concluir();
             }
         });
 
-        final Button cancelar = (Button) findViewById(R.id.bttCancelar);
+        final Button cancelar = (Button) findViewById(R.id.bttCancelar_add_dose);
         cancelar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 concluir();
             }
         });
 
-        spinner = (Spinner) findViewById(R.id.vacina_dose);
+        spinner = (Spinner) findViewById(R.id.vacina_dose_add_dose);
         configuraSpinner(spinner);
 
         showDialog();
@@ -93,7 +93,7 @@ public class AdicionarDose extends AppCompatActivity {
     }
 
     public void showDialog() {
-        ImageButton btnData = (ImageButton) findViewById(R.id.bttnDataVacinacao);
+        ImageButton btnData = (ImageButton) findViewById(R.id.bttnDataVacinacao_add_dose);
 
         btnData.setOnClickListener(
                 new View.OnClickListener() {
