@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +35,8 @@ import br.com.inf.vacinado.Model.Usuario;
 import br.com.inf.vacinado.Model.Vacina;
 import br.com.inf.vacinado.R;
 
+import static android.R.color.black;
+
 public class Carteira extends AppCompatActivity {
 
     static private FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
@@ -55,20 +57,21 @@ public class Carteira extends AppCompatActivity {
     VacinaAdapter adapter;
     RecyclerView recycleVacina;
     Usuario usuario;
+    TextView classificaoTxt, nomeHeadertxt, emailHeadertxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carteira);
 
-        //fab = (FloatingActionButton) findViewById(R.id.btn_add_vacina);
+        fab = (FloatingActionButton) findViewById(R.id.btn_add_vacina_carteira);
 
-        /*fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addVacina();
             }
-        });*/
+        });
 
         //recycle lista de Vacinas
         Vacina vacina = new Vacina("Minha Vacina", 2, "odiei");
@@ -182,10 +185,10 @@ public class Carteira extends AppCompatActivity {
         refVacina.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                 for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
-                     Vacina vac = vacSnapshot.getValue(Vacina.class);
-                     vacinas.add(vac);
-                 }
+                for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
+                    Vacina vac = vacSnapshot.getValue(Vacina.class);
+                    vacinas.add(vac);
+                }
             }
 
             @Override
@@ -200,7 +203,22 @@ public class Carteira extends AppCompatActivity {
                 for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
                     Usuario user = vacSnapshot.getValue(Usuario.class);
                     usuario = user;
-                    break;
+
+                    classificaoTxt = (TextView) findViewById(R.id.classificao_carteira);
+                    nomeHeadertxt = (TextView) findViewById(R.id.username_header);
+                    emailHeadertxt = (TextView) findViewById(R.id.email_header);
+
+                    String classificacaoStr, nomeHeaderStr, emailHeaderStr;
+                    classificacaoStr = calculaClassificacao(usuario);
+                    classificaoTxt.setText(classificacaoStr);
+
+                    nomeHeaderStr = usuario.getNome();
+                    nomeHeadertxt.setText(nomeHeaderStr);
+                    nomeHeadertxt.setTextColor(ContextCompat.getColor(Carteira.this, black));
+
+                    emailHeaderStr = usuario.getEmail();
+                    emailHeadertxt.setText(emailHeaderStr);
+                    emailHeadertxt.setTextColor(ContextCompat.getColor(Carteira.this, black));
                 }
             }
 
@@ -226,10 +244,15 @@ public class Carteira extends AppCompatActivity {
     }
 
     private void startEditarCadastro() {
-        usuario = UsuarioDAO.getUsuarioG();
-        Intent intent = new Intent(Carteira.this, EditarCadastro.class);
-        intent.putExtra("usuario", usuario);
-        startActivity(intent);
+        try {
+            usuario.getNome();
+            usuario = UsuarioDAO.getUsuarioG();
+            Intent intent = new Intent(Carteira.this, EditarCadastro.class);
+            intent.putExtra("usuario", usuario);
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), R.string.not_syncronized, Toast.LENGTH_LONG).show();
+        }
     }
 
     private void setRecycleVacina(List listaVacinas) {
@@ -265,6 +288,6 @@ public class Carteira extends AppCompatActivity {
             classificacao = "Idoso";
         }
 
-        return classificacao;
+        return " " + classificacao;
     }
 }

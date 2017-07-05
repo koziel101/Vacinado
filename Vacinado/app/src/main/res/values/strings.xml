@@ -39,6 +39,7 @@
     <string name="user_not_found">Não existe um usuário armazenado em modo Offline.</string>
     <string name="user_offline">Atenção: Modo offline ativado!</string>
     <string name="fechar_app">Pressione o Botão Voltar novamente para fechar o Aplicativo.</string>
+    <string name="not_syncronized">Dados ainda não foram sincronizados. Tente novamente em breve.</string>
 
     <string name="nome_vacina">Nome da Vacina</string>
     <string name="action_settings">settings</string>
