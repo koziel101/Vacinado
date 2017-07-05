@@ -3,6 +3,7 @@ package br.com.inf.vacinado.Controller;
 import android.widget.EditText;
 
 import br.com.inf.vacinado.View.Cadastro;
+import br.com.inf.vacinado.View.EditarCadastro;
 
 public class MascaraCpf {
 
@@ -17,6 +18,7 @@ public class MascaraCpf {
 
         if (isUpdating) {
             Cadastro.setIsUpdating(false);
+            EditarCadastro.setIsUpdating(false);
             return;
         }
 
@@ -43,6 +45,7 @@ public class MascaraCpf {
         } else {
 
             Cadastro.setIsUpdating(true);
+            EditarCadastro.setIsUpdating(true);
             edit_cpf.setText(str);
 
             //Se estiver apagando posiciona o cursor no local correto.
@@ -80,6 +83,7 @@ public class MascaraCpf {
 
         //Modifica a flag para evitar chamada infinita
         Cadastro.setIsUpdating(true);
+        EditarCadastro.setIsUpdating(true);
         return str;
     }
 }

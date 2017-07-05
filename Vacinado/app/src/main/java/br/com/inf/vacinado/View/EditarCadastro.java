@@ -3,16 +3,21 @@ package br.com.inf.vacinado.View;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import br.com.inf.vacinado.Controller.MascaraCpf;
 import br.com.inf.vacinado.Model.Usuario;
 import br.com.inf.vacinado.R;
 
 public class EditarCadastro extends AppCompatActivity {
 
     Usuario user;
+    EditText cpfEdit;
+    static boolean isUpdating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +37,23 @@ public class EditarCadastro extends AppCompatActivity {
         emailEdit.setText(email);
 
         String cpf = user.getCpf();
-        EditText cpfEdit = (EditText) findViewById(R.id.edit_cpf_cadastro);
+        cpfEdit = (EditText) findViewById(R.id.edit_cpf_cadastro);
+
+        cpfEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int after) {
+                MascaraCpf.ControlarMascaraCpf(isUpdating, cpfEdit, s, start, before, after);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
         cpfEdit.setText(cpf);
 
         final Button concluir = (Button) findViewById(R.id.bttnSalvar);
@@ -54,5 +75,9 @@ public class EditarCadastro extends AppCompatActivity {
         Intent it;
         it = new Intent(this, Carteira.class);
         startActivity(it);
+    }
+
+    public static void setIsUpdating(boolean isUpdating) {
+        EditarCadastro.isUpdating = isUpdating;
     }
 }

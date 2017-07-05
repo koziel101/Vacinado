@@ -19,7 +19,7 @@ public class UsuarioDAO extends Thread {
     static private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     static private String mUserId = mFirebaseUser.getUid();
     private DatabaseReference ref = mDatabase.child("users").child(mUserId).child("cadastro");
-    private static Usuario usuarioG;
+    private static Usuario usuarioG = null;
 
     public static Usuario getUsuarioG() {
         return usuarioG;

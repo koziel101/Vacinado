@@ -181,11 +181,12 @@ public class Carteira extends AppCompatActivity {
         refVacina.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
-                //       Vacina vac = vacSnapshot.getValue(Vacina.class);
-                //       vacinas.add(vac);
+                 for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
+                     Log.e("Entrou", "+1");
+                     Vacina vac = vacSnapshot.getValue(Vacina.class);
+                     vacinas.add(vac);
+                 }
             }
-            // }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -207,9 +208,7 @@ public class Carteira extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
     }
-
 
     private void vacinaInfo() {
         Intent intent = new Intent(Carteira.this, VacinaInfo.class);

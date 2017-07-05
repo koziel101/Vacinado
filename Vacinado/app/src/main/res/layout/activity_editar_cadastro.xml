@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -52,14 +53,33 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorAccent">
 
             <EditText
-                android:id="@+id/edit_senha_cadastro"
+                android:id="@+id/edit_senha_cadastro_antiga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:hint="Senha: "
+                android:hint="Senha antiga: "
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textSize="14sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorAccent">
+
+            <EditText
+                android:id="@+id/edit_senha_cadastro_nova"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="Nova senha: "
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:textSize="14sp" />
@@ -167,7 +187,6 @@
                 android:layout_margin="20dp"
                 android:layout_weight="1"
                 android:text="Salvar" />
-
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
