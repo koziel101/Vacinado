@@ -1,151 +1,106 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="br.com.inf.vacinado.Carteira">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="25dp"
-        android:text="@string/activity_carteira_classificacao" />
-
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        card_view:cardCornerRadius="@dimen/cardview_default_radius"
-        card_view:cardElevation="@dimen/cardview_default_elevation">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center_vertical"
-            android:text="Vacina01" />
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view2"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        card_view:cardCornerRadius="@dimen/cardview_default_radius"
-        card_view:cardElevation="@dimen/cardview_default_elevation">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center_vertical"
-            android:text="Vacina02" />
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view3"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        card_view:cardCornerRadius="@dimen/cardview_default_radius"
-        card_view:cardElevation="@dimen/cardview_default_elevation">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center_vertical"
-            android:text="Vacina03" />
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view4"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        card_view:cardCornerRadius="@dimen/cardview_default_radius"
-        card_view:cardElevation="@dimen/cardview_default_elevation">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center_vertical"
-            android:text="Vacina04" />
-    </android.support.v7.widget.CardView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:text="Legenda: " />
+    android:fitsSystemWindows="true"
+    tools:context="br.com.inf.vacinado.View.Carteira">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <View
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="10dp"
-                android:background="@color/colorTodasDoses"></View>
-
-            <View
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="10dp"
-                android:background="@color/colorFaltaDose"></View>
-
-            <View
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="10dp"
-                android:background="@color/colorNenhumaDose"></View>
-
-        </LinearLayout>
-
-        <LinearLayout
+            android:id="@+id/lista_vacinas_carteira"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_margin="10dp"
-                android:text="@string/legenda_verde" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_margin="10dp"
-                android:text="@string/legenda_amarelo" />
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/tool_bar" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_margin="10dp"
-                android:text="@string/legenda_vermelho" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/activity_carteira_classificacao"
+                    android:textColor="@color/colorSecundaryText"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/classificao_carteira"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorSecundaryText"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/colorPrimaryDark"></View>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycle_view_carteira"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </ScrollView>
 
         </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+
+        <TextView
+            android:id="@+id/carteira_vazia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@null" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_add_vacina_carteira"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_adiciona_vacina" />
+
+    </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/header_navigation_drawer"
+        app:menu="@menu/drawer" />
+</android.support.v4.widget.DrawerLayout>

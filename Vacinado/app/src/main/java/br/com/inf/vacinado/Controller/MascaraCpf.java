@@ -2,21 +2,28 @@ package br.com.inf.vacinado.Controller;
 
 import android.widget.EditText;
 
-import br.com.inf.vacinado.Cadastro;
+import br.com.inf.vacinado.View.Cadastro;
+import br.com.inf.vacinado.View.EditarCadastro;
 
 public class MascaraCpf {
 
+    /**
+     * Método responsável por realizar o controle da máscara do CPF no cadastro de novo usuário
+     *
+     * @param edit_cpf   : EditText do CPF que o usuário irá utilizar para digitar o CPF
+     * @param isUpdating : Booleano utilizado para identificar quando o usuário está digitando e
+     *                   quando ele não está. Variável para evitar chamada infinita do método.
+     */
     public static void ControlarMascaraCpf(boolean isUpdating, EditText edit_cpf, CharSequence s, int start, int before, int after) {
 
-        //Quando o texto é alterado o onTextChange é chamado
-        //Essa flag evita a chamada infinita desse método
         if (isUpdating) {
             Cadastro.setIsUpdating(false);
+            EditarCadastro.setIsUpdating(false);
             return;
         }
 
-        //Ao apagar o texto, a máscara é removida, então o posicionamento do cursor precisa
-        //saber se o texto atual tinha ou não a máscara
+        //hasMask: Ao apagar o texto, a máscara é removida, então o posicionamento do cursor
+        // precisa saber se o texto atual tinha ou não a máscara
         boolean hasMask = s.toString().indexOf('.') > -1 || s.toString().indexOf('-') > -1;
 
         //Remove os '.' e o '-' da String
@@ -25,7 +32,6 @@ public class MascaraCpf {
         //Os parâmetros before e after dizem o tamanho anterior e atual da String digitada.
         //If: After > Before = Usuário está digitando
         //Else: Usuário está apagando
-
         if (after > before) {
 
             str = calcularMascara(str);
@@ -39,6 +45,7 @@ public class MascaraCpf {
         } else {
 
             Cadastro.setIsUpdating(true);
+            EditarCadastro.setIsUpdating(true);
             edit_cpf.setText(str);
 
             //Se estiver apagando posiciona o cursor no local correto.
@@ -55,6 +62,10 @@ public class MascaraCpf {
         }
     }
 
+    /**
+     * @param str String digitada pelo usuário sem os caracteres "." e "-"
+     * @return Retorna uma String já com os caracteres "." e "-"
+     */
     private static String calcularMascara(String str) {
 
         //Se tem mais de 9 caracteres (sem máscara) oloca os '.' e o '-'
@@ -72,7 +83,7 @@ public class MascaraCpf {
 
         //Modifica a flag para evitar chamada infinita
         Cadastro.setIsUpdating(true);
-
+        EditarCadastro.setIsUpdating(true);
         return str;
     }
 }

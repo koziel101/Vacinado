@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/perfil"
+            android:checked="false"
+            android:icon="@drawable/ic_user"
+            android:title="@string/perfil" />
+
+        <item
+            android:id="@+id/new_vacina"
+            android:checked="false"
+            android:icon="@drawable/ic_new_vaccine"
+            android:title="@string/nova_vacina" />
+
+        <item
+            android:id="@+id/notificacao"
+            android:checked="false"
+            android:icon="@drawable/ic_notificacao"
+            android:title="@string/notificacoes" />
+
+        <item
+            android:id="@+id/log_out"
+            android:checked="false"
+            android:icon="@drawable/ic_log_out"
+            android:title="@string/log_out" />
+    </group>
+</menu>

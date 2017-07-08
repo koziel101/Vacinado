@@ -3,23 +3,25 @@
     package="br.com.inf.vacinado">
 
     <application
+        android:name=".Vacinado"
         android:allowBackup="true"
         android:icon="@drawable/slogan"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/slogan"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".View.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Cadastro" />
-        <activity android:name=".Carteira"></activity>
-        <activity android:name=".VacinaCompletaInfo"></activity>
-        <activity android:name=".VacinaIncompletaInfo"></activity>
+        <activity android:name=".View.Cadastro" />
+        <activity android:name=".View.Carteira"></activity>
+        <activity android:name=".View.VacinaInfo"></activity>
+        <activity android:name=".View.AdicionarDose"></activity>
+        <activity android:name=".View.AdicionarVacina"></activity>
+        <activity android:name=".View.EditarCadastro"></activity>
+        <activity android:name=".View.Notificacoes"></activity>
     </application>
-
 </manifest>

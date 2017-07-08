@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.inf.vacinado.View.VacinaInfo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/tool_bar"
+            layout="@layout/tool_bar"></include>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nome_vacina_vacina_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="20dp"
+                android:text="@string/nome_vacina"
+                android:textColor="@color/colorSecundaryText"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_info_vacina__vacina_info"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                card_view:cardCornerRadius="@dimen/cardview_default_radius"
+                card_view:cardElevation="@dimen/cardview_default_elevation">
+
+                <TextView
+                    android:id="@+id/info_vacina"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:text="Informações da Vacina"
+                    android:textSize="14sp" />
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/doses_tomadas"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/colorPrimaryDark"></View>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/doseVazia"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=""/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycle_view_doses"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bttnVoltar_vacina_info"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:text="@string/bttn_voltar" />
+
+            <Button
+                android:id="@+id/adicionarDose_vacina_info"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:text="@string/bttn_adicionar_dose" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

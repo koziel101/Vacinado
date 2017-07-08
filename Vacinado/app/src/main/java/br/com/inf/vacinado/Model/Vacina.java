@@ -1,17 +1,25 @@
 package br.com.inf.vacinado.Model;
 
-public class Vacina {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Vacina implements Serializable {
 
     private String id;
     private String nome;
     private String informacoes;
     private int quantidadeDoses;
-    private int dosesTomadas;
+    private int dosesTomadas = 0;
+    ArrayList<Dose> doses = new ArrayList<>();
 
-    public Vacina(String nome, String informacoes, int quantidadeDoses) {
+    public Vacina() {
+
+    }
+
+    public Vacina(String nome, int quantidadeDoses, String informacoes) {
         this.nome = nome;
-        this.informacoes = informacoes;
         this.quantidadeDoses = quantidadeDoses;
+        this.informacoes = informacoes;
     }
 
     public String getId() {
@@ -52,5 +60,14 @@ public class Vacina {
 
     public void setDosesTomadas(int dosesTomadas) {
         this.dosesTomadas = dosesTomadas;
+    }
+
+    public ArrayList<Dose> getDoses() {
+        return doses;
+    }
+
+    public void adicionarDose(Dose dose) {
+        this.doses.add(dose);
+        dosesTomadas++;
     }
 }

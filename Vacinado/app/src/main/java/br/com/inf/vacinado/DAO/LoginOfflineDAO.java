@@ -27,4 +27,19 @@ public class LoginOfflineDAO {
         }
         editor.apply();
     }
+
+    public static boolean validarLoginOffline(SharedPreferences prefs, EditText emailEditText, EditText passwordEditText) {
+        if (prefs != null) {
+            String email, senha;
+            email = prefs.getString("email", "");
+            senha = prefs.getString("senha", "");
+            if (email.equals(emailEditText.getText().toString()) && senha.equals(passwordEditText.getText().toString())) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }

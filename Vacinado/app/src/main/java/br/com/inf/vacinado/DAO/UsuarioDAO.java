@@ -2,35 +2,57 @@ package br.com.inf.vacinado.DAO;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import br.com.inf.vacinado.Model.UsuarioInfo;
+import br.com.inf.vacinado.Model.Usuario;
 
-public class UsuarioDAO {
+public class UsuarioDAO extends Thread {
 
     //Variaveis para realizar a autenticacao
-    static private FirebaseAuth mFirebaseAuth;
-    static private FirebaseUser mFirebaseUser;
+    static private FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+    static private FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
-    //Variaveis para persistir dados
-    static private DatabaseReference mDatabase;
-    static private String mUserId;
+    static private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    static private String mUserId = mFirebaseUser.getUid();
+    private DatabaseReference ref = mDatabase.child("users").child(mUserId).child("cadastro");
+    private static Usuario usuarioG = null;
 
-    public static void persistirUsuario(UsuarioInfo usuarioInfo) {
+    public static Usuario getUsuarioG() {
+        return usuarioG;
+    }
 
-        // Initialize Firebase Auth and Database Reference
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mUserId = mFirebaseUser.getUid();
+    public static void persistirUsuario(Usuario usuario) {
+        //Realizando a persistencia offline
+        DatabaseReference referencia = FirebaseDatabase.getInstance().getReference("cadastro");
+        referencia.keepSynced(true);
 
-        mDatabase.child("users").child(mUserId).child("cadastro").child("nome").push().setValue(usuarioInfo.getNome());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("email").push().setValue(usuarioInfo.getEmail());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("cpf").push().setValue(usuarioInfo.getCpf());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("sexo").push().setValue(usuarioInfo.getSexo());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("dia").push().setValue(usuarioInfo.getDiaNascimento());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("mes").push().setValue(usuarioInfo.getMesNascimento());
-        mDatabase.child("users").child(mUserId).child("cadastro").child("ano").push().setValue(usuarioInfo.getAnoNascimento());
+        String id = mDatabase.child("users").child(mUserId).child("cadastro").child("id").push().getKey();
+        usuario.setId(id);
+        mDatabase.child("users").child(mUserId).child("cadastro").child(id).setValue(usuario);
+        mDatabase.keepSynced(true);
+    }
+
+    public Usuario getUserById(FirebaseAuth.AuthStateListener mAuthListener) {
+        mFirebaseAuth.addAuthStateListener(mAuthListener);
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot vacSnapshot : dataSnapshot.getChildren()) {
+                    Usuario usuario = vacSnapshot.getValue(Usuario.class);
+                    usuarioG = usuario;
+                    break;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+        return usuarioG;
     }
 }
